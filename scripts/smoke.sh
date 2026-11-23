@@ -21,7 +21,7 @@ signin owner@example.org $owner
 signin someone@example.org $other
 check "First person to sign in is the owner" '[ "$(as $owner $BASE/api/me | jq -r .isOwner)" = true ]'
 check "Second person is not" '[ "$(as $other $BASE/api/me | jq -r .isOwner)" = false ]'
-check "Dashboard page is served with the system data layer" 'as $owner $BASE/ | grep -q "system/claude-shim.js"'
+check "Dashboard page is served with the system data layer" 'as $owner $BASE/ > $J/index.html && grep -q "system/claude-shim.js" $J/index.html'
 check "Dashboard data files are served" '[ "$(code $owner $BASE/data/kpis.json)" = 200 ]'
 check "57 projects loaded (50 active + archived/merged)" '[ "$(as $owner $BASE/api/docs/projects | jq ".docs | length")" = 57 ]'
 check "55 work plans loaded" '[ "$(as $owner $BASE/api/docs/plans | jq ".docs | length")" = 55 ]'
