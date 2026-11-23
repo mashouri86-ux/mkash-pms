@@ -11,6 +11,12 @@ pkill -f "node.*vite" 2>/dev/null || true
 [ -f web/.env ] || cp web/.env.example web/.env
 [ -d web/node_modules ] || (cd web && npm install --no-audit --no-fund)
 
+# Codespaces: use a SQLite database file unless told otherwise (no separate database server needed)
+if [ -n "$CODESPACES" ] && [ -z "$Database__Provider" ]; then
+  export Database__Provider=Sqlite
+  export ConnectionStrings__Pms="Data Source=/tmp/mkash-pms.db"
+fi
+
 # setsid + nohup keep both running after this script (and the Codespace start-up step) ends
 cd "$ROOT/src/MKAsh.Api" && ASPNETCORE_ENVIRONMENT=Development setsid nohup dotnet run --launch-profile MKAsh.Api > /tmp/mkash-api.log 2>&1 < /dev/null &
 cd "$ROOT/web" && setsid nohup npm run dev -- --host > /tmp/mkash-web.log 2>&1 < /dev/null &

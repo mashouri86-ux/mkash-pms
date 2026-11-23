@@ -60,6 +60,19 @@ jobs:
           nohup dotnet run -c Release --no-build --no-launch-profile > ../../api.log 2>&1 &
       - name: Run checks
         run: scripts/smoke.sh
-      - name: API log
+      - name: Start the API again on SQLite (the Codespaces test set-up)
+        working-directory: src/MKAsh.Api
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+          ASPNETCORE_URLS: http://localhost:5081
+          Database__Provider: Sqlite
+          ConnectionStrings__Pms: "Data Source=/tmp/ci-sqlite.db"
+          Dev__AutoRegisterAs: ""
+        run: nohup dotnet run -c Release --no-build --no-launch-profile > ../../api-sqlite.log 2>&1 &
+      - name: Run checks on SQLite
+        env:
+          API: http://localhost:5081/api
+        run: scripts/smoke.sh
+      - name: API logs
         if: always()
-        run: tail -n 200 api.log
+        run: tail -n 100 api.log; echo ---- sqlite; tail -n 100 api-sqlite.log

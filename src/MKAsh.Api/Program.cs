@@ -12,8 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 var cfg = builder.Configuration;
 
 // ---- Database ----
+// SQL Server in production. "Sqlite" (a single database file) is for quick tests such as Codespaces.
+var connection = cfg.GetConnectionString("Pms") ?? throw new InvalidOperationException("ConnectionStrings:Pms is not set.");
+var useSqlite = string.Equals(cfg["Database:Provider"], "Sqlite", StringComparison.OrdinalIgnoreCase);
 builder.Services.AddDbContext<PmsDbContext>(o =>
-    o.UseSqlServer(cfg.GetConnectionString("Pms") ?? throw new InvalidOperationException("ConnectionStrings:Pms is not set.")));
+{
+    if (useSqlite) o.UseSqlite(connection);
+    else o.UseSqlServer(connection);
+});
 
 // ---- Sign-in ----
 // Production: Microsoft Entra ID (ministry accounts). Development can use the X-Dev-User header instead.
@@ -93,7 +99,7 @@ using (var scope = app.Services.CreateScope())
         {
             try
             {
-                if (db.Database.GetMigrations().Any()) await db.Database.MigrateAsync();
+                if (!useSqlite && db.Database.GetMigrations().Any()) await db.Database.MigrateAsync();
                 else await db.Database.EnsureCreatedAsync();
                 break;
             }
