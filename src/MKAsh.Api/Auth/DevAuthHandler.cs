@@ -13,14 +13,14 @@ namespace MKAsh.Api.Auth;
 public class DevAuthHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder)
     : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
 {
-    public const string Scheme = "Dev";
+    public const string SchemeName = "Dev";
     public const string Header = "X-Dev-User";
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
         var email = Request.Headers[Header].ToString();
         if (string.IsNullOrWhiteSpace(email)) return Task.FromResult(AuthenticateResult.NoResult());
-        var identity = new ClaimsIdentity(new[] { new Claim("preferred_username", email.Trim()) }, Scheme);
-        return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(new ClaimsPrincipal(identity), Scheme)));
+        var identity = new ClaimsIdentity(new[] { new Claim("preferred_username", email.Trim()) }, SchemeName);
+        return Task.FromResult(AuthenticateResult.Success(new AuthenticationTicket(new ClaimsPrincipal(identity), SchemeName)));
     }
 }

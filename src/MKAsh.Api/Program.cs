@@ -22,8 +22,8 @@ if (authMode == "Development")
 {
     if (!builder.Environment.IsDevelopment())
         throw new InvalidOperationException("Auth:Mode=Development is only allowed in the Development environment.");
-    builder.Services.AddAuthentication(DevAuthHandler.Scheme)
-        .AddScheme<AuthenticationSchemeOptions, DevAuthHandler>(DevAuthHandler.Scheme, _ => { });
+    builder.Services.AddAuthentication(DevAuthHandler.SchemeName)
+        .AddScheme<AuthenticationSchemeOptions, DevAuthHandler>(DevAuthHandler.SchemeName, _ => { });
 }
 else
 {
