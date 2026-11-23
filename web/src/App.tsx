@@ -74,6 +74,20 @@ export default function App() {
             ) : (
               <>
                 <p className="muted mt">{t("signInDev")}</p>
+                <form
+                  className="row mt"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const v = new FormData(e.currentTarget).get("email")?.toString().trim();
+                    if (v) {
+                      signInDev(v.toLowerCase());
+                      setSignedIn(true);
+                    }
+                  }}
+                >
+                  <input className="field" name="email" type="email" placeholder="you@example.com" style={{ flex: 1 }} dir="ltr" />
+                  <button className="btn primary">{t("signIn")}</button>
+                </form>
                 <div className="users">
                   {DEMO_USERS.map(([email, label]) => (
                     <button key={email} className="btn" onClick={() => { signInDev(email); setSignedIn(true); }}>

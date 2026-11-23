@@ -10,7 +10,7 @@ namespace MKAsh.Api.Services;
 /// Turns the signed-in Entra ID account into a <see cref="UserContext"/>.
 /// The account is matched to a person by email; anyone not on the people list gets 403.
 /// </summary>
-public class CurrentUser(IHttpContextAccessor http, PmsDbContext db)
+public class CurrentUser(IHttpContextAccessor http, PmsDbContext db, IConfiguration cfg, IHostEnvironment env)
 {
     private UserContext? _ctx;
     private Person? _person;
@@ -31,6 +31,16 @@ public class CurrentUser(IHttpContextAccessor http, PmsDbContext db)
         var email = Email;
         if (email is null) return null;
         _person = await db.People.AsNoTracking().FirstOrDefaultAsync(p => p.Email == email && p.Active, ct);
+        // Test systems only: Dev:AutoRegisterAs registers any new email with that role on first sign-in.
+        if (_person is null && env.IsDevelopment() && cfg["Auth:Mode"] == "Development" &&
+            Enum.TryParse<Role>(cfg["Dev:AutoRegisterAs"], true, out var role) &&
+            !await db.People.AnyAsync(p => p.Email == email, ct))
+        {
+            var name = email.Split('@')[0];
+            _person = new Person { Email = email, NameAr = name, NameEn = name, Role = role };
+            db.People.Add(_person);
+            await db.SaveChangesAsync(ct);
+        }
         return _person;
     }
 

@@ -54,6 +54,7 @@ jobs:
         env:
           ASPNETCORE_ENVIRONMENT: Development
           ASPNETCORE_URLS: http://localhost:5080
+          Dev__AutoRegisterAs: ""   # so the "unregistered accounts are refused" check is meaningful
         run: |
           dotnet build -c Release
           nohup dotnet run -c Release --no-build --no-launch-profile > ../../api.log 2>&1 &

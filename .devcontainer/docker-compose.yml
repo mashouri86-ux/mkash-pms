@@ -1,0 +1,15 @@
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/dotnet:1-8.0
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    # Share the database container's network so the API reaches SQL Server on localhost:1433
+    network_mode: service:db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Dev_Passw0rd!"

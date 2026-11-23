@@ -12,6 +12,19 @@ The ministry's project management system. It grew out of the MKAsh PMS dashboard
 | NDS3 change-request Excel template | .xlsm | `templates` |
 | Tests that prove the system matches the prototype's figures | xUnit | `tests/MKAsh.Core.Tests` |
 
+## Try it in your browser (GitHub Codespaces)
+
+You don't need to install anything.
+
+1. On the repository page, click **Code → Codespaces → Create codespace on main**.
+2. Wait 3–5 minutes on the first start while it installs everything and creates the database. The app opens on port **5173**. If it doesn't open, use the **Ports** tab and open port 5173.
+3. On the sign-in page, either type **your email** and click **Sign in**, or pick a demo user.
+   - In this test mode, a new email is added as a **PMO** user the first time it signs in.
+   - From Administration you can change your role, or add other people.
+4. **⇄ Switch user** (top right) signs out, so you can see the system as an executive, a sector lead or a project manager.
+
+Test mode has no passwords, so it is only for trying the system. Codespace addresses are private to your GitHub account. Stop the codespace when you're done (Codespaces → … → Stop) to save free hours. Logs: `/tmp/mkash-api.log`, `/tmp/mkash-web.log`. Restart both with `bash scripts/dev-start.sh`.
+
 ## Run it on a developer machine
 
 You need the .NET 8 SDK, Node 20 and SQL Server. SQL Server can be Docker, LocalDB or a dev server.

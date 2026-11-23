@@ -88,8 +88,21 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<PmsDbContext>();
     if (cfg.GetValue("Database:MigrateOnStartup", true))
     {
-        if (db.Database.GetMigrations().Any()) await db.Database.MigrateAsync();
-        else await db.Database.EnsureCreatedAsync();
+        // SQL Server may still be starting (containers, Codespaces): retry for up to a minute.
+        for (var attempt = 1; ; attempt++)
+        {
+            try
+            {
+                if (db.Database.GetMigrations().Any()) await db.Database.MigrateAsync();
+                else await db.Database.EnsureCreatedAsync();
+                break;
+            }
+            catch (Microsoft.Data.SqlClient.SqlException) when (attempt < 20)
+            {
+                app.Logger.LogWarning("Database not reachable yet (attempt {Attempt}); retrying in 3 s.", attempt);
+                await Task.Delay(3000);
+            }
+        }
     }
     if (cfg.GetValue("Seed:OnStartup", false))
     {
