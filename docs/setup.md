@@ -1,64 +1,48 @@
 # Setup and deployment
 
 ## 1. Database
-SQL Server 2019 or later. Create an empty database, for example `MKAshPMS`, and a login the API can use. Put the connection string in `ConnectionStrings:Pms`, using an environment variable or a secret store, not `appsettings.json`:
+SQL Server 2019 or later. Create an empty database, for example `MKAshPMS`, and a login the server can use. Set the connection string as a secret or environment variable:
 
 ```
-ConnectionStrings__Pms="Server=sql01;Database=MKAshPMS;User Id=mkash_api;Password=…;TrustServerCertificate=True"
+ConnectionStrings__Pms="Server=sql01;Database=MKAshPMS;User Id=mkash_app;Password=…;TrustServerCertificate=True"
 ```
 
-The API creates the tables on first start. For controlled upgrades, add EF Core migrations once:
-
-```bash
-dotnet tool install --global dotnet-ef
-cd src/MKAsh.Api
-dotnet ef migrations add Initial
-```
-
-From then on the API applies pending migrations at start-up. To apply them by hand instead, set `Database:MigrateOnStartup=false`.
+The server creates its two tables, `Docs` and `Assets`, on first start.
 
 ## 2. First data load
-1. Copy `database/seed/people.example.json` to `database/seed/people.json` and replace the demo users with the real people, roles and emails.
-   - Sector leads need `leadName` exactly as it appears on projects.
-   - Project managers' Arabic names must match the manager names on projects, so they are linked automatically.
-2. Start the API once with `Seed__OnStartup=true`. It loads projects, work plans, KPIs, strategy and people only if the database has no projects.
-3. Set `Seed__OnStartup=false` afterwards.
+- Start once with `Seed__OnStartup=true`. This loads the 50 PQI projects and work plans from `database/seed/docs/seed.json`, but only if the database is empty.
+- People and roles: either add them on the **Users** page after signing in as an owner, or put an `access.json` file in `database/seed/docs`. Use the same format as `access.example.json`. Git ignores this file because it holds ministry emails.
+- Set `Seed__OnStartup=false` afterwards.
 
-## 3. Microsoft Entra ID sign-in
-In the ministry tenant (Entra admin centre → App registrations):
-
-**API app: "MKAsh PMS API"**
-- Expose an API: set the Application ID URI to `api://<api-client-id>` and add the scope `access_as_user`.
-- Set `AzureAd:TenantId`, `AzureAd:ClientId` and `AzureAd:Audience` in the API configuration.
-
-**Web app: "MKAsh PMS"**
-- Platform: Single-page application, redirect URI `https://<your-host>/`.
-- API permissions: add `MKAsh PMS API / access_as_user` and grant admin consent.
-- Build the web app with:
+## 3. Sign-in with ministry accounts (Microsoft Entra ID)
+In the ministry tenant, go to the Entra admin centre → **App registrations → New registration**, named "MKAsh PMS":
+- Platform: **Web**, redirect URI `https://<your-host>/signin-oidc`, front-channel logout URL `https://<your-host>/signout-callback-oidc`.
+- Under **Certificates & secrets**, create a client secret. In production, a certificate is better.
+- Configure the server:
   ```
-  VITE_AUTH_MODE=entra
-  VITE_ENTRA_CLIENT_ID=<web-client-id>
-  VITE_ENTRA_TENANT_ID=<tenant-id>
-  VITE_API_SCOPE=api://<api-client-id>/access_as_user
+  Auth__Mode=EntraId
+  AzureAd__TenantId=<tenant id>
+  AzureAd__ClientId=<application id>
+  AzureAd__ClientSecret=<secret>
+  Pms__Owners__0=<head of PMO email>
   ```
-
-People are matched to the `People` table by the email (UPN) in their token. Anyone signed in but not on that list gets "not registered".
+- Owners get full rights and the switch-user preview. Everyone else gets the role set for their email on the **Users** page.
+- People who sign in with their ministry account go straight in, with no second password.
 
 ## 4. Build and host
 ```bash
-cd web && npm ci && npm run build     # outputs into src/MKAsh.Api/wwwroot
-cd .. && dotnet publish src/MKAsh.Api -c Release -o out
+dotnet publish src/MKAsh.Api -c Release -o out     # includes the screens (web/) in wwwroot
 ```
-Host `out/` on IIS (with the ASP.NET Core Hosting Bundle) or in a container. The API serves the web app and `/api` from the same address, so no CORS set-up is needed in production. Keep `templates/` and `database/seed/` beside the app, or point `ChangeRequests:Template` and `Seed:Directory` at their locations.
+Host `out/` on IIS (with the ASP.NET Core Hosting Bundle) or in a container, behind HTTPS. Uploaded files are stored in the database, up to 20 MB each. Include the database in the normal backups.
 
 ## Configuration reference
 | Key | Default | Meaning |
 |---|---|---|
-| `ConnectionStrings:Pms` | — | SQL Server connection |
-| `Auth:Mode` | `EntraId` | `Development` allows the demo X-Dev-User sign-in; the API refuses this outside Development |
-| `AzureAd:*` | — | Entra ID API registration |
-| `Database:MigrateOnStartup` | `true` | Create or migrate the database at start-up |
-| `Seed:OnStartup` | `false` | Load `database/seed` into an empty database |
-| `Seed:Directory` | `../../database/seed` | Seed folder |
-| `ChangeRequests:Template` | `../../templates/Change_Request_Template.xlsm` | NDS3 Excel template |
-| `Cors:Origins` | `http://localhost:5173` | Only needed when the web app is served separately |
+| `ConnectionStrings:Pms` | — | Database connection |
+| `Database:Provider` | `SqlServer` | `Sqlite` is for quick tests only (Codespaces) |
+| `Auth:Mode` | `EntraId` | `Development` gives the test sign-in form; the server refuses this outside Development |
+| `AzureAd:*` | — | Entra ID app registration |
+| `Pms:Owners` | `[]` | Emails with owner rights |
+| `Dev:FirstUserIsOwner` | `true` | Test systems: the first person to sign in becomes the owner |
+| `Seed:OnStartup` | `false` | Load `database/seed/docs` into an empty database |
+| `Database:MigrateOnStartup` | `true` | Create the tables at start-up |

@@ -1,18 +1,27 @@
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using MKAsh.Api.Auth;
+using MKAsh.Api.Controllers;
 using MKAsh.Api.Data;
 using MKAsh.Api.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+// The web app (the dashboard screens) lives in /web. Run from the repository it is served from there;
+// a published build carries it in wwwroot.
+var repoWeb = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "web"));
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = Directory.Exists(repoWeb) ? repoWeb : "wwwroot",
+});
 var cfg = builder.Configuration;
 
-// ---- Database ----
-// SQL Server in production. "Sqlite" (a single database file) is for quick tests such as Codespaces.
+// ---- Database: SQL Server in production; "Sqlite" (a single file) for quick tests such as Codespaces ----
 var connection = cfg.GetConnectionString("Pms") ?? throw new InvalidOperationException("ConnectionStrings:Pms is not set.");
 var useSqlite = string.Equals(cfg["Database:Provider"], "Sqlite", StringComparison.OrdinalIgnoreCase);
 builder.Services.AddDbContext<PmsDbContext>(o =>
@@ -21,72 +30,77 @@ builder.Services.AddDbContext<PmsDbContext>(o =>
     else o.UseSqlServer(connection);
 });
 
-// ---- Sign-in ----
-// Production: Microsoft Entra ID (ministry accounts). Development can use the X-Dev-User header instead.
-var authMode = cfg["Auth:Mode"] ?? "EntraId";
-if (authMode == "Development")
+// ---- Sign-in: a cookie for the whole site, so pages, data and files all use the same session ----
+var devAuth = cfg["Auth:Mode"] == "Development";
+if (devAuth)
 {
     if (!builder.Environment.IsDevelopment())
         throw new InvalidOperationException("Auth:Mode=Development is only allowed in the Development environment.");
-    builder.Services.AddAuthentication(DevAuthHandler.SchemeName)
-        .AddScheme<AuthenticationSchemeOptions, DevAuthHandler>(DevAuthHandler.SchemeName, _ => { });
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(o =>
+        {
+            o.Cookie.Name = "mkash.session";
+            o.LoginPath = "/signin";
+            o.SlidingExpiration = true;
+            o.Events.OnRedirectToLogin = ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/api")) ctx.Response.StatusCode = 401;
+                else ctx.Response.Redirect(ctx.RedirectUri);
+                return Task.CompletedTask;
+            };
+        });
 }
 else
 {
-    builder.Services.AddAuthentication("Bearer").AddMicrosoftIdentityWebApi(cfg.GetSection("AzureAd"));
+    // Microsoft Entra ID (ministry accounts), OpenID Connect + cookie.
+    builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+        .AddMicrosoftIdentityWebApp(o =>
+        {
+            cfg.Bind("AzureAd", o);
+            // Data calls from the page get 401 (the page then reloads through sign-in) instead of a redirect.
+            o.Events.OnRedirectToIdentityProvider = ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/api"))
+                {
+                    ctx.Response.StatusCode = 401;
+                    ctx.HandleResponse();
+                }
+                return Task.CompletedTask;
+            };
+        });
+    builder.Services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme, o => o.Cookie.Name = "mkash.session");
 }
-builder.Services.AddAuthorization();
+// Everything requires sign-in unless marked otherwise (pages, data files, uploads).
+builder.Services.AddAuthorization(o => o.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 
-// ---- App services ----
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddSingleton(TimeProvider.System);
-builder.Services.AddScoped<CurrentUser>();
-builder.Services.AddScoped<PortfolioService>();
-builder.Services.AddScoped<ChangeRequestService>();
+builder.Services.AddScoped<Account>();
 builder.Services.AddScoped<Seeder>();
-
-builder.Services.AddControllers().AddJsonOptions(o =>
-{
-    o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-    o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-});
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddCors(o => o.AddPolicy("web", p => p
-    .WithOrigins(cfg.GetSection("Cors:Origins").Get<string[]>() ?? new[] { "http://localhost:5173" })
-    .AllowAnyHeader().AllowAnyMethod()));
+builder.Services.Configure<FormOptions>(o => o.MultipartBodyLengthLimit = AssetsController.MaxBytes + 1024 * 1024);
+builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
 
 var app = builder.Build();
 
-// Domain exceptions → HTTP status codes with a short message the web app can show.
 app.UseExceptionHandler(e => e.Run(async ctx =>
 {
     var ex = ctx.Features.Get<IExceptionHandlerFeature>()?.Error;
-    (ctx.Response.StatusCode, var msg) = ex switch
-    {
-        ForbiddenException f => (403, f.Message),
-        NotFoundException n => (404, n.Message),
-        ConflictException c => (409, c.Message),
-        InvalidOperationException i when i.Message.Contains("cannot be approved") => (409, i.Message),
-        _ => (500, "Something went wrong. The error has been logged."),
-    };
-    await ctx.Response.WriteAsJsonAsync(new { error = msg });
+    app.Logger.LogError(ex, "Unhandled error");
+    ctx.Response.StatusCode = 500;
+    await ctx.Response.WriteAsJsonAsync(new { error = "Something went wrong. The error has been logged." });
 }));
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseCors("web");
-app.UseDefaultFiles();
-app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseDefaultFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    // The dashboard's data files are small and change with releases: always revalidate.
+    OnPrepareResponse = c => c.Context.Response.Headers.CacheControl = "no-cache",
+});
 app.MapControllers();
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" })).AllowAnonymous();
-app.MapFallbackToFile("index.html");
+if (devAuth) DevSignIn.Map(app);
+else app.MapGet("/signout", () => Results.SignOut(null, new[] { CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme }));
 
 // ---- Database creation and first load ----
 using (var scope = app.Services.CreateScope())
@@ -94,7 +108,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<PmsDbContext>();
     if (cfg.GetValue("Database:MigrateOnStartup", true))
     {
-        // SQL Server may still be starting (containers, Codespaces): retry for up to a minute.
         for (var attempt = 1; ; attempt++)
         {
             try
@@ -103,7 +116,7 @@ using (var scope = app.Services.CreateScope())
                 else await db.Database.EnsureCreatedAsync();
                 break;
             }
-            catch (Microsoft.Data.SqlClient.SqlException) when (attempt < 20)
+            catch (Exception ex) when (attempt < 20 && ex is Microsoft.Data.SqlClient.SqlException or Microsoft.Data.Sqlite.SqliteException)
             {
                 app.Logger.LogWarning("Database not reachable yet (attempt {Attempt}); retrying in 3 s.", attempt);
                 await Task.Delay(3000);
@@ -112,7 +125,7 @@ using (var scope = app.Services.CreateScope())
     }
     if (cfg.GetValue("Seed:OnStartup", false))
     {
-        var dir = cfg["Seed:Directory"] ?? Path.Combine(app.Environment.ContentRootPath, "..", "..", "database", "seed");
+        var dir = cfg["Seed:Directory"] ?? Path.Combine(app.Environment.ContentRootPath, "..", "..", "database", "seed", "docs");
         await scope.ServiceProvider.GetRequiredService<Seeder>().SeedAsync(dir);
     }
 }

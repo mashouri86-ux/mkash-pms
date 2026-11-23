@@ -1,40 +1,40 @@
 # Architecture
 
 ```
-Browser (React, EN/AR)
-   │  Entra ID token (production) or X-Dev-User header (development only)
-   ▼
-MKAsh.Api  (ASP.NET Core 8)
-   ├─ Controllers: me/strategy, projects, approvals, change-requests, closure, kpis, leadership, reports, admin
-   ├─ Services: CurrentUser (account → role), PortfolioService (figures), ChangeRequestService (codes, apply, Excel)
-   └─ EF Core → SQL Server
-MKAsh.Core (no dependencies)
-   └─ Rules: ProgressRules, WeightTemplates, KpiRules, ReportingPeriods, AccessRules, WorkflowRules
+Browser
+  web/index.html ─ the dashboard (all pages, charts, workflows, Excel/PDF exports)
+  web/system/claude-shim.js ─ the system data layer
+        │  same-origin requests with the sign-in cookie
+        ▼
+MKAsh.Api (ASP.NET Core 8)
+  /signin, /signout ............ Entra ID (production) or the test form (development)
+  /api/me, /api/profiles ....... the signed-in account, owner/PMO flags, names
+  /api/docs/{collection} ....... list / save / delete records
+  /api/docs/changes?since= ..... everything changed since a point in time (live updates, every 4 s)
+  /api/assets, /_blob/{id} ..... upload / open files (proof of completion, charters, closure files)
+  static files ................. the dashboard and its data files (kpis.json, roadmap pages, fonts, CR template)
+        │
+        ▼
+SQL Server: Docs (Collection, Id, Json, Version, Deleted, UpdatedBy, UpdatedAt) · Assets (file bytes)
 ```
 
-**One place for every rule.** All figures (progress, planned %, variance, status, weighted progress, KPI delivery) come from `MKAsh.Core`. Every page calls `PortfolioService`, so the numbers on the leadership page, project list, reports and KPIs always agree. `MKAsh.Core` has no database or web code, which is why the golden tests can run it alone.
+## Why the screens are the dashboard itself
 
-**Permissions are enforced by the API.** The web app builds its menu from `/api/me` (`pages`), but every endpoint checks `AccessRules` again. Hiding a tab is never the only protection.
+The dashboard already holds every page and workflow the ministry agreed on: progress updates and approvals, change requests through the NPC, closure, KPIs, reports, imports and users. Rewriting them would risk losing features. Instead, the system keeps the screens as they are and replaces only the layer under them: where data is stored, who is signed in, where files go.
 
-**Live vs approved values.** Each activity stores the manager's live progress and the last approved progress. Managers and the PMO work on live values. Leadership pages and executives see approved values only, until the sector lead or PMO approves an update.
+The dashboard works with these record collections, and each one is stored in the `Docs` table:
+`projects, plans, risks, milestones, evidence, updates, changes, kpis, closures, roles, access, directory, settings`.
 
-## Data model (main tables)
+## Permissions
 
-| Table | Holds |
+| Who | Can |
 |---|---|
-| Portfolios, Initiatives | The 6 sector outcomes and their initiatives (from the strategy roadmap) |
-| People | Everyone who can sign in: email, role, and for sector leads the lead name used on projects |
-| Projects | Portfolio projects: lead, manager, budget, dates, status override (On hold / Closed …), type |
-| WorkPackages, Activities | The work plan; activities have live and approved progress/status |
-| Updates | Every progress change and its approval: the audit trail and approvals queue |
-| ChangeRequests (+ WorkflowEvents) | NDS3 change requests: form sections 1–3, apply values, NPC sections 4–6, history |
-| Closures, ClosureDeliverables | Closure requests and deliverable acceptance |
-| Kpis, KpiLinks | Strategic and Ministry KPIs and the projects that deliver them (impact 3/2/1) |
-| Risks, Milestones, Evidence | Per-project registers |
-| WeightTemplates, Settings | Phase weights per project type; update cycle; progress view |
+| Not signed in | Nothing: every page, data call and file requires sign-in |
+| Owner (`Pms:Owners`, or on a test system the first person to sign in) | Everything, plus switching user to preview other roles |
+| PMO (an `access`/`roles` record with role `pmo`) | Change users, roles, settings and KPI values (enforced by the server) |
+| Signed-in users | Read the portfolio. Save progress updates, risks, milestones, evidence, change requests and closures. The screens then limit each role to its own projects, as in the dashboard. |
 
-On first start the API creates the database. Once the team adds EF migrations (`dotnet ef migrations add Initial`), it applies them instead. The API then loads `database/seed` when `Seed:OnStartup` is true and the database is empty.
+**Next hardening step:** move the per-project limits (managers edit only their projects, leads approve only their sector) from the screens into the server, one collection at a time. The rules for this are already written and tested in `MKAsh.Core/Rules/AccessRules.cs`.
 
-## Change requests and the Excel template
-
-`ChangeRequestService.WorkbookAsync` opens `templates/Change_Request_Template.xlsm` and writes the request into sheet 4, using the same cells as the prototype. It sets Excel to recalculate on open and returns the file with its macros intact. That is the file the NPC asked for.
+## Live updates
+Every save stamps the record with a version (UTC ticks). Each open screen asks `/api/docs/changes` every 4 seconds for anything newer, so approvals, comments and uploads appear for everyone without a reload. Deleted records are kept as tombstones so other screens remove them too.

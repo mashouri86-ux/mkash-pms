@@ -19,18 +19,28 @@ jobs:
       - run: dotnet test MKAsh.sln --no-build -c Release --logger "console;verbosity=normal"
 
   web:
-    name: Web app type-check and build
+    name: Dashboard screens and data layer
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: web
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: npm install --no-audit --no-fund
-      - run: npm run build
+      - name: Data layer script is valid
+        run: node --check web/system/claude-shim.js
+      - name: Dashboard loads the data layer and its data files exist
+        run: |
+          grep -q 'src="system/claude-shim.js"' web/index.html
+          for f in data/kpis.json data/seed.json data/pm-roster.json data/cr-template.b64.txt data/map/page-1.jpg data/fonts/inter-Regular.woff; do test -f "web/$f"; done
+      - name: Dashboard script compiles
+        run: |
+          python3 - <<'PY'
+          import re
+          s=open('web/index.html',encoding='utf-8').read()
+          m=[x for x in re.findall(r'<script>(.*?)</script>', s, re.S)]
+          open('/tmp/app.js','w',encoding='utf-8').write(m[-1])
+          PY
+          node --check /tmp/app.js
 
   smoke:
     name: API end-to-end check on SQL Server
@@ -53,8 +63,7 @@ jobs:
         working-directory: src/MKAsh.Api
         env:
           ASPNETCORE_ENVIRONMENT: Development
-          ASPNETCORE_URLS: http://localhost:5080
-          Dev__AutoRegisterAs: ""   # so the "unregistered accounts are refused" check is meaningful
+          ASPNETCORE_URLS: http://localhost:5173
         run: |
           dotnet build -c Release
           nohup dotnet run -c Release --no-build --no-launch-profile > ../../api.log 2>&1 &
@@ -64,14 +73,13 @@ jobs:
         working-directory: src/MKAsh.Api
         env:
           ASPNETCORE_ENVIRONMENT: Development
-          ASPNETCORE_URLS: http://localhost:5081
+          ASPNETCORE_URLS: http://localhost:5181
           Database__Provider: Sqlite
           ConnectionStrings__Pms: "Data Source=/tmp/ci-sqlite.db"
-          Dev__AutoRegisterAs: ""
         run: nohup dotnet run -c Release --no-build --no-launch-profile > ../../api-sqlite.log 2>&1 &
       - name: Run checks on SQLite
         env:
-          API: http://localhost:5081/api
+          BASE: http://localhost:5181
         run: scripts/smoke.sh
       - name: API logs
         if: always()

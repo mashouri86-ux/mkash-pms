@@ -1,17 +1,22 @@
 # Roles and permissions
 
-Each person has exactly one role. The API checks every request (`src/MKAsh.Core/Rules/AccessRules.cs`).
+Each person has exactly one role, set on the **Users** page. The server enforces sign-in and PMO-only changes (users, roles, settings, KPI values); the screens show each role only its own pages and projects. See [architecture.md](architecture.md#permissions).
 
 | Page | PMO | Executive | Sector lead | Project manager |
 |---|:-:|:-:|:-:|:-:|
 | Home (strategy roadmap) | ✓ | ✓ | ✓ | ✓ |
+| Overview | ✓ | | ✓ | ✓ |
 | Leadership | ✓ | ✓ | ✓ | |
 | KPIs | ✓ | ✓ | | |
-| Projects | ✓ (all) | ✓ (all, approved figures) | ✓ (their sector) | ✓ (their projects) |
-| Approvals | ✓ | | ✓ | ✓ (status of their own) |
+| Projects | ✓ (all) | ✓ (all) | ✓ (their sector) | ✓ (their projects) |
+| Work plan | ✓ | | ✓ | ✓ |
+| Progress updates | ✓ | | ✓ | ✓ |
+| Approvals | ✓ | | ✓ | ✓ |
 | Change requests | ✓ | | | ✓ |
-| Reports | ✓ | ✓ | ✓ | ✓ |
-| Administration | ✓ | | | |
+| Risks | ✓ | | ✓ | ✓ |
+| Timeline | ✓ | ✓ | ✓ | ✓ |
+| Data (import/export) | ✓ | | | |
+| Users | ✓ | | | |
 
 **Executives** never see overdue-activity counts or states, and always see approved figures.
 

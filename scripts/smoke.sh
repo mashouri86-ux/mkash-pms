@@ -1,37 +1,47 @@
 #!/usr/bin/env bash
-# End-to-end check against a running API in Development mode (demo users, seeded data).
-set -euo pipefail
-API=${API:-http://localhost:5080/api}
-pass=0
-check() { echo "✓ $1"; pass=$((pass+1)); }
-get() { curl -sf -H "X-Dev-User: $1" "$API$2"; }
-code() { curl -s -o /dev/null -w "%{http_code}" -H "X-Dev-User: $1" "$API$2"; }
+# End-to-end check against a running MKAsh PMS in Development mode (test sign-in, seeded data).
+set -uo pipefail
+BASE=${BASE:-http://localhost:5173}
+pass=0; fail=0
+ok()  { echo "✓ $1"; pass=$((pass+1)); }
+bad() { echo "✗ $1"; fail=$((fail+1)); }
+check() { if eval "$2"; then ok "$1"; else bad "$1"; fi; }
+J=/tmp/smoke; mkdir -p $J; rm -f $J/*
+owner=$J/owner.txt; other=$J/other.txt
+signin() { curl -s -o /dev/null -c "$2" -d "email=$1" -d "returnUrl=/" "$BASE/signin"; }
+as() { local jar=$1; shift; curl -s -b "$jar" "$@"; }
+code() { local jar=$1; shift; curl -s -o /dev/null -w "%{http_code}" -b "$jar" "$@"; }
 
-for i in $(seq 1 60); do curl -sf "$API/health" >/dev/null && break; sleep 2; done
-curl -sf "$API/health" >/dev/null && check "API is up"
+for i in $(seq 1 60); do curl -sf "$BASE/api/health" >/dev/null && break; sleep 2; done
+check "Server is up" '[ "$(curl -s -o /dev/null -w %{http_code} $BASE/api/health)" = 200 ]'
+check "Pages need sign-in (redirect to /signin)" '[ "$(curl -s -o /dev/null -w %{redirect_url} $BASE/)" != "" ]'
+check "Data needs sign-in (401)" '[ "$(curl -s -o /dev/null -w %{http_code} $BASE/api/docs/projects)" = 401 ]'
 
-[ "$(get pmo@example.org /me | jq -r .role)" = "pmo" ] && check "PMO signs in"
-n=$(get pmo@example.org /projects | jq length); [ "$n" = "50" ] && check "PMO sees all 50 projects"
-n=$(get lead.attiyah@example.org /projects | jq length); [ "$n" = "13" ] && check "Sector lead Maha Al Attiyah sees her 13 projects"
-[ "$(get executive@example.org /projects | jq '[.[].overdue] | map(select(. != null)) | length')" = "0" ] && check "Executive gets no overdue counts"
-[ "$(code lead.attiyah@example.org /kpis)" = "403" ] && check "Sector leads cannot open KPIs"
-[ "$(get executive@example.org '/kpis?category=strategic' | jq length)" = "19" ] && check "Executive sees 19 strategic KPIs"
-[ "$(get executive@example.org '/leadership?lead=%D9%81%D9%87%D8%AF%20%D8%A7%D9%84%D8%AE%D9%8A%D8%A7%D8%B1%D9%8A%D9%86' | jq .projects)" = "11" ] && check "Leadership filter by sector lead (Fahad Al Khayarin: 11)"
-for f in biweekly monthly quarterly yearly; do
-  [ "$(get pmo@example.org "/reports?frequency=$f" | jq -r .period.frequency)" = "$f" ] && check "Report: $f"
-done
-[ "$(code nobody@example.org /me)" = "403" ] && check "Unregistered accounts are refused"
+signin owner@example.org $owner
+signin someone@example.org $other
+check "First person to sign in is the owner" '[ "$(as $owner $BASE/api/me | jq -r .isOwner)" = true ]'
+check "Second person is not" '[ "$(as $other $BASE/api/me | jq -r .isOwner)" = false ]'
+check "Dashboard page is served with the system data layer" 'as $owner $BASE/ | grep -q "system/claude-shim.js"'
+check "Dashboard data files are served" '[ "$(code $owner $BASE/data/kpis.json)" = 200 ]'
+check "57 projects loaded (50 active + archived/merged)" '[ "$(as $owner $BASE/api/docs/projects | jq ".docs | length")" = 57 ]'
+check "55 work plans loaded" '[ "$(as $owner $BASE/api/docs/plans | jq ".docs | length")" = 55 ]'
+check "No PMO officer field in projects" '[ "$(as $owner $BASE/api/docs/projects | jq "[.docs[].data | select(has(\"pmoFocal\"))] | length")" = 0 ]'
 
-# Change request: PMO drafts, submits (goes to NPC), NPC approves → budget applied
-pid=$(get pmo@example.org /projects | jq '.[0].id')
-form='{"date":"2026-11-22","requester":"PMO","initCode":"SD.1.1","initName":"x","ownerEntity":"'"$(jq -r '.entities[] | select(.[2]=="MSDF") | .[0]' database/seed/cr-lists.json)"'","level":"مشروع","type":"تغيير الميزانية المخطط لها للمشروع","projCode":"SD.1.1.1","projName":"x","projOwner":"x","linked":"لا","current":"1","proposed":"2","reasons":"r"}'
-id=$(curl -sf -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/json" -d "{\"projectId\":$pid,\"form\":$form,\"apply\":{\"budget\":\"1234567\"}}" "$API/change-requests" | jq .id)
-res=$(curl -sf -X POST -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/json" -d '{}' "$API/change-requests/$id/submit")
-[ "$(echo "$res" | jq -r .status)" = "withNpc" ] && check "Change request submitted with code $(echo "$res" | jq -r .code)"
-curl -sf -H "X-Dev-User: pmo@example.org" -o /tmp/cr.xlsm "$API/change-requests/$id/excel" && unzip -l /tmp/cr.xlsm | grep -q vbaProject.bin && check "Excel export keeps the NDS3 macros"
-npc=$(curl -sf -X POST -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/json" -d '{"decision":"approved"}' "$API/change-requests/$id/npc")
-echo "  NPC decision: $npc"
-[ "$(get pmo@example.org /projects | jq ".[] | select(.id==$pid) | .budget == 1234567")" = "true" ] && check "NPC approval applied the new budget"
+T0=$(as $owner $BASE/api/docs/risks | jq .now)
+check "Anyone signed in can add a risk" '[ "$(code $other -X PUT -H "Content-Type: application/json" -d "{\"projectId\":\"x\",\"title\":\"Test risk\"}" $BASE/api/docs/risks/r-smoke)" = 204 ]'
+check "Live updates report the new risk" '[ "$(as $owner "$BASE/api/docs/changes?since=$T0" | jq "[.changes[] | select(.id==\"r-smoke\")] | length")" -ge 1 ]'
+check "Non-PMO cannot change the access list" '[ "$(code $other -X PUT -H "Content-Type: application/json" -d "{\"email\":\"x@y.z\",\"role\":\"pmo\"}" $BASE/api/docs/access/a-x)" = 403 ]'
+check "Owner can add a PMO user" '[ "$(code $owner -X PUT -H "Content-Type: application/json" -d "{\"email\":\"someone@example.org\",\"name\":\"Someone\",\"role\":\"pmo\"}" $BASE/api/docs/access/a-someone)" = 204 ]'
+check "That PMO user can now edit KPI values" '[ "$(code $other -X PUT -H "Content-Type: application/json" -d "{\"current\":5}" $BASE/api/docs/kpis/SD.1.K.1)" = 204 ]'
+check "Names resolve from the access list" '[ "$(as $owner -X POST -H "Content-Type: application/json" -d "{\"ids\":[\"someone@example.org\"]}" $BASE/api/profiles | jq -r ".[\"someone@example.org\"].name")" = Someone ]'
 
-echo "$pass checks passed"
-[ "$pass" -ge 16 ]
+printf '%%PDF-1.4 smoke test file' > $J/proof.pdf
+up=$(as $other -F "file=@$J/proof.pdf;type=application/pdf" -F "type=application/pdf" $BASE/api/assets)
+id=$(echo "$up" | jq -r .id)
+check "Proof of completion uploads" '[ -n "$id" ] && [ "$id" != null ]'
+check "Uploaded file downloads unchanged" 'as $owner $BASE/_blob/$id | cmp -s - $J/proof.pdf'
+check "Unsupported file types are refused" '[ "$(code $other -F "file=@$J/proof.pdf;filename=x.exe" $BASE/api/assets)" = 400 ]'
+check "Deleting a risk is reported to other screens" '[ "$(code $other -X DELETE $BASE/api/docs/risks/r-smoke)" = 204 ] && [ "$(as $owner "$BASE/api/docs/changes?since=$T0" | jq -r "[.changes[] | select(.id==\"r-smoke\")][-1].deleted")" = true ]'
+
+echo "$pass passed, $fail failed"
+[ "$fail" = 0 ]

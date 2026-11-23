@@ -1,37 +1,69 @@
-using Microsoft.AspNetCore.Authorization;
+using System.Text.Json.Nodes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MKAsh.Api.Data;
 using MKAsh.Api.Services;
-using MKAsh.Core.Rules;
 
 namespace MKAsh.Api.Controllers;
 
-[ApiController, Authorize, Route("api")]
-public class MeController(CurrentUser me, IWebHostEnvironment env, IConfiguration cfg) : ControllerBase
+public sealed record ProfilesBody(string[] Ids);
+
+[ApiController, Route("api")]
+public class MeController(PmsDbContext db, Account me) : ControllerBase
 {
-    /// <summary>Who am I, and which pages may I open. The web app builds its menu from this.</summary>
+    /// <summary>The signed-in account. Its email is the user id the dashboard stores in records.</summary>
     [HttpGet("me")]
-    public async Task<IActionResult> Get(CancellationToken ct)
+    public async Task<IActionResult> Get(CancellationToken ct) => Ok(new
     {
-        var p = await me.PersonAsync(ct);
-        var u = await me.ContextAsync(ct);
-        if (p is null || u is null) return StatusCode(403, new { error = "notRegistered", email = me.Email });
-        return Ok(new
+        id = me.Email,
+        email = me.Email,
+        name = await NameOf(me.Email, ct) ?? me.Name,
+        isOwner = await me.IsOwnerAsync(ct),
+        canEdit = await me.IsAdminAsync(ct),
+        autoSession = true,
+    });
+
+    /// <summary>Names for user ids (emails), from the access list.</summary>
+    [HttpPost("profiles")]
+    public async Task<IActionResult> Profiles(ProfilesBody body, CancellationToken ct)
+    {
+        var people = await People(ct);
+        var result = new Dictionary<string, object>();
+        foreach (var id in body.Ids.Distinct())
         {
-            p.Id, p.NameAr, p.NameEn, p.Email, Role = PortfolioService.Camel(p.Role), p.LeadName,
-            Pages = AccessRules.Pages.Where(kv => kv.Value.Contains(u.Role)).Select(kv => kv.Key),
-            ManagedProjects = u.ManagedProjectIds,
-            ShowsOverdue = AccessRules.ShowsOverdue(u),
-        });
+            var key = id.ToLowerInvariant();
+            people.TryGetValue(key, out var name);
+            result[id] = new { name = name ?? "", email = key.Contains('@') ? key : "" };
+        }
+        return Ok(result);
     }
 
-    /// <summary>The strategy roadmap shown on the opening page for every user.</summary>
-    [HttpGet("strategy")]
-    public async Task<IActionResult> Strategy(CancellationToken ct)
+    /// <summary>Find a person by email (used to link project managers).</summary>
+    [HttpGet("users/search")]
+    public async Task<IActionResult> Search([FromQuery] string q, CancellationToken ct)
     {
-        await me.RequireAsync(ct);
-        var dir = cfg["Seed:Directory"] ?? Path.Combine(env.ContentRootPath, "..", "..", "database", "seed");
-        var path = Path.Combine(dir, "strategy.json");
-        if (!System.IO.File.Exists(path)) return NotFound();
-        return PhysicalFile(Path.GetFullPath(path), "application/json");
+        var key = (q ?? "").Trim().ToLowerInvariant();
+        if (!key.Contains('@')) return Ok(Array.Empty<object>());
+        var people = await People(ct);
+        people.TryGetValue(key, out var name);
+        return Ok(new[] { new { id = key, email = key, name = name ?? "" } });
+    }
+
+    private async Task<string?> NameOf(string email, CancellationToken ct) => (await People(ct)).GetValueOrDefault(email);
+
+    private Dictionary<string, string>? _people;
+
+    private async Task<Dictionary<string, string>> People(CancellationToken ct)
+    {
+        if (_people is not null) return _people;
+        var rows = await db.Docs.AsNoTracking().Where(d => d.Collection == "access" && !d.Deleted).Select(d => d.Json).ToListAsync(ct);
+        _people = new Dictionary<string, string>();
+        foreach (var j in rows)
+        {
+            var n = JsonNode.Parse(j);
+            var email = n?["email"]?.ToString().Trim().ToLowerInvariant();
+            if (!string.IsNullOrEmpty(email)) _people[email] = n?["name"]?.ToString() ?? "";
+        }
+        return _people;
     }
 }

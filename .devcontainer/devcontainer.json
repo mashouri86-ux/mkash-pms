@@ -1,24 +1,27 @@
 {
   "name": "MKAsh PMS",
   "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": { "version": "20" }
-  },
   "containerEnv": {
     "Database__Provider": "Sqlite",
-    "ConnectionStrings__Pms": "Data Source=/tmp/mkash-pms.db"
+    "ConnectionStrings__Pms": "Data Source=/tmp/mkash-pms-v2.db"
   },
-  "forwardPorts": [5173, 5080],
+  "forwardPorts": [
+    5173
+  ],
   "portsAttributes": {
-    "5173": { "label": "MKAsh PMS (open this)", "onAutoForward": "openBrowser" },
-    "5080": { "label": "API", "onAutoForward": "silent" }
+    "5173": {
+      "label": "MKAsh PMS (open this)",
+      "onAutoForward": "openBrowser"
+    }
   },
   "postCreateCommand": "bash scripts/dev-setup.sh",
   "postStartCommand": "bash scripts/dev-start.sh",
-  "postAttachCommand": "bash -c 'curl -sf http://localhost:5173/ >/dev/null || bash scripts/dev-start.sh'",
+  "postAttachCommand": "bash -c 'curl -sf http://localhost:5173/api/health >/dev/null || bash scripts/dev-start.sh'",
   "customizations": {
     "vscode": {
-      "extensions": ["ms-dotnettools.csdevkit"]
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ]
     }
   }
 }

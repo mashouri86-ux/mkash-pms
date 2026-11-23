@@ -3,7 +3,7 @@
     "MKAsh.Api": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://localhost:5080",
+      "applicationUrl": "http://0.0.0.0:5173",
       "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development" }
     }
   }

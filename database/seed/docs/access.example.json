@@ -1,0 +1,5 @@
+[
+  { "id": "a-example-pmo", "email": "pmo@example.org", "name": "PMO (example)", "role": "pmo", "by": "setup", "updatedAt": "2026-11-23T00:00:00Z" },
+  { "id": "a-example-exec", "email": "executive@example.org", "name": "Executive (example)", "role": "executive", "by": "setup", "updatedAt": "2026-11-23T00:00:00Z" },
+  { "id": "a-example-lead", "email": "lead@example.org", "name": "Sector lead (example)", "role": "lead", "lead": "مها العطية", "by": "setup", "updatedAt": "2026-11-23T00:00:00Z" }
+]
