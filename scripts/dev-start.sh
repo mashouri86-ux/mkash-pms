@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Starts MKAsh PMS on port 5173 (the dashboard screens and the API together), then waits until it answers.
+# Starts Tamkeen on port 5173 (the dashboard screens and the API together), then waits until it answers.
 # Log: /tmp/mkash.log
 cd "$(dirname "$0")/.."
 ROOT=$(pwd)
@@ -17,7 +17,7 @@ fi
 cd "$ROOT/src/MKAsh.Api" && ASPNETCORE_ENVIRONMENT=Development setsid nohup dotnet run --launch-profile MKAsh.Api > /tmp/mkash.log 2>&1 < /dev/null &
 cd "$ROOT"
 
-echo "Starting MKAsh PMS… (the first start also builds it and loads the 50 projects)"
+echo "Starting Tamkeen… (the first start also builds it and loads the 50 projects)"
 for i in $(seq 1 90); do
   code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/api/health || true)
   if [ "$code" = "200" ]; then

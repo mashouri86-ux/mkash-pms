@@ -1,6 +1,8 @@
-# MKAsh PMS
+# Tamkeen · تمكين
 
-The ministry's project management system. People use exactly the screens and features of the MKAsh PMS dashboard. The system adds what the dashboard couldn't have on its own:
+<p align="center"><img src="web/data/brand/tamkeen-logo.png" alt="Tamkeen" height="80"> &nbsp; <img src="web/data/brand/ministry-logo.png" alt="Ministry of Social Development and Family" height="80"></p>
+
+Tamkeen (تمكين) is the project management system of the Ministry of Social Development and Family. People use exactly the screens and features of the Tamkeen dashboard. The system adds what the dashboard couldn't have on its own:
 - its own server and database, SQL Server, hosted in-house;
 - sign-in with ministry accounts through Microsoft Entra ID;
 - a file store for proof of completion, project charters and closure attachments;
@@ -25,6 +27,12 @@ The ministry's project management system. People use exactly the screens and fea
 
 The log is at `/tmp/mkash.log`. To restart, run `bash scripts/dev-start.sh`.
 
+## Moving data from the dashboard
+
+Open **/system/import.html** while signed in as PMO, choose the migration file (`tamkeen-migration.json`) and click **Import**. Records are matched by id, so importing twice changes nothing. The same page downloads a full backup.
+
+The migration file holds staff emails, so it is kept out of Git and handed over separately.
+
 ## Run it on a server
 
 See [docs/setup.md](docs/setup.md) for the database, Entra ID sign-in and hosting.
@@ -35,7 +43,14 @@ GitHub Actions runs the following on every push (`.github/workflows/ci.yml`):
 - the .NET build;
 - the business-rule tests: progress, planned % and status for all 50 projects and every strategic KPI, compared with the dashboard's figures;
 - a check that the dashboard script compiles;
-- an end-to-end run on SQL Server and on SQLite: sign-in, permissions, records, live updates and file upload/download.
+- an end-to-end run on SQL Server and on SQLite: sign-in, permissions, records, live updates and file upload/download;
+- a full system test in a real browser (`tests/e2e/full_system_test.py`). It covers branding, the data transfer and a record-by-record comparison, every page, and the workflows with separate signed-in people:
+  - progress update → sector-lead approval;
+  - proof of completion;
+  - change request PM → lead → PMO → NPC "yes" → change applied;
+  - KPI values;
+  - closure → Closed;
+  - the executive view, live updates and report download.
 
 ## Documentation
 - [Architecture](docs/architecture.md)

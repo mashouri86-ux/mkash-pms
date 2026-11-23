@@ -84,3 +84,45 @@ jobs:
       - name: API logs
         if: always()
         run: tail -n 100 api.log; echo ---- sqlite; tail -n 100 api-sqlite.log
+
+  browser:
+    name: Full system test in a browser (data transfer and workflows)
+    runs-on: ubuntu-latest
+    needs: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright
+        run: |
+          pip install playwright==1.48.0
+          python -m playwright install --with-deps chromium
+      - name: Start Tamkeen (test mode, SQLite)
+        working-directory: src/MKAsh.Api
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+          ASPNETCORE_URLS: http://localhost:5173
+          Database__Provider: Sqlite
+          ConnectionStrings__Pms: "Data Source=/tmp/e2e.db"
+        run: |
+          dotnet build -c Release
+          nohup dotnet run -c Release --no-build --no-launch-profile > ../../e2e-api.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf http://localhost:5173/api/health && break; sleep 2; done
+      - name: Run the full system test
+        run: |
+          python tests/e2e/make_test_data.py /tmp/test-migration.json
+          python tests/e2e/full_system_test.py --base http://localhost:5173 --data /tmp/test-migration.json \
+            --pm pm@example.org --lead lead@example.org --pmo pmo@example.org --shots e2e-screens
+      - name: Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-screens
+          path: e2e-screens
+      - name: Server log
+        if: always()
+        run: tail -n 80 e2e-api.log

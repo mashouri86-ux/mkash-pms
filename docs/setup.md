@@ -14,8 +14,11 @@ The server creates its two tables, `Docs` and `Assets`, on first start.
 - People and roles: either add them on the **Users** page after signing in as an owner, or put an `access.json` file in `database/seed/docs`. Use the same format as `access.example.json`. Git ignores this file because it holds ministry emails.
 - Set `Seed__OnStartup=false` afterwards.
 
+## 2b. Moving data from the dashboard
+Sign in as an owner or PMO, open `/system/import.html`, and import `tamkeen-migration.json`. It contains the dashboard's projects, work plans, users, project-manager directory and change requests. Then open **Overview** and check the totals: 50 active projects, QAR 263,046,274.
+
 ## 3. Sign-in with ministry accounts (Microsoft Entra ID)
-In the ministry tenant, go to the Entra admin centre → **App registrations → New registration**, named "MKAsh PMS":
+In the ministry tenant, go to the Entra admin centre → **App registrations → New registration**, named "Tamkeen":
 - Platform: **Web**, redirect URI `https://<your-host>/signin-oidc`, front-channel logout URL `https://<your-host>/signout-callback-oidc`.
 - Under **Certificates & secrets**, create a client secret. In production, a certificate is better.
 - Configure the server:

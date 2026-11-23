@@ -24,8 +24,11 @@ public class DocsController(PmsDbContext db, Account me) : ControllerBase
         return Ok(new { now, docs = rows.Select(d => new { id = d.Id, data = Parse(d.Json) }) });
     }
 
-    /// <summary>Everything changed since a point in time (UTC ticks), across collections. Drives live updates.</summary>
-    [HttpGet("changes")]
+    /// <summary>
+    /// Everything changed since a point in time (UTC ticks), across collections. Drives live updates.
+    /// (Not under /api/docs: "changes" is also the name of the change-requests collection.)
+    /// </summary>
+    [HttpGet("/api/sync")]
     public async Task<IActionResult> Changes([FromQuery] long since, CancellationToken ct)
     {
         var now = DateTime.UtcNow.Ticks;

@@ -41,18 +41,18 @@ public static class DevSignIn
 
     private static string Page(string? returnUrl) => $$"""
         <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Sign in · MKAsh PMS</title>
+        <title>Sign in · Tamkeen</title><link rel="icon" type="image/png" href="/data/brand/favicon.png">
         <style>
-          body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0D4261;font-family:Inter,"Segoe UI",system-ui,sans-serif;color:#1d1d1b}
+          body{margin:0;min-height:100vh;display:grid;place-items:center;background:#7A102E;font-family:Inter,"Segoe UI",system-ui,sans-serif;color:#1d1d1b}
           .c{background:#fff;border-radius:14px;padding:28px 30px;width:min(420px,90vw);box-shadow:0 10px 40px rgba(0,0,0,.25)}
-          h1{margin:0;color:#0D4261;font-size:24px} p{color:#6b6a64;font-size:13.5px;line-height:1.5}
+          h1{margin:0;color:#7A102E;font-size:22px}.logos{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:12px 0 4px}.logos img{height:54px;width:auto} p{color:#6b6a64;font-size:13.5px;line-height:1.5}
           input{width:100%;box-sizing:border-box;border:1px solid #d9d5cb;border-radius:8px;padding:10px 12px;font:inherit;margin:6px 0 14px}
-          button{width:100%;background:#8A1538;color:#fff;border:0;border-radius:8px;padding:10px;font:inherit;font-weight:600;cursor:pointer}
+          button{width:100%;background:#7A102E;color:#fff;border:0;border-radius:8px;padding:10px;font:inherit;font-weight:600;cursor:pointer}
           .t{display:inline-block;background:#fff4d6;color:#7a5600;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:600}
         </style></head><body>
         <form class="c" method="post" action="/signin">
           <span class="t">Test system</span>
-          <h1 style="margin-top:10px">MKAsh PMS</h1>
+          <div class="logos"><img src="/data/brand/tamkeen-logo.png" alt="Tamkeen · تمكين"><img src="/data/brand/ministry-logo.png" alt="" onerror="this.remove()"></div>
           <p>Sign in with your email. On this test system there is no password. The first person to sign in becomes the owner and can switch between users to see each role's view.</p>
           <label for="e" style="font-size:13px;font-weight:600">Email</label>
           <input id="e" name="email" type="email" required autofocus dir="ltr" placeholder="you@example.com">

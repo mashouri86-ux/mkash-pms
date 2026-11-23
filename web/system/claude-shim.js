@@ -1,9 +1,9 @@
 /*
- * MKAsh PMS — system data layer for the dashboard.
+ * Tamkeen — system data layer for the dashboard.
  *
  * The dashboard was built against a small set of capabilities (db, user, assets, downloads).
- * This file provides the same capabilities on top of the MKAsh PMS server:
- *   db        → /api/docs   (SQL Server document store, live updates by polling /api/docs/changes)
+ * This file provides the same capabilities on top of the Tamkeen server:
+ *   db        → /api/docs   (SQL Server document store, live updates by polling /api/sync)
  *   user      → /api/me, /api/profiles, /api/users/search   (the signed-in ministry account)
  *   assets    → /api/assets (uploads), /_blob/{id} (downloads)
  *   downloads → browser download
@@ -69,7 +69,7 @@
 
   async function poll() {
     try {
-      const r = await call("GET", "/api/docs/changes?since=" + since);
+      const r = await call("GET", "/api/sync?since=" + since);
       since = r.now;
       const touched = new Set();
       for (const c of r.changes) {
@@ -80,7 +80,7 @@
       }
       touched.forEach(emit);
     } catch (e) {
-      if (e.status !== 401) console.warn("MKAsh PMS: live update failed, retrying", e);
+      if (e.status !== 401) console.warn("Tamkeen: live update failed, retrying", e);
     }
     setTimeout(poll, POLL_MS);
   }

@@ -99,6 +99,14 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.MapControllers();
 app.MapGet("/api/health", () => Results.Ok(new { status = "ok" })).AllowAnonymous();
+// Logos are public so the sign-in page can show them.
+app.MapGet("/data/brand/{file}", (string file, IWebHostEnvironment env) =>
+{
+    if (file.Contains("..") || file.Contains('/') || file.Contains('\\') || !file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) && !file.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+        return Results.NotFound();
+    var f = env.WebRootFileProvider.GetFileInfo("data/brand/" + file);
+    return f.Exists ? Results.File(f.PhysicalPath!, file.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) ? "image/svg+xml" : "image/png") : Results.NotFound();
+}).AllowAnonymous();
 if (devAuth) DevSignIn.Map(app);
 else app.MapGet("/signout", () => Results.SignOut(null, new[] { CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme }));
 

@@ -10,8 +10,9 @@ MKAsh.Api (ASP.NET Core 8)
   /signin, /signout ............ Entra ID (production) or the test form (development)
   /api/me, /api/profiles ....... the signed-in account, owner/PMO flags, names
   /api/docs/{collection} ....... list / save / delete records
-  /api/docs/changes?since= ..... everything changed since a point in time (live updates, every 4 s)
+  /api/sync?since= ............ everything changed since a point in time (live updates, every 4 s)
   /api/assets, /_blob/{id} ..... upload / open files (proof of completion, charters, closure files)
+  /api/import, /api/export ..... data transfer from the dashboard; full backup (PMO only)
   static files ................. the dashboard and its data files (kpis.json, roadmap pages, fonts, CR template)
         │
         ▼
@@ -37,4 +38,4 @@ The dashboard works with these record collections, and each one is stored in the
 **Next hardening step:** move the per-project limits (managers edit only their projects, leads approve only their sector) from the screens into the server, one collection at a time. The rules for this are already written and tested in `MKAsh.Core/Rules/AccessRules.cs`.
 
 ## Live updates
-Every save stamps the record with a version (UTC ticks). Each open screen asks `/api/docs/changes` every 4 seconds for anything newer, so approvals, comments and uploads appear for everyone without a reload. Deleted records are kept as tombstones so other screens remove them too.
+Every save stamps the record with a version (UTC ticks). Each open screen asks `/api/sync` every 4 seconds for anything newer, so approvals, comments and uploads appear for everyone without a reload. Deleted records are kept as tombstones so other screens remove them too.
