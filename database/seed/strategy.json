@@ -1,0 +1,336 @@
+{
+ "vision": {
+  "ar": "أسر متماسكة، مجتمع أقوى",
+  "en": "Cohesive families, a stronger society"
+ },
+ "mission": {
+  "ar": "تمكين الأسرة وتعزيز دورها في التنمية الاجتماعية، لبناء مجتمع متماسك",
+  "en": "Empower the family and strengthen its role in social development to build a cohesive society"
+ },
+ "slogan": {
+  "ar": "من الرعاية إلى التمكين",
+  "en": "From care to empowerment"
+ },
+ "outcomes": [
+  {
+   "number": 1,
+   "color": "#3F8452",
+   "nameAr": "أسر متماسكة وقادرة على مواجهة التحديات",
+   "nameEn": "Cohesive families able to face challenges",
+   "pillarAr": "الأسرة",
+   "pillarEn": "Family",
+   "objectives": [
+    {
+     "code": "1.1",
+     "ar": "تعزيز تماسك الأسرة القطرية وقدرتها على مواجهة التحديات",
+     "en": "Strengthen the cohesion of Qatari families and their ability to face challenges"
+    },
+    {
+     "code": "1.2",
+     "ar": "تحفيز الأسر على الإنجاب عبر سياسات ومزايا اجتماعية واقتصادية جاذبة",
+     "en": "Encourage families to have children through attractive social and economic policies and benefits"
+    },
+    {
+     "code": "1.3",
+     "ar": "تمكين الشباب من تأسيس أسر مستقرة عبر دعم زواج مستدام وتوفير بيئة أسرية آمنة وممكنة اقتصاديًا واجتماعيًا",
+     "en": "Enable young people to build stable families through sustainable marriage support and a safe, enabling family environment"
+    },
+    {
+     "code": "1.4",
+     "ar": "توفير بيئة داعمة لتنمية الأطفال صحيًا ونفسيًا واجتماعيًا",
+     "en": "Provide a supportive environment for children’s physical, psychological and social development"
+    }
+   ],
+   "initiatives": [
+    {
+     "code": "1.1",
+     "nameAr": "الأسرة أولاً - الروابط الأسرية",
+     "descAr": "تعزيز الأبوة والأمومة الإيجابية والتماسك الأسري",
+     "nameEn": "Family First – Family bonds",
+     "descEn": "Promote positive parenting and family cohesion"
+    },
+    {
+     "code": "1.2",
+     "nameAr": "النمو السكاني",
+     "descAr": "تطوير السياسات الممكنة للأسرة والمزايا المباشرة لتحفيز الإنجاب",
+     "nameEn": "Population growth",
+     "descEn": "Family-enabling policies and direct benefits to encourage childbearing"
+    },
+    {
+     "code": "1.3",
+     "nameAr": "مؤسسة الزواج",
+     "descAr": "تشجيع ودعم مؤسسة الزواج",
+     "nameEn": "The institution of marriage",
+     "descEn": "Encourage and support marriage"
+    },
+    {
+     "code": "1.4",
+     "nameAr": "الإدارة المالية",
+     "descAr": "توسيع برامج وسياسات الإدارة المالية للأسر",
+     "nameEn": "Financial management",
+     "descEn": "Expand family financial-management programmes and policies"
+    }
+   ]
+  },
+  {
+   "number": 2,
+   "color": "#D47A76",
+   "nameAr": "نساء ممكنات",
+   "nameEn": "Empowered women",
+   "pillarAr": "النساء",
+   "pillarEn": "Women",
+   "objectives": [
+    {
+     "code": "2.1",
+     "ar": "تمكين المرأة بالمعرفة والمهارات التي تواكب متطلبات العصر",
+     "en": "Empower women with the knowledge and skills the times demand"
+    },
+    {
+     "code": "2.2",
+     "ar": "ضمان دعم المرأة ومشاركتها الفعالة في القيادة وصنع القرار",
+     "en": "Ensure support for women and their effective participation in leadership and decision-making"
+    }
+   ],
+   "initiatives": [
+    {
+     "code": "2.1",
+     "nameAr": "المرأة المتمكنة",
+     "descAr": "تعزيز أنظمة الدعم لتمكين المرأة",
+     "nameEn": "Empowered women",
+     "descEn": "Strengthen support systems for women’s empowerment"
+    },
+    {
+     "code": "2.2",
+     "nameAr": "مراجعة وتحديث التشريعات",
+     "descAr": "إزالة العقبات وتمكين المرأة",
+     "nameEn": "Review and update legislation",
+     "descEn": "Remove obstacles and empower women"
+    }
+   ]
+  },
+  {
+   "number": 3,
+   "color": "#7E6AA5",
+   "nameAr": "مجتمع شامل وممكّن للفئات الأولى بالرعاية",
+   "nameEn": "An inclusive society that empowers priority-care groups",
+   "pillarAr": "الفئات الأولى بالرعاية",
+   "pillarEn": "Priority-care groups",
+   "objectives": [
+    {
+     "code": "3.1",
+     "ar": "تمكين الأشخاص ذوي الإعاقة من حياة مستقلة ومنتجة",
+     "en": "Enable people with disabilities to lead independent, productive lives"
+    },
+    {
+     "code": "3.2",
+     "ar": "توفير رعاية شاملة ومستدامة لأصحاب الاضطرابات السلوكية",
+     "en": "Provide comprehensive, sustainable care for people with behavioural disorders"
+    },
+    {
+     "code": "3.3",
+     "ar": "ضمان حقوق الأيتام وتقديم دعم مستمر لتنشئتهم في بيئة آمنة ومحفزة",
+     "en": "Guarantee orphans’ rights and continuous support for their upbringing in a safe, stimulating environment"
+    },
+    {
+     "code": "3.4",
+     "ar": "تحقيق جودة حياة نشطة وكريمة لكبار القدر",
+     "en": "Achieve an active, dignified quality of life for senior citizens"
+    },
+    {
+     "code": "3.5",
+     "ar": "التوسع في تقديم خدمات ذات جودة عالية للفئات الأولى بالرعاية",
+     "en": "Expand high-quality services for priority-care groups"
+    }
+   ],
+   "initiatives": [
+    {
+     "code": "3.1",
+     "nameAr": "لا أحد خلف الركب",
+     "descAr": "تعزيز قدرات المؤسسات للتعرف على وتصنيف الفئات الأولى بالرعاية",
+     "nameEn": "No one left behind",
+     "descEn": "Strengthen institutions’ ability to identify and classify priority-care groups"
+    },
+    {
+     "code": "3.2",
+     "nameAr": "الرعاية",
+     "descAr": "تعزيز وتوسيع الخدمات المقدمة للفئات الأولى بالرعاية",
+     "nameEn": "Care",
+     "descEn": "Strengthen and expand services for priority-care groups"
+    },
+    {
+     "code": "3.3",
+     "nameAr": "التمكين",
+     "descAr": "دمج الفئات الأولى بالرعاية في جميع جوانب الحياة الاجتماعية",
+     "nameEn": "Empowerment",
+     "descEn": "Integrate priority-care groups into every aspect of social life"
+    },
+    {
+     "code": "3.4",
+     "nameAr": "تشريعات ومزايا الضمان الاجتماعي",
+     "descAr": "تعزيز التشريعات ومزايا الضمان الاجتماعي للفئات الأولى بالرعاية",
+     "nameEn": "Social-security legislation and benefits",
+     "descEn": "Strengthen legislation and social-security benefits for priority-care groups"
+    }
+   ]
+  },
+  {
+   "number": 4,
+   "color": "#D2A23A",
+   "nameAr": "مجتمع متماسك ومسؤول",
+   "nameEn": "A cohesive and responsible society",
+   "pillarAr": "المجتمع",
+   "pillarEn": "Community",
+   "objectives": [
+    {
+     "code": "4.1",
+     "ar": "تعزيز دور منظمات المجتمع المدني لتكون أكثر تأثيرًا وفعالية",
+     "en": "Strengthen civil society organisations to be more influential and effective"
+    },
+    {
+     "code": "4.2",
+     "ar": "ترسيخ التطوع كقيمة مجتمعية وممارسة شاملة",
+     "en": "Embed volunteering as a community value and a widespread practice"
+    },
+    {
+     "code": "4.3",
+     "ar": "دعم استدامة وتوسع العمل الخيري محليًا",
+     "en": "Support the sustainability and growth of local charitable work"
+    }
+   ],
+   "initiatives": [
+    {
+     "code": "4.1",
+     "nameAr": "كلنا قطر",
+     "descAr": "تعزيز الشعور بالتماسك الاجتماعي لجميع السكان",
+     "nameEn": "Kulna Qatar",
+     "descEn": "Strengthen the sense of social cohesion among all residents"
+    },
+    {
+     "code": "4.2",
+     "nameAr": "العمل التطوعي",
+     "descAr": "توسيع بيئة العمل التطوعي في الدولة",
+     "nameEn": "Volunteering",
+     "descEn": "Expand the volunteering environment across the country"
+    },
+    {
+     "code": "4.3",
+     "nameAr": "المواطنة المسؤولة",
+     "descAr": "تطوير برنامج تحفيز المواطنة المسؤولة والمشاركة",
+     "nameEn": "Responsible citizenship",
+     "descEn": "A programme to encourage responsible citizenship and participation"
+    }
+   ]
+  },
+  {
+   "number": 5,
+   "color": "#2E8BAA",
+   "nameAr": "مجتمع منتج ومستوى معيشي لائق للجميع",
+   "nameEn": "A productive society with a decent standard of living for all",
+   "pillarAr": "المستوى المعيشي اللائق",
+   "pillarEn": "Decent standard of living",
+   "objectives": [
+    {
+     "code": "5.1",
+     "ar": "ضمان منظومة حماية اجتماعية شاملة توفر الدعم لجميع المواطنين، وتكفل مستوى معيشة لائق وآمن للجميع",
+     "en": "Ensure a comprehensive social-protection system that supports all citizens and guarantees a decent, secure standard of living"
+    },
+    {
+     "code": "5.2",
+     "ar": "توفير سكن ملائم بمواصفات عالية الجودة يلبي احتياجات الأسر القطرية ويساهم في استقرارها ورفاهها",
+     "en": "Provide suitable, high-quality housing that meets Qatari families’ needs and supports their stability and wellbeing"
+    },
+    {
+     "code": "5.3",
+     "ar": "تمكين المجتمع من الإنتاجية والاستقلال الاقتصادي من خلال دعم ريادة الأعمال والعمل الحر وبرامج التمكين المهني",
+     "en": "Enable productivity and economic independence through entrepreneurship, self-employment and vocational empowerment"
+    }
+   ],
+   "initiatives": [
+    {
+     "code": "5.1",
+     "nameAr": "تفعيل دور منظمات المجتمع المدني",
+     "descAr": "تمكين منظمات المجتمع المدني والقطاع الخاص لتقديم الدعم الاجتماعي للفئات المستهدفة",
+     "nameEn": "Activating civil society",
+     "descEn": "Enable civil society and the private sector to support target groups"
+    },
+    {
+     "code": "5.2",
+     "nameAr": "الحماية الاجتماعية",
+     "descAr": "مراجعة وتحديث سياسات الحماية الاجتماعية",
+     "nameEn": "Social protection",
+     "descEn": "Review and update social-protection policies"
+    }
+   ]
+  },
+  {
+   "number": 6,
+   "color": "#8A8A86",
+   "nameAr": "ممكنات استراتيجية",
+   "nameEn": "Strategic enablers",
+   "pillarAr": "الممكنات الاستراتيجية",
+   "pillarEn": "Strategic enablers",
+   "objectives": [
+    {
+     "code": "6.1",
+     "ar": "تطوير رأس مال بشري مؤهل لقيادة التنمية الاجتماعية والعمل الإنساني بكفاءة واستدامة",
+     "en": "Develop qualified human capital to lead social development and humanitarian work efficiently and sustainably"
+    },
+    {
+     "code": "6.2",
+     "ar": "تعزيز القدرات الرقمية وتبادل المعلومات لدعم الرعاية الاجتماعية والتماسك الأسري",
+     "en": "Strengthen digital capabilities and information exchange to support social care and family cohesion"
+    },
+    {
+     "code": "6.3",
+     "ar": "ضمان تحول رقمي ذو جودة عالية لتعزيز كفاءة الخدمات الاجتماعية واستدامتها",
+     "en": "Ensure high-quality digital transformation to make social services efficient and sustainable"
+    }
+   ],
+   "initiatives": [
+    {
+     "code": "6.1",
+     "nameAr": "بناء رأس المال البشري في المجال الاجتماعي والإنساني",
+     "descAr": "تطوير مستدام لرأس مال بشري مؤهل",
+     "nameEn": "Building human capital in the social and humanitarian field",
+     "descEn": "Sustainable development of qualified human capital"
+    },
+    {
+     "code": "6.2",
+     "nameAr": "تعزيز تبادل المعلومات في مجال الرعاية الاجتماعية والتماسك الأسري",
+     "descAr": "تعزيز القدرات الرقمية ومشاركة المعلومات",
+     "nameEn": "Information exchange in social care and family cohesion",
+     "descEn": "Strengthen digital capabilities and information sharing"
+    },
+    {
+     "code": "6.3",
+     "nameAr": "مبادرة التحول الرقمي",
+     "descAr": "",
+     "nameEn": "Digital transformation initiative",
+     "descEn": ""
+    }
+   ]
+  }
+ ],
+ "enablers": [
+  {
+   "ar": "السياسات والتشريعات",
+   "en": "Policies and legislation"
+  },
+  {
+   "ar": "الحوكمة الفعالة والمشاركة عبر القطاعات",
+   "en": "Effective governance and cross-sector participation"
+  },
+  {
+   "ar": "القدرات والإمكانيات الملائمة للأخصائيين الاجتماعيين",
+   "en": "The right capabilities for social workers"
+  },
+  {
+   "ar": "تجربة رقمية أفضل للمستفيدين",
+   "en": "A better digital experience for beneficiaries"
+  },
+  {
+   "ar": "مدخلات مبنية على البراهين لتوجيه تصميم السياسات",
+   "en": "Evidence-based inputs to guide policy design"
+  }
+ ]
+}

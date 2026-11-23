@@ -1,0 +1,723 @@
+{
+"pct": {
+"1.1.1": {
+"prog": 13.793103448275861,
+"planned": 21.978021978021985,
+"status": "atRisk",
+"acts": 58
+},
+"1.1.2": {
+"prog": 23.46153846153846,
+"planned": 42.09401709401709,
+"status": "delayed",
+"acts": 13
+},
+"1.1.3": {
+"prog": 7.878787878787879,
+"planned": 17.34129617341296,
+"status": "atRisk",
+"acts": 33
+},
+"1.1.4": {
+"prog": 2.0833333333333335,
+"planned": 10.32608695652174,
+"status": "atRisk",
+"acts": 12
+},
+"1.1.5": {
+"prog": 40,
+"planned": 55.824175824175825,
+"status": "delayed",
+"acts": 10
+},
+"1.1.6": {
+"prog": 15.5,
+"planned": 52.94317673378076,
+"status": "delayed",
+"acts": 10
+},
+"1.1.7": {
+"prog": 31.25,
+"planned": 92.24137931034483,
+"status": "delayed",
+"acts": 16
+},
+"1.2.2": {
+"prog": 0,
+"planned": 28.090383512070257,
+"status": "delayed",
+"acts": 21
+},
+"1.3.1": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 20
+},
+"1.3.2": {
+"prog": 9.6,
+"planned": 43.93211233211233,
+"status": "delayed",
+"acts": 75
+},
+"1.4.1": {
+"prog": 66.66666666666667,
+"planned": 97.06349206349206,
+"status": "delayed",
+"acts": 15
+},
+"1.4.2": {
+"prog": 91.42857142857143,
+"planned": 89.11129230360669,
+"status": "onTrack",
+"acts": 14
+},
+"1.4.3": {
+"prog": 30,
+"planned": 30.610263522884885,
+"status": "onTrack",
+"acts": 20
+},
+"2.1.1": {
+"prog": 7.045454545454546,
+"planned": 15.360501567398119,
+"status": "atRisk",
+"acts": 44
+},
+"2.1.2": {
+"prog": 1.1904761904761905,
+"planned": 0,
+"status": "onTrack",
+"acts": 21
+},
+"2.1.3": {
+"prog": 0,
+"planned": 49.978309801514214,
+"status": "delayed",
+"acts": 15
+},
+"2.2.1": {
+"prog": 13.333333333333334,
+"planned": 89.15254237288136,
+"status": "delayed",
+"acts": 15
+},
+"3.1.1": {
+"prog": 55.55555555555556,
+"planned": 98.80450070323488,
+"status": "delayed",
+"acts": 9
+},
+"3.1.2": {
+"prog": 10.625,
+"planned": 44.37499999999999,
+"status": "delayed",
+"acts": 16
+},
+"3.1.3": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 14
+},
+"3.2.1": {
+"prog": 25,
+"planned": 50,
+"status": "delayed",
+"acts": 8
+},
+"3.2.2": {
+"prog": 5,
+"planned": 79.39911964899561,
+"status": "delayed",
+"acts": 12
+},
+"3.2.3": {
+"prog": 34.54545454545455,
+"planned": 100,
+"status": "delayed",
+"acts": 11
+},
+"3.2.4": {
+"prog": 0,
+"planned": 86.21711466043371,
+"status": "delayed",
+"acts": 9
+},
+"3.2.5": {
+"prog": 50,
+"planned": 76.47226522187819,
+"status": "delayed",
+"acts": 28
+},
+"3.2.6": {
+"prog": 7.6923076923076925,
+"planned": 28.912466843501324,
+"status": "delayed",
+"acts": 13
+},
+"3.3.1": {
+"prog": 10,
+"planned": 24.271380793119924,
+"status": "atRisk",
+"acts": 23
+},
+"3.3.2": {
+"prog": 0,
+"planned": 19.774011299435028,
+"status": "delayed",
+"acts": 24
+},
+"3.3.3": {
+"prog": 32.5,
+"planned": 0,
+"status": "onTrack",
+"acts": 20
+},
+"3.3.4": {
+"prog": 45.55555555555556,
+"planned": 25.23693556570269,
+"status": "onTrack",
+"acts": 18
+},
+"3.4.1": {
+"prog": 7.857142857142857,
+"planned": 59.5926800472255,
+"status": "delayed",
+"acts": 28
+},
+"4.1.1": {
+"prog": 44.166666666666664,
+"planned": 39.09722222222222,
+"status": "onTrack",
+"acts": 12
+},
+"4.2.1": {
+"prog": 31.904761904761905,
+"planned": 36.12737543900344,
+"status": "onTrack",
+"acts": 21
+},
+"4.2.2": {
+"prog": 47.77777777777778,
+"planned": 36.81962407270587,
+"status": "onTrack",
+"acts": 18
+},
+"4.2.3": {
+"prog": 78.26086956521739,
+"planned": 84.52380952380952,
+"status": "atRisk",
+"acts": 23
+},
+"4.2.4": {
+"prog": 57.89473684210526,
+"planned": 62.5438596491228,
+"status": "onTrack",
+"acts": 19
+},
+"4.3.1": {
+"prog": 27.142857142857142,
+"planned": 57.142857142857146,
+"status": "delayed",
+"acts": 7
+},
+"5.1.1": {
+"prog": 25,
+"planned": 91.0377358490566,
+"status": "delayed",
+"acts": 8
+},
+"5.1.2": {
+"prog": 15.588235294117647,
+"planned": 22.160538423514204,
+"status": "atRisk",
+"acts": 17
+},
+"5.1.3": {
+"prog": 86.66666666666667,
+"planned": 100,
+"status": "atRisk",
+"acts": 15
+},
+"5.1.4": {
+"prog": 71.53846153846153,
+"planned": 96.78782755705834,
+"status": "delayed",
+"acts": 13
+},
+"5.2.1": {
+"prog": 0,
+"planned": 93.39875111507584,
+"status": "delayed",
+"acts": 19
+},
+"6.2.1": {
+"prog": 5.2631578947368425,
+"planned": 75.65230152132678,
+"status": "delayed",
+"acts": 19
+},
+"6.2.2": {
+"prog": 0,
+"planned": 27.272727272727273,
+"status": "delayed",
+"acts": 11
+},
+"6.2.3": {
+"prog": 45,
+"planned": 28.429752066115704,
+"status": "onTrack",
+"acts": 20
+},
+"1.2.1 + 1.2.3": {
+"prog": 39.80769230769231,
+"planned": 62.68950539442342,
+"status": "delayed",
+"acts": 26
+},
+"1.3.3 + 6.1.1": {
+"prog": 28.333333333333332,
+"planned": 56.60855992718229,
+"status": "delayed",
+"acts": 24
+},
+"3.1.4 + 6.1.3 + 6.1.2": {
+"prog": 31.346153846153847,
+"planned": 67.19927598843765,
+"status": "delayed",
+"acts": 26
+},
+"NEW-1": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 0
+},
+"NEW-2": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 0
+}
+},
+"weighted": {
+"1.1.1": {
+"prog": 4.6028880866426,
+"planned": 14.537993927116954,
+"status": "atRisk",
+"acts": 58
+},
+"1.1.2": {
+"prog": 22.191575354649054,
+"planned": 45.454117951418525,
+"status": "delayed",
+"acts": 13
+},
+"1.1.3": {
+"prog": 3.7289130103746664,
+"planned": 18.89079011521759,
+"status": "delayed",
+"acts": 33
+},
+"1.1.4": {
+"prog": 4.6169694187597,
+"planned": 20.712192103830045,
+"status": "delayed",
+"acts": 12
+},
+"1.1.5": {
+"prog": 26.6158315177923,
+"planned": 45.11759119602257,
+"status": "delayed",
+"acts": 10
+},
+"1.1.6": {
+"prog": 10.479419703103915,
+"planned": 57.28467567504342,
+"status": "delayed",
+"acts": 10
+},
+"1.1.7": {
+"prog": 28.65508266993264,
+"planned": 81.89655172413792,
+"status": "delayed",
+"acts": 16
+},
+"1.2.2": {
+"prog": 0,
+"planned": 31.38433064736481,
+"status": "delayed",
+"acts": 21
+},
+"1.3.1": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 20
+},
+"1.3.2": {
+"prog": 8.801059888354727,
+"planned": 41.705959596229015,
+"status": "delayed",
+"acts": 75
+},
+"1.4.1": {
+"prog": 83.41564637084392,
+"planned": 98.86253842775584,
+"status": "delayed",
+"acts": 15
+},
+"1.4.2": {
+"prog": 88.00464745063083,
+"planned": 89.88436672447475,
+"status": "onTrack",
+"acts": 14
+},
+"1.4.3": {
+"prog": 14.070625498410703,
+"planned": 17.819748342569653,
+"status": "onTrack",
+"acts": 20
+},
+"2.1.1": {
+"prog": 11.029622796227962,
+"planned": 19.018207843159736,
+"status": "atRisk",
+"acts": 44
+},
+"2.1.2": {
+"prog": 0.6458333333333334,
+"planned": 0,
+"status": "onTrack",
+"acts": 21
+},
+"2.1.3": {
+"prog": 0,
+"planned": 47.4044913710925,
+"status": "delayed",
+"acts": 15
+},
+"2.2.1": {
+"prog": 12.5,
+"planned": 84.46511621867964,
+"status": "delayed",
+"acts": 15
+},
+"3.1.1": {
+"prog": 36.65706780752137,
+"planned": 98.86854530841873,
+"status": "delayed",
+"acts": 9
+},
+"3.1.2": {
+"prog": 12.811839323467233,
+"planned": 62.19233744134482,
+"status": "delayed",
+"acts": 16
+},
+"3.1.3": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 14
+},
+"3.2.1": {
+"prog": 11.348684210526315,
+"planned": 23.360655737704917,
+"status": "atRisk",
+"acts": 8
+},
+"3.2.2": {
+"prog": 1.8849252013808977,
+"planned": 54.79123273437172,
+"status": "delayed",
+"acts": 12
+},
+"3.2.3": {
+"prog": 37.9917695473251,
+"planned": 100,
+"status": "delayed",
+"acts": 11
+},
+"3.2.4": {
+"prog": 0,
+"planned": 68.23236791124197,
+"status": "delayed",
+"acts": 9
+},
+"3.2.5": {
+"prog": 55.58334780846506,
+"planned": 76.26916309956995,
+"status": "delayed",
+"acts": 28
+},
+"3.2.6": {
+"prog": 1.2784858307548745,
+"planned": 17.766933221392414,
+"status": "delayed",
+"acts": 13
+},
+"3.3.1": {
+"prog": 12.248992673992674,
+"planned": 35.98605856802578,
+"status": "delayed",
+"acts": 23
+},
+"3.3.2": {
+"prog": 0,
+"planned": 21.916365913774346,
+"status": "delayed",
+"acts": 24
+},
+"3.3.3": {
+"prog": 15.82729593851592,
+"planned": 0,
+"status": "onTrack",
+"acts": 20
+},
+"3.3.4": {
+"prog": 59.311072904412875,
+"planned": 34.38127721862158,
+"status": "onTrack",
+"acts": 18
+},
+"3.4.1": {
+"prog": 7.738291680527292,
+"planned": 61.57323875877934,
+"status": "delayed",
+"acts": 28
+},
+"4.1.1": {
+"prog": 44.397482859021316,
+"planned": 39.860407859026004,
+"status": "onTrack",
+"acts": 12
+},
+"4.2.1": {
+"prog": 45.561460057496305,
+"planned": 44.885263907950176,
+"status": "onTrack",
+"acts": 21
+},
+"4.2.2": {
+"prog": 49.16259542016043,
+"planned": 38.81365873651622,
+"status": "onTrack",
+"acts": 18
+},
+"4.2.3": {
+"prog": 59.125569931456866,
+"planned": 61.81606363400082,
+"status": "onTrack",
+"acts": 23
+},
+"4.2.4": {
+"prog": 75.69130216189039,
+"planned": 77.86051847965743,
+"status": "onTrack",
+"acts": 19
+},
+"4.3.1": {
+"prog": 31.54838295687885,
+"planned": 38.30975989769084,
+"status": "atRisk",
+"acts": 7
+},
+"5.1.1": {
+"prog": 12.5,
+"planned": 68.63207547169812,
+"status": "delayed",
+"acts": 8
+},
+"5.1.2": {
+"prog": 14.546139074902845,
+"planned": 20.473984182160233,
+"status": "atRisk",
+"acts": 17
+},
+"5.1.3": {
+"prog": 81.35964912280701,
+"planned": 100,
+"status": "delayed",
+"acts": 15
+},
+"5.1.4": {
+"prog": 54.67575919256592,
+"planned": 89.53769542004837,
+"status": "delayed",
+"acts": 13
+},
+"5.2.1": {
+"prog": 0,
+"planned": 84.61507999366387,
+"status": "delayed",
+"acts": 19
+},
+"6.2.1": {
+"prog": 3.0258181220194045,
+"planned": 66.19154747916991,
+"status": "delayed",
+"acts": 19
+},
+"6.2.2": {
+"prog": 0,
+"planned": 18.75,
+"status": "delayed",
+"acts": 11
+},
+"6.2.3": {
+"prog": 34.22091505751752,
+"planned": 22.834767389386776,
+"status": "onTrack",
+"acts": 20
+},
+"1.2.1 + 1.2.3": {
+"prog": 29.159775841932806,
+"planned": 64.62459318387499,
+"status": "delayed",
+"acts": 26
+},
+"1.3.3 + 6.1.1": {
+"prog": 35.24067552402271,
+"planned": 52.097504192522436,
+"status": "delayed",
+"acts": 24
+},
+"3.1.4 + 6.1.3 + 6.1.2": {
+"prog": 19.155542691713606,
+"planned": 52.23921795883274,
+"status": "delayed",
+"acts": 26
+},
+"NEW-1": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 0
+},
+"NEW-2": {
+"prog": 0,
+"planned": 0,
+"status": "onTrack",
+"acts": 0
+}
+},
+"today": "2026-11-23",
+"kpi": {
+"NO.4.K.5": {
+"prog": 20.206329207191278,
+"planned": 38.40703243326194,
+"st": "delayed",
+"n": 5
+},
+"SD.1.K.1": {
+"prog": 15.999264193660748,
+"planned": 43.24345222424364,
+"st": "delayed",
+"n": 10
+},
+"SD.1.K.3": {
+"prog": 15.26959357257163,
+"planned": 34.5878142848334,
+"st": "delayed",
+"n": 9
+},
+"SD.2.K.1": {
+"prog": 10.072665429808287,
+"planned": 43.99622390114617,
+"st": "delayed",
+"n": 6
+},
+"SD.2.K.3": {
+"prog": 9.583333333333334,
+"planned": 62.87705723409482,
+"st": "delayed",
+"n": 2
+},
+"SD.3.K.1": {
+"prog": 25.727907874289453,
+"planned": 66.3145458103446,
+"st": "delayed",
+"n": 7
+},
+"SD.3.K.2": {
+"prog": 25.727907874289453,
+"planned": 66.3145458103446,
+"st": "delayed",
+"n": 7
+},
+"SD.3.K.3": {
+"prog": 19.556806041181044,
+"planned": 55.19961920057916,
+"st": "delayed",
+"n": 11
+},
+"SD.3.K.4": {
+"prog": 29.83974358974359,
+"planned": 61.90391795780997,
+"st": "delayed",
+"n": 2
+},
+"SD.4.K.1": {
+"prog": 37.96832579185521,
+"planned": 52.01145407693186,
+"st": "atRisk",
+"n": 2
+},
+"SD.4.K.2": {
+"prog": 37.96832579185521,
+"planned": 52.01145407693186,
+"st": "atRisk",
+"n": 2
+},
+"SD.4.K.3": {
+"prog": 7.857142857142857,
+"planned": 59.59268004722551,
+"st": "delayed",
+"n": 1
+},
+"SD.4.K.4": {
+"prog": 0,
+"planned": 0,
+"st": "noLinks",
+"n": 0
+},
+"SD.5.K.1": {
+"prog": 53.95953652246559,
+"planned": 55.00366717116041,
+"st": "onTrack",
+"n": 4
+},
+"SD.5.K.2": {
+"prog": 9.583333333333334,
+"planned": 62.87705723409482,
+"st": "delayed",
+"n": 2
+},
+"SD.3.K.6": {
+"prog": 12.306443556443554,
+"planned": 61.956933387653656,
+"st": "delayed",
+"n": 9
+},
+"SD.2.K.2": {
+"prog": 13.079029793735675,
+"planned": 49.908100939572236,
+"st": "delayed",
+"n": 7
+},
+"SD.3.K.5": {
+"prog": 20.600553320948055,
+"planned": 53.414617219386216,
+"st": "delayed",
+"n": 19
+},
+"SD.6.K.1": {
+"prog": 30.558808091456708,
+"planned": 44.630551691649295,
+"st": "atRisk",
+"n": 19
+}
+}
+}

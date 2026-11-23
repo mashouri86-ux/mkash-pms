@@ -1,0 +1,40 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4C13B922-D04F-4F3F-86C2-16E234EFAABD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D5B80BDC-2C09-40E9-8FE1-EF8FFEB646AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKAsh.Core", "src\MKAsh.Core\MKAsh.Core.csproj", "{2C364E39-766F-4FF8-B08E-E393673CCBC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKAsh.Api", "src\MKAsh.Api\MKAsh.Api.csproj", "{9C1A54AA-B1AD-45C3-862D-7233E8494E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKAsh.Core.Tests", "tests\MKAsh.Core.Tests\MKAsh.Core.Tests.csproj", "{A8860337-2A10-480F-A38D-8881BE9F321D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C364E39-766F-4FF8-B08E-E393673CCBC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C364E39-766F-4FF8-B08E-E393673CCBC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C364E39-766F-4FF8-B08E-E393673CCBC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C364E39-766F-4FF8-B08E-E393673CCBC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1A54AA-B1AD-45C3-862D-7233E8494E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1A54AA-B1AD-45C3-862D-7233E8494E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1A54AA-B1AD-45C3-862D-7233E8494E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1A54AA-B1AD-45C3-862D-7233E8494E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8860337-2A10-480F-A38D-8881BE9F321D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8860337-2A10-480F-A38D-8881BE9F321D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8860337-2A10-480F-A38D-8881BE9F321D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8860337-2A10-480F-A38D-8881BE9F321D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C364E39-766F-4FF8-B08E-E393673CCBC6} = {4C13B922-D04F-4F3F-86C2-16E234EFAABD}
+		{9C1A54AA-B1AD-45C3-862D-7233E8494E9D} = {4C13B922-D04F-4F3F-86C2-16E234EFAABD}
+		{A8860337-2A10-480F-A38D-8881BE9F321D} = {D5B80BDC-2C09-40E9-8FE1-EF8FFEB646AA}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+[
+  { "nameAr": "مكتب إدارة المشاريع", "nameEn": "PMO (demo)", "email": "pmo@example.org", "role": "pmo" },
+  { "nameAr": "الإدارة العليا", "nameEn": "Executive (demo)", "email": "executive@example.org", "role": "executive" },
+  { "nameAr": "مها المنصوري", "nameEn": "Maha Al Mansoori (demo)", "email": "lead.mansoori@example.org", "role": "lead", "leadName": "مها المنصوري" },
+  { "nameAr": "فهد الخيارين", "nameEn": "Fahad Al Khayarin (demo)", "email": "lead.khayarin@example.org", "role": "lead", "leadName": "فهد الخيارين" },
+  { "nameAr": "مها العطية", "nameEn": "Maha Al Attiyah (demo)", "email": "lead.attiyah@example.org", "role": "lead", "leadName": "مها العطية" },
+  { "nameAr": "الدكتورة شريفة العمادي", "nameEn": "Dr. Sharifa Al Emadi (demo)", "email": "lead.emadi@example.org", "role": "lead", "leadName": "الدكتورة شريفة العمادي" },
+  { "nameAr": "مكتب الوزير", "nameEn": "Minister's Sector (demo)", "email": "lead.minister@example.org", "role": "lead", "leadName": "مكتب الوزير" },
+  { "nameAr": "سعيد منيخر الهاجري", "nameEn": "Project manager (demo)", "email": "pm.demo@example.org", "role": "projectManager" }
+]
