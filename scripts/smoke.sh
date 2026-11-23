@@ -29,8 +29,9 @@ id=$(curl -sf -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/jso
 res=$(curl -sf -X POST -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/json" -d '{}' "$API/change-requests/$id/submit")
 [ "$(echo "$res" | jq -r .status)" = "withNpc" ] && check "Change request submitted with code $(echo "$res" | jq -r .code)"
 curl -sf -H "X-Dev-User: pmo@example.org" -o /tmp/cr.xlsm "$API/change-requests/$id/excel" && unzip -l /tmp/cr.xlsm | grep -q vbaProject.bin && check "Excel export keeps the NDS3 macros"
-curl -sf -X POST -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/json" -d '{"decision":"approved"}' "$API/change-requests/$id/npc" >/dev/null
-[ "$(get pmo@example.org /projects | jq ".[] | select(.id==$pid) | .budget")" = "1234567" ] && check "NPC approval applied the new budget"
+npc=$(curl -sf -X POST -H "X-Dev-User: pmo@example.org" -H "Content-Type: application/json" -d '{"decision":"approved"}' "$API/change-requests/$id/npc")
+echo "  NPC decision: $npc"
+[ "$(get pmo@example.org /projects | jq ".[] | select(.id==$pid) | .budget == 1234567")" = "true" ] && check "NPC approval applied the new budget"
 
 echo "$pass checks passed"
 [ "$pass" -ge 16 ]
