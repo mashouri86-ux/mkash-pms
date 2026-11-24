@@ -43,17 +43,27 @@ public class Account(IHttpContextAccessor http, PmsDbContext db, IConfiguration 
         // Test systems: the first person to sign in becomes the owner (stored in _system/_owners).
         if (env.IsDevelopment() && cfg.GetValue("Dev:FirstUserIsOwner", true) && email.Length > 0)
         {
-            var doc = await db.Docs.FirstOrDefaultAsync(d => d.Collection == "_system" && d.Id == OwnersDocId, ct);
+            var doc = await db.Docs.AsNoTracking().FirstOrDefaultAsync(d => d.Collection == "_system" && d.Id == OwnersDocId, ct);
             if (doc is null)
             {
                 var now = DateTime.UtcNow;
-                db.Docs.Add(new Doc
+                var entry = db.Docs.Add(new Doc
                 {
                     Collection = "_system", Id = OwnersDocId, Json = new JsonObject { ["emails"] = new JsonArray(JsonValue.Create(email)) }.ToJsonString(),
                     Version = now.Ticks, UpdatedAt = now, UpdatedBy = email,
                 });
-                await db.SaveChangesAsync(ct);
-                return (_owner = true).Value;
+                try
+                {
+                    await db.SaveChangesAsync(ct);
+                    return (_owner = true).Value;
+                }
+                catch (DbUpdateException)
+                {
+                    // Another request recorded the owner at the same moment: use what it stored.
+                    entry.State = EntityState.Detached;
+                    doc = await db.Docs.AsNoTracking().FirstOrDefaultAsync(d => d.Collection == "_system" && d.Id == OwnersDocId, ct);
+                    if (doc is null) throw;
+                }
             }
             var emails = JsonNode.Parse(doc.Json)?["emails"]?.AsArray().Select(x => x?.ToString().ToLowerInvariant()) ?? Enumerable.Empty<string?>();
             return (_owner = emails.Contains(email)).Value;
