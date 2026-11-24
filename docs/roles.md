@@ -39,3 +39,5 @@ Each person has exactly one role, set on the **Users** page. The server enforces
 Only people added to Tamkeen get any data. That means an owner, anyone on the Users list (PMO, sector lead or executive), anyone in the directory, and project managers in the PM roster. Anyone else can sign in but only sees "This email isn't registered in Tamkeen". The server refuses them all data, files and documents.
 
 **Test link (Codespace).** Port 5173 is set to **Public**, so the link opens on any device without a GitHub account. The test sign-in asks only for an email. Anyone who has the link and knows a registered email can therefore sign in as that person. Keep the test link for test data and trusted testers. Production uses Microsoft sign-in (Entra ID).
+
+**After the Codespace restarts**, GitHub resets the port to Private, so only the owner can open the link. To reopen it to colleagues: Ports tab → right-click 5173 → Port Visibility → Public. The first time someone opens the link, GitHub shows a "You are about to access a development port" page; they tap **Continue**.
