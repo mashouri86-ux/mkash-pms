@@ -11,10 +11,10 @@ public class AssetsController(PmsDbContext db, Account me) : ControllerBase
 {
     public const long MaxBytes = 20 * 1024 * 1024;
 
+    /// <summary>Attachments everywhere in Tamkeen: PDF, Word, Excel and images (PNG/JPG).</summary>
     private static readonly HashSet<string> Allowed = new(StringComparer.OrdinalIgnoreCase)
     {
-        ".pdf", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".doc", ".docx", ".xls", ".xlsx", ".xlsm", ".ppt", ".pptx",
-        ".csv", ".txt", ".md", ".json", ".mp4", ".webm", ".mov", ".zip",
+        ".pdf", ".png", ".jpg", ".jpeg", ".doc", ".docx", ".xls", ".xlsx", ".xlsm",
     };
 
     [HttpPost("api/assets"), RequestSizeLimit(MaxBytes + 1024 * 1024)]
@@ -42,7 +42,7 @@ public class AssetsController(PmsDbContext db, Account me) : ControllerBase
         var a = await db.Assets.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, ct);
         if (a is null) return NotFound();
         // Images and PDFs open in the browser; everything else downloads with its original name.
-        var inline = a.ContentType.StartsWith("image/") || a.ContentType == "application/pdf" || a.ContentType.StartsWith("video/");
+        var inline = a.ContentType.StartsWith("image/") || a.ContentType == "application/pdf";
         return inline ? File(a.Data, a.ContentType) : File(a.Data, a.ContentType, a.FileName);
     }
 

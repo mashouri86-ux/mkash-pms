@@ -39,7 +39,17 @@
     }
     if (res.status === 204) return null;
     const text = await res.text();
-    const data = text ? JSON.parse(text) : null;
+    let data = null;
+    try {
+      data = text ? JSON.parse(text) : null;
+    } catch {
+      data = null; // not the Tamkeen server answering (e.g. the test system has stopped)
+    }
+    if (!res.ok && (res.status >= 502 || (res.status === 404 && !data))) {
+      const e = apiError(res.status, "The Tamkeen server isn't reachable right now (the test system may have stopped). Reopen it and try again — nothing was saved.");
+      e.code = "unavailable";
+      throw e;
+    }
     if (!res.ok) throw apiError(res.status, data && data.error);
     return data;
   }

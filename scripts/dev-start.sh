@@ -9,9 +9,13 @@ pkill -f "MKAsh.Api" 2>/dev/null || true
 pkill -f "node.*vite" 2>/dev/null || true
 
 # Codespaces: keep the data in a SQLite file (no separate database server needed)
+# (kept under /workspaces so it survives the Codespace stopping, restarting or being rebuilt)
 if [ -n "$CODESPACES" ]; then
+  mkdir -p /workspaces/.tamkeen
+  DB=/workspaces/.tamkeen/tamkeen.db
+  [ -f "$DB" ] || [ ! -f /tmp/mkash-pms-v2.db ] || cp /tmp/mkash-pms-v2.db "$DB"   # keep data from earlier test runs
   export Database__Provider=Sqlite
-  export ConnectionStrings__Pms="Data Source=/tmp/mkash-pms-v2.db"
+  export ConnectionStrings__Pms="Data Source=$DB"
 fi
 
 cd "$ROOT/src/MKAsh.Api" && ASPNETCORE_ENVIRONMENT=Development setsid nohup dotnet run --launch-profile MKAsh.Api > /tmp/mkash.log 2>&1 < /dev/null &

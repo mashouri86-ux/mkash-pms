@@ -43,3 +43,21 @@ Variance = progress − planned.
 ## Update cycle and reports
 - Managers update **bi-weekly** by default. Cycles run Sunday to the second Saturday, counted from Sunday 5 January 2025. The PMO can switch to monthly or quarterly.
 - Reports can be bi-weekly, monthly, quarterly or yearly, for the current period or any earlier one.
+
+## Attachments (everywhere in Tamkeen)
+- Accepted types: **PDF, Word (.doc/.docx), Excel (.xls/.xlsx/.xlsm) and images (PNG/JPG)**, up to 20 MB each. The server refuses anything else.
+- At most **3 files** per place:
+  - per activity (proof of completion);
+  - per change-request attachment type (updated charter, filled template);
+  - per closure request.
+- Every file name in Tamkeen opens the file directly, including on items in Approvals. When proof of completion is **returned**, the project manager can attach more files right from the returned item, up to the limit of 3.
+
+## Change requests
+- **Requester** (field 1.3) defaults to the project's **project manager**. It can be switched to any member of the PMO team from the Users list.
+- Two attachment slots, each up to 3 files:
+  - **Updated project charter**;
+  - **Filled change request template (Excel)**, which the NPC asks for.
+- When a request is returned, the approvals item shows who returned it and links to its attachments.
+
+## Who is recorded
+Approvals, returns and submissions record the person who did them. When the owner previews the system as someone else (⇄ Switch user), actions are recorded under that person, the same as if they had signed in.

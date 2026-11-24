@@ -152,6 +152,8 @@ with sync_playwright() as p:
     lead.wait_for_timeout(1500)
     st = [d["data"].get("status") for d in api(owner, "/api/docs/updates")["docs"] if d["data"].get("projectId") == pid]
     check("Sector lead approves; status saved as approved", st and all(s == "approved" for s in st), str(st))
+    who = [d["data"].get("reviewedBy") for d in api(owner, "/api/docs/updates")["docs"] if d["data"].get("projectId") == pid]
+    check("The approval is recorded under the sector lead's name (not someone else's)", who and all(w == A.lead for w in who), str(who))
     plan = {d["id"]: d["data"] for d in api(owner, "/api/docs/plans")["docs"]}[pid]
     check("Work plan in the database has the new progress", any(a["id"] == act and a.get("pr") == 55 for a in plan["acts"]))
 
@@ -166,6 +168,21 @@ with sync_playwright() as p:
     ev = [d["data"] for d in api(owner, "/api/docs/evidence")["docs"] if d["data"].get("projectId") == pid]
     body = owner.evaluate(f"fetch('/_blob/{ev[0]['assetId']}').then(r=>r.text())") if ev else ""
     check("Project manager attaches proof of completion; file opens for others", ok and body == "%PDF-1.4 Tamkeen e2e proof", body[:40])
+    evu = [d["data"] for d in api(owner, "/api/docs/updates")["docs"] if d["data"].get("projectId") == pid and d["data"].get("kind") == "evidence"]
+    check("The approval item links straight to the attached file", evu and all(u.get("assetId") for u in evu), str([u.get("assetId") for u in evu]))
+    aid_used = inp.get_attribute("data-aid")
+    pm.evaluate("S.dTab='evidence';S.evFilter='all';renderDrawer(true)"); pm.wait_for_timeout(400)
+    pm.locator(f'input.ev-input[data-aid="{aid_used}"]').set_input_files(files=[
+        {"name": "meeting-minutes.docx", "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "buffer": b"PK\x03\x04 docx"},
+        {"name": "budget-sheet.xlsx", "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "buffer": b"PK\x03\x04 xlsx"}])
+    three = wait_for(pm, f"S.evidence.filter(e=>e.projectId==='{pid}'&&e.actId==='{aid_used}').length===3", 15)
+    pm.evaluate("renderDrawer(true)"); pm.wait_for_timeout(300)
+    can_more = pm.locator(f'input.ev-input[data-aid="{aid_used}"]').count()
+    if can_more:
+        pm.locator(f'input.ev-input[data-aid="{aid_used}"]').set_input_files(files=[{"name": "extra.pdf", "mimeType": "application/pdf", "buffer": b"%PDF extra"}])
+        pm.wait_for_timeout(2500)
+    n_ev = pm.evaluate(f"S.evidence.filter(e=>e.projectId==='{pid}'&&e.actId==='{aid_used}').length")
+    check("Word and Excel files attach; at most 3 files per activity", three and n_ev == 3, f"files={n_ev}")
     pm.evaluate("closeDrawer()")
 
     # ---------- 4c. change request → NPC → applied ----------
@@ -176,6 +193,14 @@ with sync_playwright() as p:
     pm.wait_for_timeout(700)
     pm.select_option('select[data-crf="f.type"]', value="تغيير الميزانية المخطط لها للمشروع"); pm.wait_for_timeout(300)
     pm.fill('input[data-crf="ap.budget"]', "1234567")
+    req, mgr = pm.evaluate(f"[S.crDraft.f.requester, projById('{pid}').manager]")
+    check("Requester defaults to the project manager", req == mgr and bool(mgr), f"{req} vs {mgr}")
+    opts = pm.evaluate("[...document.querySelectorAll('select[data-crf=\"f.requester\"] option')].map(o=>o.value).filter(Boolean)")
+    check("Requester can be switched to a PMO team member", len(opts) >= 2, str(opts))
+    pm.set_input_files('input.cr-att-in[data-k="charter"]', files=[{"name": "updated-charter.pdf", "mimeType": "application/pdf", "buffer": b"%PDF charter"}])
+    wait_for(pm, "crAtt(S.crDraft,'charter').length===1", 15)
+    pm.set_input_files('input.cr-att-in[data-k="template"]', files=[{"name": "change-request-filled.xlsm", "mimeType": "application/vnd.ms-excel.sheet.macroEnabled.12", "buffer": b"PK\x03\x04 xlsm"}])
+    wait_for(pm, "crAtt(S.crDraft,'template').length===1", 15)
     if not pm.evaluate("S.crDraft.f.requester"):
         pm.fill('input[data-crf="f.requester"]', "E2E Project Manager")
     if not pm.evaluate("S.crDraft.f.current"):
@@ -193,6 +218,8 @@ with sync_playwright() as p:
     shot(pm, "40-cr-submitted")
     crs = {d["id"]: d["data"] for d in api(owner, "/api/docs/changes")["docs"]}
     check("Change request submitted with an NDS3 code, waiting for the sector lead", cid in crs and crs[cid]["status"] == "lead" and bool(code), f"{code} {crs.get(cid,{}).get('status')}")
+    att = (crs.get(cid) or {}).get("attachments") or {}
+    check("Change request carries the updated charter (PDF) and the filled template (Excel)", len(att.get("charter", [])) == 1 and len(att.get("template", [])) == 1, json.dumps(att)[:120])
     wait_for(lead, f"(S.changes||[]).some(c=>c.id==='{cid}'&&c.status==='lead')")
     lead.evaluate(f"crOpen('{cid}')"); lead.wait_for_timeout(500)
     lead.click('[data-act="cr-ok"]'); lead.wait_for_timeout(1000)

@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0",
   "containerEnv": {
     "Database__Provider": "Sqlite",
-    "ConnectionStrings__Pms": "Data Source=/tmp/mkash-pms-v2.db"
+    "ConnectionStrings__Pms": "Data Source=/workspaces/.tamkeen/tamkeen.db"
   },
   "forwardPorts": [
     5173
