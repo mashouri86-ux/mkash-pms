@@ -25,6 +25,12 @@ echo "Starting Tamkeen… (the first start also builds it and loads the 50 proje
 for i in $(seq 1 90); do
   code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/api/health || true)
   if [ "$code" = "200" ]; then
+    # Keep the link open to colleagues on any device (sign-in still limits who gets data).
+    if [ -n "$CODESPACE_NAME" ] && command -v gh >/dev/null; then
+      gh codespace ports visibility 5173:public -c "$CODESPACE_NAME" >/dev/null 2>&1 \
+        && echo "✓ Link is public: https://$CODESPACE_NAME-5173.app.github.dev/" \
+        || echo "! Could not make the link public automatically: Ports tab → right-click 5173 → Port Visibility → Public."
+    fi
     echo "✓ Ready. Open port 5173 (Ports tab → globe icon) and refresh the page."
     exit 0
   fi

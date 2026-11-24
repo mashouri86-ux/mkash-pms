@@ -298,6 +298,16 @@ td.r,th.r{text-align:end}
 .drawer{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(680px,100vw);background:var(--surface);z-index:51;box-shadow:-8px 0 30px rgba(0,0,0,.15);transform:translateX(105%);transition:transform .22s ease;display:flex;flex-direction:column}
 :root[dir="rtl"] .drawer{transform:translateX(-105%)}
 .drawer.open{transform:none!important}
+.drawer.page{width:100vw;box-shadow:none;transition:none}
+.drawer.page .d-head,.drawer.page .d-body{padding-inline:max(24px,calc((100% - 1120px)/2))}
+.drawer.page .dtabs{padding-inline:max(18px,calc((100% - 1128px)/2))}
+.pcard{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--surface)}
+.pcard-card{padding:0;border:0;background:none;box-shadow:none}
+.pcard-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.pcard-h b{font-size:15px;flex:1;min-width:200px}
+.pcard .kv.pcard-kv{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 18px}
+.drawer:not(.page) .pcard .kv.pcard-kv{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pcard-goal{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}.pcard-goal small{display:block;color:var(--muted);font-size:12px}.pcard-goal p{margin:4px 0 0;color:var(--text-2);white-space:pre-line;font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:760px){.pcard .kv.pcard-kv{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .d-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
 .d-head h3{margin:4px 0 0;font-size:18px}
 .d-body{padding:18px 20px;overflow-y:auto;flex:1}
@@ -749,7 +759,7 @@ en:{
   evCount:"{n} evidence file(s)", evMissingOne:"Completed — evidence not attached yet", attach:"Attach evidence", attachHint:"Attach PDFs or images (up to 20 MB each) as evidence of completion. Save Word, Excel or PowerPoint files as PDF first.",
   evDemo:"Attaching files works in the published dashboard, not in this preview.", evNoUpload:"Only people with Editor access to this dashboard can attach or remove evidence files.",
   evFAll:"All activities", evFNeed:"Done · missing evidence", evFHas:"With evidence", uploading:"Uploading…", uploaded:"{n} file(s) attached",
-  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
+  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
   evDelete:"Remove file", confirmEvDelete:"Remove “{n}”? The file will be deleted for everyone.", evNotUploader:"Only the person who uploaded this file can remove it.",
   doneHint:"Marked complete — remember to attach evidence (📎).", fDoneNoEv:"Done · no evidence", evDone:"Completed activities", evWith:"With evidence", evMissing:"Missing evidence", evFiles:"Files",
   cProjBars:"Planned vs actual progress by project", cProjBarsSub:"Planned and actual completion for each project, with the variance in points", sortCode:"By code", sortVariance:"Most behind", sortActual:"Most complete",
@@ -846,7 +856,7 @@ ar:{
   evCount:"{n} ملف شواهد", evMissingOne:"منجز — لم تُرفق الشواهد بعد", attach:"إرفاق شاهد", attachHint:"أرفق ملفات PDF أو صورًا (حتى 20 ميجابايت لكل ملف) كشواهد على الإنجاز. احفظ ملفات Word أو Excel أو PowerPoint بصيغة PDF أولًا.",
   evDemo:"إرفاق الملفات يعمل في لوحة المعلومات المنشورة وليس في هذه المعاينة.", evNoUpload:"إرفاق ملفات الشواهد أو حذفها متاح فقط لمن لديهم صلاحية محرر.",
   evFAll:"كل الأنشطة", evFNeed:"منجزة · بدون شواهد", evFHas:"لها شواهد", uploading:"جارٍ الرفع…", uploaded:"تم إرفاق {n} ملف",
-  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
+  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
   evDelete:"حذف الملف", confirmEvDelete:"حذف «{n}»؟ سيُحذف الملف للجميع.", evNotUploader:"لا يمكن حذف هذا الملف إلا من قِبل من قام برفعه.",
   doneHint:"تم تحديده كمنجز — لا تنسَ إرفاق الشواهد (📎).", fDoneNoEv:"منجزة · بدون شواهد", evDone:"الأنشطة المنجزة", evWith:"لها شواهد", evMissing:"بدون شواهد", evFiles:"الملفات",
   cProjBars:"الإنجاز المخطط مقابل الفعلي لكل مشروع", cProjBarsSub:"نسبة الإنجاز المخططة والفعلية لكل مشروع مع الانحراف بالنقاط", sortCode:"حسب الرمز", sortVariance:"الأكثر تأخرًا", sortActual:"الأعلى إنجازًا",
@@ -1365,7 +1375,8 @@ function vProjects(){
 }
 
 /* ---------- work plan ---------- */
-function vWorkplan(){
+function vWorkplan(){const ps=fProjects();return (ps.length===1?`<div class="card pcard-card">${projCard(ps[0],true)}</div>`:"")+vWorkplanList()}
+function vWorkplanList(){
   const ps=fProjects();if(!ps.length)return noMatch();
   let rows=[];for(const p of ps)actsOf(p.id).forEach(a=>rows.push({p,a,st:actState(a)}));
   if(!rows.length)return `<div class="card"><div class="empty"><h3>${esc(t("noPlan"))}</h3><div>${esc(t("noPlanBody"))}</div><div class="acts"><a class="btn" href="#data">${esc(t("dImport"))}</a></div></div></div>`;
@@ -1483,8 +1494,8 @@ function vData(){
 }
 
 /* ================= drawer ================= */
-function openDrawer(id,tab){S.drawer=id;S.openWp=null;S.dTab=tab||"overview";renderDrawer(true);$("#drawer").classList.add("open");$("#overlay").classList.add("open");$("#drawer").setAttribute("aria-hidden","false")}
-function closeDrawer(){S.drawer=null;$("#drawer").classList.remove("open");$("#overlay").classList.remove("open");$("#drawer").setAttribute("aria-hidden","true")}
+function openDrawer(id,tab){S.drawer=id;S.drawerPage=S.view==="updates";S.openWp=null;S.dTab=tab||"overview";renderDrawer(true);$("#drawer").classList.add("open");$("#overlay").classList.add("open");$("#drawer").setAttribute("aria-hidden","false")}
+function closeDrawer(){const wasPage=S.drawerPage;S.drawer=null;S.drawerPage=false;$("#drawer").classList.remove("open","page");if(wasPage)window.scrollTo(0,0);$("#overlay").classList.remove("open");$("#drawer").setAttribute("aria-hidden","true")}
 function wpGroups(acts){const g=new Map();acts.forEach(a=>{const k=a.wp||"—";if(!g.has(k))g.set(k,[]);g.get(k).push(a)});return [...g.entries()]}
 const evOf=(pid,aid)=>S.evidence.filter(e=>e.projectId===pid&&(aid==null||e.actId===aid));
 const EV_TYPES={pdf:"application/pdf",png:"image/png",jpg:"image/jpeg",jpeg:"image/jpeg",doc:"application/msword",docx:"application/vnd.openxmlformats-officedocument.wordprocessingml.document",xls:"application/vnd.ms-excel",xlsx:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",xlsm:"application/vnd.ms-excel.sheet.macroEnabled.12"};
@@ -1503,7 +1514,7 @@ let nameBusy=false;async function resolveNames(ids){
 
 function renderDrawer(force){
   const p=projById(S.drawer);if(!p){closeDrawer();return}
-  const dr=$("#drawer");
+  const dr=$("#drawer");dr.classList.toggle("page",!!S.drawerPage);
   if(!force&&dr.contains(document.activeElement)&&document.activeElement.matches("input.pr-num,input[type=file]")){S.drawerDirty=true;return}
   S.drawerDirty=false;
   const m=metrics(p);const acts=actsOf(p.id);const evs=evOf(p.id);
@@ -1513,14 +1524,14 @@ function renderDrawer(force){
   const tabs=[["overview","tabOverview",""],["plan","tabPlan",num(acts.length)],["weights","tabWeights",""],["evidence","tabEvidence",num(evs.length)],["risks","tabRisks",num(rs.length+ms.length)]];
   if(canP(p.id)||clOf(p.id)||ST(p)==="closed")tabs.push(["closure","tabClosure",(()=>{const c=clOf(p.id);return c&&c.status==="pending"?"●":""})()]);
   let content="";
-  if(S.dTab==="plan")content=drawerPlan(p,acts);
+  if(S.dTab==="plan")content=`<div class="d-sec">${projCard(p,false)}</div>`+drawerPlan(p,acts);
   else if(S.dTab==="weights")content=drawerWeights(p,acts);
   else if(S.dTab==="evidence")content=drawerEvidence(p,acts);
   else if(S.dTab==="risks")content=drawerRisks(p,ms,rs);
   else if(S.dTab==="closure")content=drawerClosure(p);
   else content=projCharts(p,acts)+drawerOverview(p,m,acts);
   dr.innerHTML=`<div class="d-head"><div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="psub num">${esc(p.code)}</span>${statusChip(ST(p))}<span class="chip">${esc(t("ph_"+p.phase))}</span>${pendChip(p)}</div><h3>${esc(pname(p))}</h3><div class="psub">${esc(tv(p.initiative||p.portfolio))} · ${esc(tv(p.department))}</div></div>
-    <div style="display:flex;gap:4px">${canP(p.id)&&ST(p)!=="closed"&&!(clOf(p.id)&&clOf(p.id).status==="pending")?`<button class="btn sm" data-act="cl-start" data-id="${esc(p.id)}">${esc(t("clRequestShort"))}</button>`:""}${isAdmin()?`<button class="btn sm" data-act="edit-project" data-id="${esc(p.id)}">${esc(t("edit"))}</button>`:""}<button class="x" data-act="close-drawer" aria-label="${esc(t("close"))}">✕</button></div></div>
+    <div style="display:flex;gap:4px">${canP(p.id)&&ST(p)!=="closed"&&!(clOf(p.id)&&clOf(p.id).status==="pending")?`<button class="btn sm" data-act="cl-start" data-id="${esc(p.id)}">${esc(t("clRequestShort"))}</button>`:""}${isAdmin()?`<button class="btn sm" data-act="edit-project" data-id="${esc(p.id)}">${esc(t("edit"))}</button>`:""}${S.drawerPage?`<button class="btn sm" data-act="close-drawer">${S.lang==="ar"?"→":"←"} ${esc(t("backUpdates"))}</button>`:`<button class="x" data-act="close-drawer" aria-label="${esc(t("close"))}">✕</button>`}</div></div>
     <div class="dtabs" role="tablist">${tabs.map(([k,l,c])=>`<button role="tab" aria-selected="${S.dTab===k}" class="${S.dTab===k?"on":""}" data-act="dtab" data-v="${k}">${esc(t(l))}${c?` <span class="cnt num">${c}</span>`:""}</button>`).join("")}</div>
   <div class="d-body">${content}</div>`;
   S.dTabShown=S.dTab;
@@ -1528,6 +1539,11 @@ function renderDrawer(force){
   dr.querySelectorAll("details.wp").forEach(d=>d.addEventListener("toggle",()=>{const k=S.dTab+":"+d.dataset.wp;if(d.open)S.openWp=k;else if(S.openWp===k)S.openWp=null}));
   if(S.dTab==="evidence")resolveNames(evs.map(e=>e.by));
 }
+function projCard(p,withHead){
+  const kv=(k,v)=>v?`<div><small>${esc(t(k))}</small><span>${v}</span></div>`:"";
+  return `<div class="pcard">${withHead?`<div class="pcard-h"><span class="psub num">${esc(p.code)}</span>${statusChip(ST(p))}<b>${esc(pname(p))}</b><button class="btn sm" data-act="open-project" data-id="${esc(p.id)}">${esc(t("tabOverview"))}</button></div>`:""}
+    <div class="kv pcard-kv">${kv("department",esc(tv(p.department)))}${kv("initiative",esc(tv(p.initiative))||esc(t("noInit")))}${kv("sponsor",esc(tv(p.sponsor)))}${kv("manager",esc(p.manager))}${kv("objective",esc(tv(p.objective)))}${kv("portfolio",esc(tv(p.portfolio)))}${kv("start",fdate(p.start))}${kv("end",fdate(p.end))}</div>
+    ${p.description?`<div class="pcard-goal"><small>${esc(t("goal"))}</small><p>${esc(p.description)}</p></div>`:""}</div>`}
 function drawerOverview(p,m,acts){
   const kv=(k,v)=>`<div><small>${esc(t(k))}</small><span>${v||"—"}</span></div>`;
   const done=acts.filter(a=>actState(a)==="done");const withEv=done.filter(a=>evOf(p.id,a.id).length).length;

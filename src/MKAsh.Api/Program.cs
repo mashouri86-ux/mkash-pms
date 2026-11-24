@@ -101,6 +101,7 @@ app.Use(async (ctx, next) =>
     if (guarded && ctx.User.Identity?.IsAuthenticated == true
         && !await ctx.RequestServices.GetRequiredService<MKAsh.Api.Services.Account>().IsRegisteredAsync(ctx.RequestAborted))
     {
+        if (p.StartsWithSegments("/api/docs")) app.Logger.LogWarning("Sign-in by an email that isn't registered: {Email}", ctx.RequestServices.GetRequiredService<MKAsh.Api.Services.Account>().Email);
         ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
         await ctx.Response.WriteAsJsonAsync(new { error = "not-registered", message = "This email isn't registered in Tamkeen. Ask the PMO to add you." });
         return;
