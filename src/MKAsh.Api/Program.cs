@@ -91,6 +91,22 @@ app.UseExceptionHandler(e => e.Run(async ctx =>
 
 app.UseAuthentication();
 app.UseAuthorization();
+// Only people added to Tamkeen get data. Anyone else who signs in sees the "not registered" screen.
+app.Use(async (ctx, next) =>
+{
+    var p = ctx.Request.Path;
+    var guarded = (p.StartsWithSegments("/api") && !p.StartsWithSegments("/api/health") && !p.StartsWithSegments("/api/me"))
+                  || p.StartsWithSegments("/_blob")
+                  || (p.StartsWithSegments("/data") && !p.StartsWithSegments("/data/brand") && !p.StartsWithSegments("/data/fonts"));
+    if (guarded && ctx.User.Identity?.IsAuthenticated == true
+        && !await ctx.RequestServices.GetRequiredService<MKAsh.Api.Services.Account>().IsRegisteredAsync(ctx.RequestAborted))
+    {
+        ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
+        await ctx.Response.WriteAsJsonAsync(new { error = "not-registered", message = "This email isn't registered in Tamkeen. Ask the PMO to add you." });
+        return;
+    }
+    await next();
+});
 app.UseDefaultFiles();
 app.UseStaticFiles(new StaticFileOptions
 {

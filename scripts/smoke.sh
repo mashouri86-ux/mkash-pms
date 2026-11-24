@@ -29,7 +29,11 @@ check "55 work plans loaded" '[ "$(as $owner $BASE/api/docs/plans | jq ".docs | 
 check "No PMO officer field in projects" '[ "$(as $owner $BASE/api/docs/projects | jq "[.docs[].data | select(has(\"pmoFocal\"))] | length")" = 0 ]'
 
 T0=$(as $owner $BASE/api/docs/risks | jq .now)
-check "Anyone signed in can add a risk" '[ "$(code $other -X PUT -H "Content-Type: application/json" -d "{\"projectId\":\"x\",\"title\":\"Test risk\"}" $BASE/api/docs/risks/r-smoke)" = 204 ]'
+check "Someone not added to Tamkeen gets no data (403)" '[ "$(code $other $BASE/api/docs/projects)" = 403 ]'
+check "...and is told they are not registered" '[ "$(as $other $BASE/api/me | jq -r .registered)" = false ]'
+check "Owner adds them to the directory" '[ "$(code $owner -X PUT -H "Content-Type: application/json" -d "{\"email\":\"Someone@Example.org\",\"name\":\"Someone\"}" $BASE/api/docs/directory/d-someone)" = 204 ]'
+check "Once added, they get data" '[ "$(code $other $BASE/api/docs/projects)" = 200 ] && [ "$(as $other $BASE/api/me | jq -r .registered)" = true ]'
+check "A registered user can add a risk" '[ "$(code $other -X PUT -H "Content-Type: application/json" -d "{\"projectId\":\"x\",\"title\":\"Test risk\"}" $BASE/api/docs/risks/r-smoke)" = 204 ]'
 check "Live updates report the new risk" '[ "$(as $owner "$BASE/api/sync?since=$T0" | jq "[.changes[] | select(.id==\"r-smoke\")] | length")" -ge 1 ]'
 check "Non-PMO cannot change the access list" '[ "$(code $other -X PUT -H "Content-Type: application/json" -d "{\"email\":\"x@y.z\",\"role\":\"pmo\"}" $BASE/api/docs/access/a-x)" = 403 ]'
 check "Owner can add a PMO user" '[ "$(code $owner -X PUT -H "Content-Type: application/json" -d "{\"email\":\"someone@example.org\",\"name\":\"Someone\",\"role\":\"pmo\"}" $BASE/api/docs/access/a-someone)" = 204 ]'

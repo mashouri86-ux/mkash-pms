@@ -196,8 +196,29 @@
 
   // When the ministry account is already signed in (Entra ID), start the dashboard session for that
   // account so people don't type a second password. The owner keeps the dashboard's own switch-user screen.
+  function notRegistered(m) {
+    const show = () => {
+      document.body.innerHTML =
+        '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;background:#f6f5f1;padding:24px">' +
+        '<div style="max-width:440px;background:#fff;border:1px solid #e3e1da;border-radius:14px;padding:32px;text-align:center">' +
+        '<img src="/data/brand/tamkeen-logo.png" alt="" style="height:56px;margin-bottom:16px" onerror="this.remove()">' +
+        '<h2 style="margin:0 0 8px">This email isn\'t registered in Tamkeen</h2>' +
+        '<p style="color:#555;margin:0 0 6px">' + String(m.email || "").replace(/[<>&"]/g, "") + '</p>' +
+        '<p style="color:#555;margin:0 0 18px">Ask the PMO team to add you, then sign in again.</p>' +
+        '<p dir="rtl" style="color:#555;margin:0 0 18px">هذا البريد غير مسجّل في تمكين. تواصل مع مكتب إدارة المشاريع لإضافتك ثم سجّل الدخول مجدداً.</p>' +
+        '<a href="/signout" style="display:inline-block;padding:10px 18px;border-radius:8px;background:#0f3d5a;color:#fff;text-decoration:none">Use another email</a>' +
+        "</div></div>";
+    };
+    if (document.body) show();
+    else document.addEventListener("DOMContentLoaded", show);
+  }
+
   me()
     .then((m) => {
+      if (m.registered === false) {
+        notRegistered(m);
+        return;
+      }
       try {
         const key = "pmo.session";
         const cur = JSON.parse(localStorage.getItem(key) || "null");

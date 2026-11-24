@@ -20,6 +20,7 @@ public class MeController(PmsDbContext db, Account me) : ControllerBase
         name = await NameOf(me.Email, ct) ?? me.Name,
         isOwner = await me.IsOwnerAsync(ct),
         canEdit = await me.IsAdminAsync(ct),
+        registered = await me.IsRegisteredAsync(ct),
         autoSession = true,
     });
 

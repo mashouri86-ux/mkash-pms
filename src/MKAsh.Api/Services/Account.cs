@@ -12,8 +12,10 @@ namespace MKAsh.Api.Services;
 /// - PMO: an "access" or "roles" record with role "pmo".
 /// Everyone else is placed by the dashboard from their "access"/"roles" record.
 /// </summary>
-public class Account(IHttpContextAccessor http, PmsDbContext db, IConfiguration cfg, IHostEnvironment env)
+public class Account(IHttpContextAccessor http, PmsDbContext db, IConfiguration cfg, IHostEnvironment env, IWebHostEnvironment web)
 {
+    private static HashSet<string>? _roster;
+    private static readonly object RosterLock = new();
     public const string OwnersDocId = "_owners";
 
     public string Email
@@ -72,5 +74,47 @@ public class Account(IHttpContextAccessor http, PmsDbContext db, IConfiguration 
             n?["role"]?.ToString() == "pmo" &&
             (string.Equals(n?["email"]?.ToString(), email, StringComparison.OrdinalIgnoreCase) || string.Equals(n?["uid"]?.ToString(), email, StringComparison.OrdinalIgnoreCase)));
         return (_admin = pmo).Value;
+    }
+
+    private bool? _registered;
+
+    /// <summary>
+    /// Whether this email belongs to someone added to Tamkeen: an owner, anyone on the Users list
+    /// (access/roles), the directory, or a project manager in the PM roster. Everyone else gets no data.
+    /// </summary>
+    public async Task<bool> IsRegisteredAsync(CancellationToken ct = default)
+    {
+        if (_registered is { } r) return r;
+        var email = Email;
+        if (email.Length == 0) return (_registered = false).Value;
+        if (await IsOwnerAsync(ct)) return (_registered = true).Value;
+        if (Roster().Contains(email)) return (_registered = true).Value;
+        var recs = await db.Docs.AsNoTracking()
+            .Where(d => !d.Deleted && (d.Collection == "access" || d.Collection == "roles" || d.Collection == "directory"))
+            .Select(d => d.Json).ToListAsync(ct);
+        var found = recs.Select(j => JsonNode.Parse(j)).Any(n =>
+            string.Equals(n?["email"]?.ToString()?.Trim(), email, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(n?["uid"]?.ToString()?.Trim(), email, StringComparison.OrdinalIgnoreCase));
+        return (_registered = found).Value;
+    }
+
+    private HashSet<string> Roster()
+    {
+        if (_roster is not null) return _roster;
+        lock (RosterLock)
+        {
+            if (_roster is not null) return _roster;
+            var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            try
+            {
+                var file = Path.Combine(web.WebRootPath ?? "", "data", "pm-roster.json");
+                if (File.Exists(file) && JsonNode.Parse(File.ReadAllText(file))?["emails"] is JsonObject emails)
+                    foreach (var (_, v) in emails)
+                        foreach (var e in (v?.ToString() ?? "").Split(new[] { '\n', '\r', ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                            if (e.Contains('@')) set.Add(e.Trim().ToLowerInvariant());
+            }
+            catch { /* no roster: only the Users list and directory count */ }
+            return _roster = set;
+        }
     }
 }
