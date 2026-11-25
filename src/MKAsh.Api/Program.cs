@@ -89,6 +89,7 @@ builder.Services.AddAuthorization(o => o.FallbackPolicy = new AuthorizationPolic
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<Account>();
+builder.Services.AddScoped<ProjectAccess>();
 builder.Services.AddScoped<Seeder>();
 builder.Services.Configure<FormOptions>(o => o.MultipartBodyLengthLimit = AssetsController.MaxBytes + 1024 * 1024);
 builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);

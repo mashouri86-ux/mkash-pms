@@ -61,3 +61,21 @@ Variance = progress − planned.
 
 ## Who is recorded
 Approvals, returns and submissions record the person who did them. When the owner previews the system as someone else (⇄ Switch user), actions are recorded under that person, the same as if they had signed in.
+
+## Governance rules (approved by the PMO, 25 Nov 2026)
+Every rule below is checked by the server on each save, not only on screen.
+
+| # | Rule | Details |
+|---|---|---|
+| 1 | Approval deadlines | Sector lead: 5 working days. PMO: 3 working days. Working days are Sunday to Thursday. Pending items show their age and turn amber past the deadline. After 10 working days they are escalated to the head of the PMO (Approvals page, bell, Leadership "Awaiting decision" tile). All four numbers and the head of the PMO are set on the Users page. |
+| 3 | Cycle cut-off and freeze | Submissions are due a set number of days before the cycle ends (default 2); later ones are marked **late**. The PMO publishes each cycle from the Updates page. Its figures are frozen (stored in `cycles`), the cycle closes for submissions, and Leadership shows the last published figures beside the live ones. A published cycle can't be changed. |
+| 4 | Red-project escalation | A project that is red in the last two published cycles appears on Leadership under **Steering committee**. Its project manager must submit a recovery plan (actions, back-on-track date, support needed), and the PMO accepts or returns it. |
+| 5 | Email/Teams reminders | Deferred until the system moves to ministry servers (needs Microsoft 365 permission). |
+| 6 | Server-side permissions | People change only projects they manage, lead or cover for. PMO members are super users and can do everything a project manager can, on every project. Executives only read. |
+| 7 | No self-approval | Nobody approves or returns their own update, change request, closure, recovery plan or KPI baseline. PMO members' own changes also go for approval (to the sector lead or another PMO member). |
+| 8 | Locked baselines | The PMO locks a project's plan as its baseline (one project at a time, or all at once from the Updates page). After that, project managers update progress but can't change planned dates or add or remove activities. Dates change through an approved change request, after which the PMO re-baselines with a reason. Every earlier baseline is kept. |
+| 9 | KPI sign-off and owners | The PMO enters baselines and targets. The head of the PMO signs them off, but not the person who entered them. Changing them later needs a new sign-off. Each KPI has a named owner, who updates its current value quarterly (flagged when more than 92 days old) and can open the KPIs page for their own KPIs. |
+| 10 | Critical risks | A risk scoring 15 or more (probability × impact) must have an owner, a mitigation and a due date before it can be saved. |
+| 11 | Delegation | A sector lead can delegate their own approvals for a period (Approvals page). The PMO can delegate a project manager's duties or a lead's approvals (Users page). The delegate gets the same rights for the period only, and everything is recorded under their own name. |
+
+Evidence (proof of completion) stays optional: it is encouraged, never required to mark an activity done.

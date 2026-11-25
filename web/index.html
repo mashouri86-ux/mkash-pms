@@ -319,6 +319,23 @@ td.r,th.r{text-align:end}
 [data-theme=dark] .sn-tile.good .sn-tico,[data-theme=dark] .sn-s.good .sn-sico{background:rgba(127,224,201,.13);color:#7fe0c9}
 [data-theme=dark] .sn-tile.amber .sn-tico,[data-theme=dark] .sn-s.amber .sn-sico{background:rgba(243,214,138,.15);color:#F3D68A}
 [data-theme=dark] .sn-s.red .sn-sico,[data-theme=dark] .ins-bad .ins-ic{background:#c0475f;color:#fff}
+.s-ico.xs{width:14px;height:14px}
+.age{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--track);color:var(--text-2);white-space:nowrap;vertical-align:middle}
+.age.late{background:color-mix(in srgb,var(--warning) 28%,transparent);color:#7a5a08}.age.esc{background:var(--critical);color:#fff}
+.gov-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 14px;border-radius:12px;border:1px dashed var(--border-strong);background:var(--surface);margin-bottom:12px;font-size:13px}
+.gov-bar>span:first-child{display:inline-flex;align-items:center;gap:7px;flex-wrap:wrap}
+.gov-bar.locked{border-style:solid;background:color-mix(in srgb,var(--s1) 6%,var(--surface))}.gov-bar.ok{border-style:solid;background:color-mix(in srgb,var(--good) 8%,var(--surface))}
+.gov-bar.red{border:1px solid color-mix(in srgb,var(--critical) 40%,transparent);background:color-mix(in srgb,var(--critical) 7%,var(--surface))}.gov-bar.info{border-style:solid;background:color-mix(in srgb,var(--warning) 12%,var(--surface))}
+.gov-note{display:flex;gap:7px;align-items:center;font-size:12.5px;color:var(--text-2);background:color-mix(in srgb,var(--s1) 7%,transparent);padding:8px 10px;border-radius:10px;margin:0 0 12px}
+.rec-show{border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin:-4px 0 14px;font-size:13px;white-space:pre-line}.rec-txt{white-space:pre-line;font-size:13px;margin-top:6px}
+.chip.rec-missing,.chip.rec-returned{background:var(--critical);color:#fff}.chip.rec-submitted{background:color-mix(in srgb,var(--warning) 30%,transparent)}.chip.rec-accepted{background:color-mix(in srgb,var(--good) 18%,transparent)}
+.chip.so-approved{background:color-mix(in srgb,var(--good) 16%,transparent)}.chip.so-pending{background:color-mix(in srgb,var(--warning) 24%,transparent)}
+.chip.dlg-active{background:color-mix(in srgb,var(--good) 16%,transparent)}.chip.dlg-upcoming{background:color-mix(in srgb,var(--warning) 22%,transparent)}.chip.dlg-ended,.chip.dlg-cancelled{opacity:.6}
+.esc-card{border-color:color-mix(in srgb,var(--critical) 45%,transparent)}
+.gov-pub-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.gov-pub-g>div{display:flex;flex-direction:column;gap:2px}.gov-pub-g small{color:var(--muted);font-size:12px}.gov-pub-g b{font-size:24px}.gov-pub-g b small{font-size:13px;opacity:.6}
+.gov-form{grid-template-columns:repeat(4,minmax(0,1fr))}.gov-form .span2{grid-column:1/-1}
+label.chk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;white-space:nowrap;cursor:pointer}
+@media(max-width:900px){.gov-form{grid-template-columns:repeat(2,minmax(0,1fr))}.gov-pub-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @keyframes snDraw{from{stroke-dasharray:0 1000}}main.anim .sn-arc{animation:snDraw 1.3s cubic-bezier(.2,.7,.2,1)}
 @media (prefers-reduced-motion:reduce){main.anim .sn-arc{animation:none}}.sn-eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;opacity:.75;margin-bottom:10px}
 .sn-big{display:flex;align-items:center;gap:14px;font-size:34px;font-weight:700;line-height:1.15}.sn-vico{display:inline-flex;width:58px;height:58px;border-radius:16px;align-items:center;justify-content:center;background:rgba(255,255,255,.14);flex:none}.sn-vico .s-ico{width:34px;height:34px}
@@ -834,7 +851,7 @@ en:{
   evCount:"{n} evidence file(s)", evMissingOne:"Completed — evidence not attached yet", attach:"Attach evidence", attachHint:"Attach PDFs or images (up to 20 MB each) as evidence of completion. Save Word, Excel or PowerPoint files as PDF first.",
   evDemo:"Attaching files works in the published dashboard, not in this preview.", evNoUpload:"Only people with Editor access to this dashboard can attach or remove evidence files.",
   evFAll:"All activities", evFNeed:"Done · missing evidence", evFHas:"With evidence", uploading:"Uploading…", uploaded:"{n} file(s) attached",
-  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",nav_snap:"Snapshot",title_snap:"Snapshot",sub_snap:"The portfolio in one look · {n} projects",snEyebrow:"Strategy delivery · {d}",snOnPlan:"On plan",snBehind:"{n} points behind plan",snDelivered:"delivered",snActual:"Actual",snPlanned:"Planned",snNeed:"{n} of {m} projects need attention",snProjects:"Projects",snBudget:"Budget",snKpis:"Strategic KPIs on track",snOverdue:"Overdue activities",snDue:"Key deliverables · next 30 days",snHealth:"Project health",snPillars:"Strategy pillars",snInits:"Your initiatives",snNProj:"{n} projects",snNProj1:"1 project",snAttention:"Needs attention",snVsPlan:" · plan {p}",snFoot:"Click any tile for the details.",snCycle:"This reporting cycle",ovEyebrow:"Portfolio performance · {d}",snDue30:"Due in 30 days",snNoEv:"Done, no evidence yet",snDecisions:"Awaiting decision",snKpiOk:"{n} of {m} KPIs on track",snCrAwait:"Change requests for me",snClAwait:"Closures for me",snScheduled:"Projects scheduled",snStarted:"Started",snEndYear:"Ending in {y}",snMsDue:"Milestones · next 30 days",snMsLate:"Overdue milestones",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
+  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",nav_snap:"Snapshot",title_snap:"Snapshot",sub_snap:"The portfolio in one look · {n} projects",snEyebrow:"Strategy delivery · {d}",snOnPlan:"On plan",snBehind:"{n} points behind plan",snDelivered:"delivered",snActual:"Actual",snPlanned:"Planned",snNeed:"{n} of {m} projects need attention",snProjects:"Projects",snBudget:"Budget",snKpis:"Strategic KPIs on track",snOverdue:"Overdue activities",snDue:"Key deliverables · next 30 days",snHealth:"Project health",snPillars:"Strategy pillars",snInits:"Your initiatives",snNProj:"{n} projects",snNProj1:"1 project",snAttention:"Needs attention",snVsPlan:" · plan {p}",snFoot:"Click any tile for the details.",snCycle:"This reporting cycle",slaTip:"Deadline: {n} working days (Sun–Thu)",slaEscTip:"Past {e} working days: escalated to the head of the PMO",wdN:"{n} working days",slaLate:"Past the deadline",blLockedOk:"Baseline locked",blNone:"No approved baseline yet. Lock it so planned dates can only change through a change request.",blLock:"Lock baseline",blLockedOn:"Baseline locked {d} by {n}",blEnd:"Baseline end",blNow:"Current end",dShort:"days",blRebase:"Re-baseline",blViaCr:"Planned dates change only through an approved change request",blNoAdd:"The baseline is locked: activities can only be added, removed or re-dated through an approved change request.",blFormNote:"Baseline locked: planned dates can't be changed here. Raise a change request to move them.",blLockQ:"Lock this project's plan as the approved baseline? After this, the project manager can update progress but not planned dates or the list of activities.",blRebaseSub:"Records a new baseline from the current plan. The previous baseline stays in the history.",blReason:"Reason",blReasonPh:"e.g. Change request PT.SD.MSDF.221126 approved by the NPC",blReasonReq:"Enter the reason for re-baselining.",blLockAll:"Lock baselines ({n})",blLockAllQ:"Lock the current plan as the baseline for {n} projects that don't have one yet?",evFirst:"Attach proof of completion before marking this activity 100% done.",evRuleCol:"Evidence",evNotInit:"Not required (initiation)",evNotNeeded:"No evidence needed",evRequired:"Evidence required",riskCritReq:"Critical risk (score 15 or more): owner, mitigation and due date are required.",dlgCoverLead:"You are covering approvals for {n} until {d}",dlgCoverPm:"You are covering project-manager duties for {n} until {d}",dlgGiven:"Your approvals go to {n} from {a} to {b}",dlgNoneLead:"Going on leave? Delegate your approvals to a colleague for a set period.",dlgCancel:"Cancel delegation",dlgMine:"Delegate my approvals",dlgMineSub:"Your delegate can approve or return updates, change requests and closures for your sector during this period. It is recorded.",pk_update:"Progress update",pk_change:"Change request",pk_closure:"Closure request",pk_recovery:"Recovery plan",stage_lead:"With the sector lead",stage_pmo:"With the PMO",escTitle:"Escalated to the head of the PMO",escSub:"Waiting more than {n} working days · {h}",headPmo:"Head of the PMO",recApTitle:"Recovery plans to review",recApSub:"Projects red for two published cycles in a row",recBy:"Back on track by",recSupport:"Support needed",recAccept:"Accept",sodOwn:"You submitted this: another person must decide",snDecisionsLate:"Awaiting decision · {n} past deadline",pubTitle:"Last published cycle",pubSub:"{l} · published {d}",pubNow:"now {v}",pubNone:"No cycle published yet. The PMO publishes each cycle from the Updates page; published figures are then frozen.",steerTitle:"Steering committee",steerSub:"Red in the last two published cycles",steerNeed2:"Shows projects that are red in two published cycles in a row, once two cycles have been published.",steerNone:"No project has been red for two published cycles in a row.",rec_missing:"Recovery plan required",rec_submitted:"Recovery plan submitted",rec_accepted:"Recovery plan accepted",rec_returned:"Recovery plan returned",recBannerH:"Escalated to the steering committee",recBannerS:"Red in {a} and {b}",recWrite:"Write recovery plan",recActions:"Recovery actions",recIntro:"Explain how the project will get back on plan: the actions, who does them, and the date it will be back on track.",recSubmit:"Submit to the PMO",recReq:"Recovery actions and the date are required.",recSent:"Recovery plan sent to the PMO",late:"Late",cycClosedPm:"Cycle {l} is published and closed. Submissions open again with the next cycle.",cycDueOn:"Submit this cycle's update by {d}",cycCycle:"Cycle",cycPublishedOn:"Published",cycView:"View",cycTitle2:"Reporting cycles",cycSub2:"Current cycle {l} · submissions due {d} ({n} days before the cycle ends; later ones are marked late). Publishing freezes the cycle's figures.",cycIsPublished:"Published {d}",cycPublish:"Publish this cycle",cycFrozen:"Figures as published · {l}",cycAlready:"This cycle is already published.",cycPublished:"Cycle published: figures frozen",cycPublishQ:"Publish cycle {l}? Its figures are frozen as reported to leadership, and submissions for it close.",govTitle:"Governance rules",govSub:"Approval deadlines, escalation and the submission cut-off. Working days are Sunday to Thursday.",headPmoOwner:"Not set (system owners act as head)",govSlaLead:"Sector lead deadline (working days)",govSlaPmo:"PMO deadline (working days)",govEsc:"Escalate to head of PMO after (working days)",govCutoff:"Submission cut-off (days before cycle end)",govBad:"Enter whole numbers of 0 or more.",dlgTitle:"Delegations",dlgSub:"Cover for people on leave: the PMO can hand a project manager's duties or a sector lead's approvals to someone else for a set period.",dlgAdd:"Add delegation",dlgAddSub:"The delegate gets the same rights for the period only; everything they do is recorded under their own name.",dlgKind:"What is delegated",dlgFrom:"From",dlgTo:"To",dlgPeriod:"Period",dlgReason:"Reason",dlgReasonPh:"e.g. Annual leave",dlgK_pm:"Project manager duties",dlgK_lead:"Sector lead approvals",dlgS_active:"Active",dlgS_upcoming:"Upcoming",dlgS_ended:"Ended",dlgS_cancelled:"Cancelled",dlgNone:"No delegations yet.",dlgStart:"From date",dlgEnd:"To date",dlgReq:"Choose who, to whom, and both dates.",dlgSame:"A person can't delegate to themselves.",dlgNoLead:"This person isn't a sector lead.",dlgNoProj:"No projects found for this project manager.",dlgSaved:"Delegation saved",dlgCancelQ:"Cancel the delegation to {n}?",kpiOwnerEmail:"KPI owner",kpiValUpd:"Update value",kpiSign:"Sign off",kpiSignedBy:"Baseline and target signed off by {n} on {d}",kpiSignWait:"Baseline and target entered by {n}: awaiting sign-off by the head of the PMO",kpiNoBase:"Baseline and target not entered yet",kpiNoOwner:"No owner named",kpiValDue:"Quarterly value update due",kpiValAt:"Value updated {d}",kpiSoOk:"Signed off",kpiSoWait:"Awaiting sign-off",kpiSigned:"Signed off",kpiValNote:"Source / note",kpiSoTile:"Baselines and targets signed off",ovEyebrow:"Portfolio performance · {d}",snDue30:"Due in 30 days",snNoEv:"Done, no evidence yet",snDecisions:"Awaiting decision",snKpiOk:"{n} of {m} KPIs on track",snCrAwait:"Change requests for me",snClAwait:"Closures for me",snScheduled:"Projects scheduled",snStarted:"Started",snEndYear:"Ending in {y}",snMsDue:"Milestones · next 30 days",snMsLate:"Overdue milestones",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
   evDelete:"Remove file", confirmEvDelete:"Remove “{n}”? The file will be deleted for everyone.", evNotUploader:"Only the person who uploaded this file can remove it.",
   doneHint:"Marked complete — remember to attach evidence (📎).", fDoneNoEv:"Done · no evidence", evDone:"Completed activities", evWith:"With evidence", evMissing:"Missing evidence", evFiles:"Files",
   cProjBars:"Planned vs actual progress by project", cProjBarsSub:"Planned and actual completion for each project, with the variance in points", sortCode:"By code", sortVariance:"Most behind", sortActual:"Most complete",
@@ -931,7 +948,7 @@ ar:{
   evCount:"{n} ملف شواهد", evMissingOne:"منجز — لم تُرفق الشواهد بعد", attach:"إرفاق شاهد", attachHint:"أرفق ملفات PDF أو صورًا (حتى 20 ميجابايت لكل ملف) كشواهد على الإنجاز. احفظ ملفات Word أو Excel أو PowerPoint بصيغة PDF أولًا.",
   evDemo:"إرفاق الملفات يعمل في لوحة المعلومات المنشورة وليس في هذه المعاينة.", evNoUpload:"إرفاق ملفات الشواهد أو حذفها متاح فقط لمن لديهم صلاحية محرر.",
   evFAll:"كل الأنشطة", evFNeed:"منجزة · بدون شواهد", evFHas:"لها شواهد", uploading:"جارٍ الرفع…", uploaded:"تم إرفاق {n} ملف",
-  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",nav_snap:"لمحة",title_snap:"لمحة",sub_snap:"المحفظة بنظرة واحدة · {n} مشروعًا",snEyebrow:"تنفيذ الاستراتيجية · {d}",snOnPlan:"وفق الخطة",snBehind:"متأخر عن الخطة {n} نقطة",snDelivered:"منجز",snActual:"الفعلي",snPlanned:"المخطط",snNeed:"{n} من {m} مشروعًا تحتاج متابعة",snProjects:"المشاريع",snBudget:"الميزانية",snKpis:"مؤشرات استراتيجية على المسار",snOverdue:"أنشطة متأخرة",snDue:"مخرجات رئيسية · 30 يومًا",snHealth:"صحة المشاريع",snPillars:"محاور الاستراتيجية",snInits:"مبادراتك",snNProj:"{n} مشاريع",snNProj1:"مشروع واحد",snAttention:"تحتاج متابعة",snVsPlan:" · المخطط {p}",snFoot:"اضغط على أي مربع لعرض التفاصيل.",snCycle:"دورة التحديث الحالية",ovEyebrow:"أداء المحفظة · {d}",snDue30:"مستحقة خلال 30 يومًا",snNoEv:"منجزة بلا دليل بعد",snDecisions:"بانتظار قرار",snKpiOk:"{n} من {m} مؤشرًا على المسار",snCrAwait:"طلبات تغيير بانتظاري",snClAwait:"طلبات إغلاق بانتظاري",snScheduled:"مشاريع مجدولة",snStarted:"بدأت",snEndYear:"تنتهي في {y}",snMsDue:"معالم · 30 يومًا",snMsLate:"معالم متأخرة",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
+  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",nav_snap:"لمحة",title_snap:"لمحة",sub_snap:"المحفظة بنظرة واحدة · {n} مشروعًا",snEyebrow:"تنفيذ الاستراتيجية · {d}",snOnPlan:"وفق الخطة",snBehind:"متأخر عن الخطة {n} نقطة",snDelivered:"منجز",snActual:"الفعلي",snPlanned:"المخطط",snNeed:"{n} من {m} مشروعًا تحتاج متابعة",snProjects:"المشاريع",snBudget:"الميزانية",snKpis:"مؤشرات استراتيجية على المسار",snOverdue:"أنشطة متأخرة",snDue:"مخرجات رئيسية · 30 يومًا",snHealth:"صحة المشاريع",snPillars:"محاور الاستراتيجية",snInits:"مبادراتك",snNProj:"{n} مشاريع",snNProj1:"مشروع واحد",snAttention:"تحتاج متابعة",snVsPlan:" · المخطط {p}",snFoot:"اضغط على أي مربع لعرض التفاصيل.",snCycle:"دورة التحديث الحالية",slaTip:"المهلة: {n} أيام عمل (الأحد–الخميس)",slaEscTip:"تجاوز {e} أيام عمل: صُعّد إلى رئيس مكتب إدارة المشاريع",wdN:"{n} أيام عمل",slaLate:"تجاوزت المهلة",blLockedOk:"تم اعتماد خط الأساس",blNone:"لا يوجد خط أساس معتمد بعد. اعتمده لكي لا تتغير التواريخ المخططة إلا عبر طلب تغيير.",blLock:"اعتماد خط الأساس",blLockedOn:"خط الأساس معتمد في {d} بواسطة {n}",blEnd:"نهاية خط الأساس",blNow:"النهاية الحالية",dShort:"يومًا",blRebase:"إعادة خط الأساس",blViaCr:"لا تتغير التواريخ المخططة إلا عبر طلب تغيير معتمد",blNoAdd:"خط الأساس معتمد: لا تُضاف الأنشطة أو تُحذف أو تُغيَّر تواريخها إلا عبر طلب تغيير معتمد.",blFormNote:"خط الأساس معتمد: لا يمكن تغيير التواريخ المخططة هنا. قدّم طلب تغيير لتعديلها.",blLockQ:"اعتماد خطة هذا المشروع كخط أساس؟ بعد ذلك يحدّث مدير المشروع نسب الإنجاز فقط دون التواريخ المخططة أو قائمة الأنشطة.",blRebaseSub:"يُسجَّل خط أساس جديد من الخطة الحالية، ويبقى السابق في السجل.",blReason:"السبب",blReasonPh:"مثال: طلب التغيير PT.SD.MSDF.221126 المعتمد من المجلس",blReasonReq:"أدخل سبب إعادة خط الأساس.",blLockAll:"اعتماد خطوط الأساس ({n})",blLockAllQ:"اعتماد الخطة الحالية كخط أساس لـ {n} مشروعًا ليس لها خط أساس بعد؟",evFirst:"أرفق دليل الإنجاز قبل جعل النشاط مكتملًا 100%.",evRuleCol:"الدليل",evNotInit:"غير مطلوب (مرحلة البدء)",evNotNeeded:"لا يلزم دليل",evRequired:"الدليل مطلوب",riskCritReq:"خطر حرج (درجة 15 فأكثر): المسؤول وخطة المعالجة وتاريخ الاستحقاق مطلوبة.",dlgCoverLead:"تنوب في الاعتمادات عن {n} حتى {d}",dlgCoverPm:"تنوب في مهام مدير المشروع عن {n} حتى {d}",dlgGiven:"اعتماداتك مفوّضة إلى {n} من {a} إلى {b}",dlgNoneLead:"إجازة قادمة؟ فوّض اعتماداتك إلى زميل لفترة محددة.",dlgCancel:"إلغاء التفويض",dlgMine:"تفويض اعتماداتي",dlgMineSub:"يستطيع المفوَّض اعتماد أو إعادة التحديثات وطلبات التغيير والإغلاق لقطاعك خلال هذه الفترة، ويُسجَّل ذلك.",pk_update:"تحديث إنجاز",pk_change:"طلب تغيير",pk_closure:"طلب إغلاق",pk_recovery:"خطة تعافٍ",stage_lead:"لدى القائد القطاعي",stage_pmo:"لدى مكتب إدارة المشاريع",escTitle:"مُصعَّدة إلى رئيس مكتب إدارة المشاريع",escSub:"بانتظار أكثر من {n} أيام عمل · {h}",headPmo:"رئيس مكتب إدارة المشاريع",recApTitle:"خطط تعافٍ للمراجعة",recApSub:"مشاريع حمراء في دورتين منشورتين متتاليتين",recBy:"العودة إلى المسار بحلول",recSupport:"الدعم المطلوب",recAccept:"قبول",sodOwn:"أنت من قدّم هذا: يجب أن يقرر شخص آخر",snDecisionsLate:"بانتظار قرار · {n} تجاوزت المهلة",pubTitle:"آخر دورة منشورة",pubSub:"{l} · نُشرت {d}",pubNow:"الآن {v}",pubNone:"لم تُنشر أي دورة بعد. ينشر مكتب إدارة المشاريع كل دورة من صفحة التحديثات، فتُجمَّد أرقامها.",steerTitle:"اللجنة التوجيهية",steerSub:"حمراء في آخر دورتين منشورتين",steerNeed2:"تظهر هنا المشاريع الحمراء في دورتين منشورتين متتاليتين بعد نشر دورتين.",steerNone:"لا يوجد مشروع أحمر في دورتين منشورتين متتاليتين.",rec_missing:"خطة التعافي مطلوبة",rec_submitted:"خطة التعافي مقدَّمة",rec_accepted:"خطة التعافي مقبولة",rec_returned:"خطة التعافي معادة",recBannerH:"صُعّد إلى اللجنة التوجيهية",recBannerS:"أحمر في {a} و{b}",recWrite:"كتابة خطة التعافي",recActions:"إجراءات التعافي",recIntro:"وضّح كيف سيعود المشروع إلى الخطة: الإجراءات، ومن ينفذها، وتاريخ العودة إلى المسار.",recSubmit:"إرسال إلى مكتب إدارة المشاريع",recReq:"إجراءات التعافي والتاريخ مطلوبة.",recSent:"أُرسلت خطة التعافي إلى مكتب إدارة المشاريع",late:"متأخر",cycClosedPm:"الدورة {l} منشورة ومغلقة. يُفتح التقديم مع الدورة التالية.",cycDueOn:"قدّم تحديث هذه الدورة قبل {d}",cycCycle:"الدورة",cycPublishedOn:"تاريخ النشر",cycView:"عرض",cycTitle2:"دورات التقارير",cycSub2:"الدورة الحالية {l} · آخر موعد للتقديم {d} (قبل نهاية الدورة بـ {n} أيام؛ ما بعده يُعدّ متأخرًا). النشر يجمّد أرقام الدورة.",cycIsPublished:"نُشرت {d}",cycPublish:"نشر هذه الدورة",cycFrozen:"الأرقام كما نُشرت · {l}",cycAlready:"هذه الدورة منشورة مسبقًا.",cycPublished:"نُشرت الدورة: جُمّدت الأرقام",cycPublishQ:"نشر الدورة {l}؟ تُجمَّد أرقامها كما رُفعت للقيادة، ويُغلق التقديم لها.",govTitle:"قواعد الحوكمة",govSub:"مهل الاعتماد والتصعيد وآخر موعد للتقديم. أيام العمل من الأحد إلى الخميس.",headPmoOwner:"غير محدد (مالكو النظام يقومون بالدور)",govSlaLead:"مهلة القائد القطاعي (أيام عمل)",govSlaPmo:"مهلة مكتب إدارة المشاريع (أيام عمل)",govEsc:"التصعيد لرئيس المكتب بعد (أيام عمل)",govCutoff:"آخر موعد للتقديم (أيام قبل نهاية الدورة)",govBad:"أدخل أرقامًا صحيحة من 0 فأكثر.",dlgTitle:"التفويضات",dlgSub:"تغطية المجازين: يستطيع مكتب إدارة المشاريع تفويض مهام مدير مشروع أو اعتمادات قائد قطاعي إلى شخص آخر لفترة محددة.",dlgAdd:"إضافة تفويض",dlgAddSub:"يحصل المفوَّض على الصلاحيات نفسها خلال الفترة فقط، ويُسجَّل كل ما يقوم به باسمه.",dlgKind:"ما يُفوَّض",dlgFrom:"من",dlgTo:"إلى",dlgPeriod:"الفترة",dlgReason:"السبب",dlgReasonPh:"مثال: إجازة سنوية",dlgK_pm:"مهام مدير المشروع",dlgK_lead:"اعتمادات القائد القطاعي",dlgS_active:"نشط",dlgS_upcoming:"قادم",dlgS_ended:"منتهٍ",dlgS_cancelled:"ملغى",dlgNone:"لا توجد تفويضات بعد.",dlgStart:"من تاريخ",dlgEnd:"إلى تاريخ",dlgReq:"اختر المفوِّض والمفوَّض والتاريخين.",dlgSame:"لا يمكن للشخص التفويض لنفسه.",dlgNoLead:"هذا الشخص ليس قائدًا قطاعيًا.",dlgNoProj:"لا توجد مشاريع لمدير المشروع هذا.",dlgSaved:"حُفظ التفويض",dlgCancelQ:"إلغاء التفويض إلى {n}؟",kpiOwnerEmail:"مالك المؤشر",kpiValUpd:"تحديث القيمة",kpiSign:"اعتماد",kpiSignedBy:"اعتمد {n} خط الأساس والمستهدف في {d}",kpiSignWait:"أدخل {n} خط الأساس والمستهدف: بانتظار اعتماد رئيس مكتب إدارة المشاريع",kpiNoBase:"لم يُدخل خط الأساس والمستهدف بعد",kpiNoOwner:"لم يُحدَّد مالك",kpiValDue:"حان تحديث القيمة الربعي",kpiValAt:"حُدّثت القيمة {d}",kpiSoOk:"معتمد",kpiSoWait:"بانتظار الاعتماد",kpiSigned:"تم الاعتماد",kpiValNote:"المصدر / ملاحظة",kpiSoTile:"خطوط أساس ومستهدفات معتمدة",ovEyebrow:"أداء المحفظة · {d}",snDue30:"مستحقة خلال 30 يومًا",snNoEv:"منجزة بلا دليل بعد",snDecisions:"بانتظار قرار",snKpiOk:"{n} من {m} مؤشرًا على المسار",snCrAwait:"طلبات تغيير بانتظاري",snClAwait:"طلبات إغلاق بانتظاري",snScheduled:"مشاريع مجدولة",snStarted:"بدأت",snEndYear:"تنتهي في {y}",snMsDue:"معالم · 30 يومًا",snMsLate:"معالم متأخرة",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
   evDelete:"حذف الملف", confirmEvDelete:"حذف «{n}»؟ سيُحذف الملف للجميع.", evNotUploader:"لا يمكن حذف هذا الملف إلا من قِبل من قام برفعه.",
   doneHint:"تم تحديده كمنجز — لا تنسَ إرفاق الشواهد (📎).", fDoneNoEv:"منجزة · بدون شواهد", evDone:"الأنشطة المنجزة", evWith:"لها شواهد", evMissing:"بدون شواهد", evFiles:"الملفات",
   cProjBars:"الإنجاز المخطط مقابل الفعلي لكل مشروع", cProjBarsSub:"نسبة الإنجاز المخططة والفعلية لكل مشروع مع الانحراف بالنقاط", sortCode:"حسب الرمز", sortVariance:"الأكثر تأخرًا", sortActual:"الأعلى إنجازًا",
@@ -1117,7 +1134,7 @@ async function init(){
   if(user&&typeof user.can==="function"){try{const c=await user.can("data.write");if(c===false)S.canWrite=false}catch(e){}}
   if(!S.canWrite)S.banner={kind:"info",msg:"readOnly"};
   S.ready=true;
-  const colls=["projects","risks","milestones","plans","evidence","roles","updates","changes","kpis","closures","directory","settings","access"],got={};
+  const colls=["projects","risks","milestones","plans","evidence","roles","updates","changes","kpis","closures","directory","settings","access","delegations","cycles","recovery"],got={};
   const timer=setTimeout(()=>{if(colls.some(c=>!got[c])){S.banner={kind:"warn",msg:"loadSlow"};S.loaded=true;render()}},10000);
   colls.forEach(c=>{
     db.collection(c).onSnapshot(snap=>{
@@ -1242,7 +1259,7 @@ function vOverview(){
   const spentPct=totB?totA/totB*100:0;
   const kpi=(l,v,s,meter,act)=>`<div class="card kpi ${act?"clickable":""}" ${act||""}><div class="kpi-label">${esc(l)}</div><div class="kpi-value num">${v}</div><div class="kpi-sub">${s}</div>${meter!=null?`<div class="meter"><b style="width:${clamp(meter,0,100)}%"></b></div>`:""}</div>`;
   const o={avgP,avgPl,vari,totB,nPf,active:active.length,completed,overdue:overdue.length,due30:due30.length,counts:Object.fromEntries(STATUSES.map(st=>[st,ps.filter(p=>ST(p)===st).length]))};
-  {let noEv=0;ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&!evOf(p.id,a.id).length)noEv++}));
+  {let noEv=0;ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&needEv(p.id,a)&&!evOf(p.id,a.id).length)noEv++}));
   const us=ps.map(p=>updState(p)),uN=k=>us.filter(x=>x===k).length,apN=apScope().filter(u=>u.status==="pending").length;
   const side=`<div class="sn-side-h">${esc(t("snCycle"))} · ${esc(curCycle().label)}</div><a class="sn-cyc" href="#updates"><b class="num">${num(uN("submitted"))}<small> / ${num(ps.length)}</small></b><span>${esc(t("upd_submitted"))}</span></a><div class="sn-cbar"><i style="width:${ps.length?uN("submitted")/ps.length*100:0}%"></i><i class="e" style="width:${ps.length?uN("edited")/ps.length*100:0}%"></i></div><div class="sn-cl"><span><i class="sn-dot w"></i>${esc(t("upd_submitted"))} ${num(uN("submitted"))}</span><span><i class="sn-dot y"></i>${esc(t("upd_edited"))} ${num(uN("edited"))}</span><span><i class="sn-dot g"></i>${esc(t("upd_none"))} ${num(uN("none"))}</span></div><a class="sn-cyc2" href="#approvals">${sIco("inbox","s-ico sm")}<b class="num">${num(apN)}</b> ${esc(t("ap_pending"))}</a>`;
   S._hero=snHero(o.avgP,o.avgPl,t("ovEyebrow",{d:fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"})}),snHealthChips(grpStats(ps)),side)+snTiles([
@@ -1379,7 +1396,7 @@ function insights(ps,M,items){
   if(pf&&tot)out.push({ic:"◆",k:"info",h:t("insBudgetH",{p:pct(pf.b/tot*100)}),b:`${tv(pf.x)} · ${money(pf.b)}`,pf:pf.x});
   const od=items.filter(x=>x.state==="overdue"),recent=od.filter(x=>days(x.due,TODAY)<=30).length;
   out.push({ic:"◷",k:od.length?"warn":"good",h:t("insOverdueH",{n:num(od.length)}),b:t("insOverdueB",{n:num(recent)}),act:"overdue"});
-  const doneNoEv=[];ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&!evOf(p.id,a.id).length)doneNoEv.push(a)}));
+  const doneNoEv=[];ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&needEv(p.id,a)&&!evOf(p.id,a.id).length)doneNoEv.push(a)}));
   out.push({ic:"📎",k:doneNoEv.length?"warn":"good",h:t("insEvH",{n:num(doneNoEv.length)}),b:t("insEvB"),act:"noev"});
   const IC={"⚑":"stop","▼":"trend","◆":"pie","◷":"clockAlert","📎":"clip"};
   return `<div class="insights sn3">${out.slice(0,3).map(x=>`<div data-tip="${esc(x.h+" — "+x.b)}" class="ins ins-${x.k} ${x.id||x.act||x.pf?"clickable":""}" ${x.id?`data-act="open-project" data-id="${esc(x.id)}"`:x.act?`data-act="goto-acts" data-v="${x.act}"`:x.pf?`data-act="filter-pf" data-v="${esc(x.pf)}"`:""}><div class="ins-ic">${sIco(IC[x.ic]||"target")}</div><div style="min-width:0"><div class="ins-h">${esc(x.h)}</div><div class="ins-b">${esc(x.b)}</div></div></div>`).join("")}</div>`;
@@ -1471,7 +1488,7 @@ function vWorkplanList(){
   let rows=[];for(const p of ps)actsOf(p.id).forEach(a=>rows.push({p,a,st:actState(a)}));
   if(!rows.length)return `<div class="card"><div class="empty"><h3>${esc(t("noPlan"))}</h3><div>${esc(t("noPlanBody"))}</div><div class="acts"><a class="btn" href="#data">${esc(t("dImport"))}</a></div></div></div>`;
   const due30=r=>r.st!=="done"&&r.st!=="overdue"&&parseD(r.a.pe)&&days(TODAY,parseD(r.a.pe))<=30;
-  const F={noev:r=>r.st==="done"&&!evOf(r.p.id,r.a.id).length,overdue:r=>r.st==="overdue",due30,inProgress:r=>r.st==="inProgress",notStarted:r=>r.st==="notStarted",done:r=>r.st==="done",all:()=>true};
+  const F={noev:r=>r.st==="done"&&needEv(r.p.id,r.a)&&!evOf(r.p.id,r.a.id).length,overdue:r=>r.st==="overdue",due30,inProgress:r=>r.st==="inProgress",notStarted:r=>r.st==="notStarted",done:r=>r.st==="done",all:()=>true};
   const segs=[["overdue","fOverdue"],["due30","fDue30"],["inProgress","ms_inProgress"],["notStarted","ms_notStarted"],["done","fDone"],["noev","fDoneNoEv"],["all","fAll"]];
   const f=S.actFilter;const list=rows.filter(F[f]||F.all).sort((x,y)=>((parseD(x.a.pe)||0)-(parseD(y.a.pe)||0))*(f==="overdue"||f==="done"?-1:1));
   const shown=list.slice(0,S.actLimit);
@@ -1625,12 +1642,12 @@ function renderDrawer(force){
   const tabs=[["overview","tabOverview",""],["plan","tabPlan",num(acts.length)],["weights","tabWeights",""],["evidence","tabEvidence",num(evs.length)],["risks","tabRisks",num(rs.length+ms.length)]];
   if(canP(p.id)||clOf(p.id)||ST(p)==="closed")tabs.push(["closure","tabClosure",(()=>{const c=clOf(p.id);return c&&c.status==="pending"?"●":""})()]);
   let content="";
-  if(S.dTab==="plan")content=`<div class="d-sec">${projCard(p,false)}</div>`+drawerPlan(p,acts);
+  if(S.dTab==="plan")content=`<div class="d-sec">${projCard(p,false)}</div>`+blBanner(p)+drawerPlan(p,acts);
   else if(S.dTab==="weights")content=drawerWeights(p,acts);
   else if(S.dTab==="evidence")content=drawerEvidence(p,acts);
   else if(S.dTab==="risks")content=drawerRisks(p,ms,rs);
   else if(S.dTab==="closure")content=drawerClosure(p);
-  else content=projCharts(p,acts)+drawerOverview(p,m,acts);
+  else content=recBanner(p)+projCharts(p,acts)+drawerOverview(p,m,acts);
   dr.innerHTML=`<div class="d-head"><div style="min-width:0"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="psub num">${esc(p.code)}</span>${statusChip(ST(p))}<span class="chip">${esc(t("ph_"+p.phase))}</span>${pendChip(p)}</div><h3>${esc(pname(p))}</h3><div class="psub">${esc(tv(p.initiative||p.portfolio))} · ${esc(tv(p.department))}</div></div>
     <div style="display:flex;gap:4px">${canP(p.id)&&ST(p)!=="closed"&&!(clOf(p.id)&&clOf(p.id).status==="pending")?`<button class="btn sm" data-act="cl-start" data-id="${esc(p.id)}">${esc(t("clRequestShort"))}</button>`:""}${isAdmin()?`<button class="btn sm" data-act="edit-project" data-id="${esc(p.id)}">${esc(t("edit"))}</button>`:""}${S.drawerPage?`<button class="btn sm" data-act="close-drawer">${S.lang==="ar"?"→":"←"} ${esc(t("backUpdates"))}</button>`:`<button class="x" data-act="close-drawer" aria-label="${esc(t("close"))}">✕</button>`}</div></div>
     <div class="dtabs" role="tablist">${tabs.map(([k,l,c])=>`<button role="tab" aria-selected="${S.dTab===k}" class="${S.dTab===k?"on":""}" data-act="dtab" data-v="${k}">${esc(t(l))}${c?` <span class="cnt num">${c}</span>`:""}</button>`).join("")}</div>
@@ -1645,9 +1662,25 @@ function projCard(p,withHead){
   return `<div class="pcard">${withHead?`<div class="pcard-h"><span class="psub num">${esc(p.code)}</span>${statusChip(ST(p))}<b>${esc(pname(p))}</b><button class="btn sm" data-act="open-project" data-id="${esc(p.id)}">${esc(t("tabOverview"))}</button></div>`:""}
     <div class="kv pcard-kv">${kv("department",esc(tv(p.department)))}${kv("initiative",esc(tv(p.initiative))||esc(t("noInit")))}${kv("sponsor",esc(tv(p.sponsor)))}${kv("manager",esc(p.manager))}${kv("objective",esc(tv(p.objective)))}${kv("portfolio",esc(tv(p.portfolio)))}${kv("start",fdate(p.start))}${kv("end",fdate(p.end))}</div>
     ${p.description?`<div class="pcard-goal"><small>${esc(t("goal"))}</small><p>${esc(p.description)}</p></div>`:""}</div>`}
+function recBanner(p){if(!escIds().has(p.id))return "";const st=recState(p.id),r=recOf(p.id),c=cycSorted();
+  const head=`<b>${esc(t("recBannerH"))}</b> <span class="psub">${esc(t("recBannerS",{a:c[1]?c[1].label:"",b:c[0]?c[0].label:""}))}</span>`;
+  const btn=canP(p.id)&&(st==="missing"||st==="returned")?`<button class="btn sm primary" data-act="rec-new" data-id="${esc(p.id)}">${esc(t("recWrite"))}</button>`:"";
+  return `<div class="gov-bar red"><span>${sIco("stop","s-ico sm")} ${head} <span class="chip rec-${st}">${esc(t("rec_"+st))}</span>${st==="returned"&&r&&r.reviewNote?` <span class="psub">↩ ${esc(r.reviewNote)}</span>`:""}</span>${btn}</div>${r&&st!=="missing"?`<div class="rec-show"><div class="psub">${esc(t("recActions"))}</div><div>${esc(r.actions||"")}</div><div class="psub" style="margin-top:6px">${esc(t("recBy"))} ${fdate(r.recoverBy)}${r.support?" · "+esc(t("recSupport"))+": "+esc(r.support):""}</div></div>`:""}`}
+function openRecForm(pid){const p=projById(pid);const r=recOf(pid)||{};const c=cycSorted()[0];if(!p||!c)return;
+  showModal(`<form id="frm" novalidate><div class="m-head"><div><h3>${esc(t("recWrite"))}</h3><div class="psub">${esc(p.code+" · "+pname(p))}</div></div><button type="button" class="x" data-act="close-modal">✕</button></div>
+  <div class="m-body"><p class="ro">${esc(t("recIntro"))}</p><div class="form" style="grid-template-columns:1fr"><label>${esc(t("recActions"))} *<textarea class="field" name="actions" rows="5" maxlength="3000">${esc(r.actions||"")}</textarea></label>
+  <label>${esc(t("recBy"))} *<input class="field" type="date" name="recoverBy" value="${esc(r.recoverBy||"")}"></label><label>${esc(t("recSupport"))}<textarea class="field" name="support" rows="2" maxlength="1000">${esc(r.support||"")}</textarea></label></div><div class="err" id="frmErr"></div></div>
+  <div class="m-foot"><button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button type="submit" class="btn primary">${esc(t("recSubmit"))}</button></div></form>`);
+  $("#frm").addEventListener("submit",async e=>{e.preventDefault();const fd=new FormData(e.target);const a=String(fd.get("actions")||"").trim(),d=String(fd.get("recoverBy")||"");
+    if(!a||!d){$("#frmErr").textContent=t("recReq");return}
+    const doc={id:pid,projectId:pid,cycle:c.period,actions:a,recoverBy:d,support:String(fd.get("support")||"").trim(),status:"submitted",by:ME(),at:nowIso(),history:[...(r.history||[]),{at:nowIso(),by:ME(),action:"submit"}]};
+    try{await putDoc("recovery",doc);closeModal();toast(t("recSent"))}catch(err){}})}
+async function recDecide(id,ok,note){const r=(S.recovery||[]).find(x=>x.id===id);if(!r||!isAdmin()||sameP(r.by,ME()))return;
+  const doc={...r,status:ok?"accepted":"returned",reviewedBy:ME(),reviewedAt:nowIso(),history:[...(r.history||[]),{at:nowIso(),by:ME(),action:ok?"accept":"return",note:note||""}]};if(!ok)doc.reviewNote=String(note||"").slice(0,1000);
+  try{await putDoc("recovery",doc);toast(t(ok?"apDoneOk":"apDoneRet"))}catch(e){}}
 function drawerOverview(p,m,acts){
   const kv=(k,v)=>`<div><small>${esc(t(k))}</small><span>${v||"—"}</span></div>`;
-  const done=acts.filter(a=>actState(a)==="done");const withEv=done.filter(a=>evOf(p.id,a.id).length).length;
+  const done=acts.filter(a=>actState(a)==="done"&&needEv(p.id,a));const withEv=done.filter(a=>evOf(p.id,a.id).length).length;
   return `<div class="mini-kpis"><div><small>${esc(t("progress"))}</small><b class="num">${pct(m.prog)}</b><div class="psub">${esc(t("planned"))} ${pct(m.planned)}</div></div>
       <div><small>${esc(t("variance"))}</small><b>${varChip(m.variance)}</b><div class="psub">${esc(t("pts"))}</div></div>
       <div><small>${esc(t("budget"))}</small><b class="num">${m.budget?money(m.budget):"—"}</b>${m.actual?`<div class="psub">${esc(t("actual"))} ${money(m.actual)}</div>`:""}</div>
@@ -1675,7 +1708,7 @@ function drawerPlan(p,acts){
 }
 function drawerEvidence(p,acts){
   const done=acts.filter(a=>actState(a)==="done");const withEv=done.filter(a=>evOf(p.id,a.id).length);
-  const f=S.evFilter;const keep=a=>{const n=evOf(p.id,a.id).length;return f==="need"?actState(a)==="done"&&!n:f==="has"?n>0:true};
+  const f=S.evFilter;const keep=a=>{const n=evOf(p.id,a.id).length;return f==="need"?actState(a)==="done"&&needEv(p.id,a)&&!n:f==="has"?n>0:true};
   const canUp=!!assetsNS&&canP(p.id);
   const note=S.mode==="demo"?t("evDemo"):!canUp?t("evNoUpload"):t("attachHint");
   const segs=[["all","evFAll"],["need","evFNeed"],["has","evFHas"]];
@@ -1783,6 +1816,7 @@ function openForm(kind,obj,isNew){
     for(const f of fields){let v=fd.get(f.k);v=v==null?"":String(v).trim();
       if(f.req&&!v){$("#frmErr").textContent=t("required",{f:t(f.lab||f.k)});return}
       if(f.type==="number"||f.k==="probability"||f.k==="impact")o[f.k]=v===""?(f.k==="actual"||f.k==="progress"||f.k==="budget"?0:undefined):Number(v);else o[f.k]=v}
+    if(kind==="risks"&&riskCritical(o)&&(!String(o.owner||"").trim()||!String(o.mitigation||"").trim()||!o.due)){$("#frmErr").textContent=t("riskCritReq");return}
     if(kind==="projects"){if(o.end<o.start){$("#frmErr").textContent=t("endBeforeStart");return}if(o.progress<0||o.progress>100||isNaN(o.progress)){$("#frmErr").textContent=t("badProgress");return}if(o.status==="completed")o.progress=100}
     const btn=e.target.querySelector("[type=submit]");btn.disabled=true;
     try{await putDoc(kind,o);closeModal();toast(t("saved"))}catch(err){btn.disabled=false}
@@ -1803,6 +1837,8 @@ function openActForm(pid,aid){
   showModal(`<form id="frm" novalidate><div class="m-head"><div><h3>${esc(t(isNew?"addActivity":"editActivity"))}</h3><div class="psub">${esc(p.code+" · "+pname(p))}</div></div><button type="button" class="x" data-act="close-modal">✕</button></div>
     <div class="m-body"><div class="form">${body}</div>${dlHtml(lists,{wp:wpList})}<div class="err" id="frmErr"></div></div>
     <div class="m-foot">${!isNew?`<button type="button" class="btn danger" style="margin-inline-end:auto" data-act="del-act" data-id="${esc(pid)}" data-aid="${esc(a.id)}">${esc(t("delete"))}</button>`:""}<button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button type="submit" class="btn primary">${esc(t("save"))}</button></div></form>`);
+  const locked=blBlocks(pid);
+  if(locked){if(isNew){closeModal();toast(t("blNoAdd"),true);return}["ps","pe"].forEach(k=>{const i=$(`#frm [name=${k}]`);if(i){i.readOnly=true;i.title=t("blViaCr")}});const del=$('#frm [data-act="del-act"]');if(del)del.remove();$("#frm .m-body").insertAdjacentHTML("afterbegin",`<p class="gov-note">${sIco("shield","s-ico sm")} ${esc(t("blFormNote"))}</p>`)}
   $("#frm").addEventListener("submit",async e=>{e.preventDefault();
     const fd=new FormData(e.target),o={...a};
     for(const f of F_ACT){let v=fd.get(f.k);v=v==null?"":String(v).trim();if(f.req&&!v){$("#frmErr").textContent=t("required",{f:t(f.lab||f.k)});return}
@@ -1812,6 +1848,7 @@ function openActForm(pid,aid){
     if(o.pr>=100)o.st="done";else if(o.st==="done")o.pr=100;else if(o.pr>0&&o.st==="notStarted")o.st="inProgress";
     for(const k of ["as","ae","n","pmo"])if(!o[k])delete o[k];
     const list=acts.map(x=>({...x}));const i=list.findIndex(x=>x.id===o.id);if(i>=0)list[i]=o;else list.push(o);
+    if(locked){const o0=acts.find(x=>x.id===a.id)||a;o.ps=o0.ps;o.pe=o0.pe}
     const btn=e.target.querySelector("[type=submit]");btn.disabled=true;
     try{await savePlan(pid,list,acts);closeModal();toast(t("saved"))}catch(err){btn.disabled=false}
   });
@@ -2067,13 +2104,20 @@ function attnActs(pid){const in30=new Date(TODAY.getTime()+30*864e5);
   return actsOf(pid).filter(a=>{const s=actState(a);if(s==="done")return false;if(s==="overdue"||s==="inProgress")return true;const ps=parseD(a.ps);return !!(ps&&ps<=in30)})
     .sort((a,b)=>String(a.pe||"").localeCompare(String(b.pe||"")))}
 function lastUpdTxt(pl){return pl&&pl.lastUpdate?esc(fdate(pl.lastUpdate.at))+" · "+esc(whoName(pl.lastUpdate.by)):"—"}
+function cycCard(){const R=curCycle(),cur=cycOf(curPeriod()),C=cycSorted();const adm=isAdmin();
+  const hist=C.length?`<div class="table-wrap"><table><thead><tr><th>${esc(t("cycCycle"))}</th><th>${esc(t("cycPublishedOn"))}</th><th class="r">${esc(t("upd_submitted"))}</th><th class="r">${esc(t("late"))}</th><th class="r">${esc(t("progress"))}</th><th class="r">${esc(t("planned"))}</th><th class="r">${esc(t("st_delayed"))}</th><th></th></tr></thead><tbody>${C.map(c=>`<tr><td>${esc(c.label)}</td><td class="psub">${fdate(c.publishedAt)} · ${esc(whoName(c.by))}</td><td class="r num">${num(c.totals.submitted)}/${num(c.totals.n)}</td><td class="r num">${num(c.totals.late||0)}</td><td class="r num">${pct(c.totals.prog)}</td><td class="r num">${pct(c.totals.planned)}</td><td class="r num">${num(c.totals.delayed)}</td><td class="r"><button class="btn sm" data-act="cyc-view" data-id="${esc(c.id)}">${esc(t("cycView"))}</button></td></tr>`).join("")}</tbody></table></div>`:`<p class="psub" style="margin:0">${esc(t("pubNone"))}</p>`;
+  const unl=S.projects.filter(p=>!p.archived&&actsOf(p.id).length&&!blOf(p.id)).length;
+  return `<div class="card mb"><div class="card-head"><div><h2>${esc(t("cycTitle2"))}</h2><div class="sub">${esc(t("cycSub2",{l:R.label,d:fdate(cycDue(R)),n:num(gov().cutoff)}))}</div></div><div style="display:flex;gap:8px;flex-wrap:wrap">${adm&&unl?`<button class="btn" data-act="bl-lock-all">${sIco("shield","s-ico sm")} ${esc(t("blLockAll",{n:num(unl)}))}</button>`:""}${adm?(cur?`<span class="chip">${sIco("flag","s-ico sm")} ${esc(t("cycIsPublished",{d:fdate(cur.publishedAt)}))}</span>`:`<button class="btn primary" data-act="cyc-publish">${sIco("flag","s-ico sm")} ${esc(t("cycPublish"))}</button>`):""}</div></div>${hist}</div>`}
+function cycView(id){const c=(S.cycles||[]).find(x=>x.id===id);if(!c)return;
+  showModal(`<div class="m-head"><div><h3>${esc(t("cycFrozen",{l:c.label}))}</h3><div class="psub">${esc(t("cycPublishedOn"))} ${fdate(c.publishedAt)} · ${esc(whoName(c.by))}</div></div><button class="x" data-act="close-modal">✕</button></div>
+  <div class="m-body"><div class="table-wrap"><table><thead><tr><th>${esc(t("code"))}</th><th>${esc(t("project"))}</th><th class="r">${esc(t("progress"))}</th><th class="r">${esc(t("planned"))}</th><th>${esc(t("status"))}</th><th>${esc(t("updCompliance"))}</th></tr></thead><tbody>${(c.projects||[]).map(x=>`<tr><td class="num psub">${esc(x.code)}</td><td>${esc(x.name)}</td><td class="r num">${pct(x.prog)}</td><td class="r num">${pct(x.planned)}</td><td>${statusChip(x.status)}</td><td>${updChip(x.upd||"none")}${x.late?` <span class="age late">${esc(t("late"))}</span>`:""}</td></tr>`).join("")}</tbody></table></div></div>`)}
 function vUpdates(){
   const ps=fProjects();
   resolveNames([...ps.flatMap(p=>{const pl=planOf(p.id)||{};return [pl.lastUpdate&&pl.lastUpdate.by,pl.submitted&&pl.submitted.by]}),...S.updates.map(u=>u.by)].filter(Boolean));
   const st=ps.map(p=>({p,s:updState(p)}));const cnt=k=>st.filter(x=>x.s===k).length;
   const per=curCycle().label;
   const head=(isAdmin()?`<div class="card mb cyc"><div><b>${esc(t("cycTitle"))}</b><div class="psub">${esc(t("cycSub"))}</div></div><select class="field" id="cycleSel" style="width:auto">${RP_TYPES.map(k=>`<option value="${k}" ${k===cycleType()?"selected":""}>${esc(t("rpt_"+k))}</option>`).join("")}</select></div>`:"")+snStrip([["submitted","check","good","submitted"],["edited","pencil","amber","pending"],["none","clockAlert","red","pending"]].map(([k,ico,tone,v])=>({ico,val:`${num(cnt(k))}<small> / ${num(ps.length)}</small>`,lbl:t("upd_"+k)+" · "+per,act:S.role==="pm"?"":"updf",v,tone:cnt(k)?tone:"grey"})));
-  if(S.role==="pm")return head+updCharts(ps)+st.map(({p,s})=>pmUpdCard(p,s)).join("")+updFeed(ps);
+  if(S.role==="pm")return dlgBar()+head+(cycClosed()?`<div class="gov-bar locked"><span>${sIco("flag","s-ico sm")} ${esc(t("cycClosedPm",{l:curCycle().label}))}</span></div>`:`<div class="gov-bar"><span>${sIco("calendar","s-ico sm")} ${esc(t("cycDueOn",{d:fdate(cycDue(curCycle()))}))}</span></div>`)+updCharts(ps)+st.map(({p,s})=>pmUpdCard(p,s)).join("")+updFeed(ps);
   const f=S.updFilter||"all",off=S.updOfficer||"";
   
   const order={none:0,edited:1,submitted:2};
@@ -2082,15 +2126,15 @@ function vUpdates(){
   const ctl=`<div class="card-head"><div><h2>${esc(t("updCompliance"))}</h2><div class="sub">${esc(t("showing",{n:num(rows.length),m:num(ps.length)}))}</div></div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div class="seg-ctl">${["all","pending","submitted"].map(v=>`<button class="${f===v?"on":""}" data-act="updf" data-v="${v}">${esc(t("updf_"+v))}</button>`).join("")}</div></div></div>`;
   const tbl=`<div class="card mt">${ctl}${rows.length?`<div class="table-wrap"><table><thead><tr><th>${esc(t("code"))}</th><th>${esc(t("project"))}</th><th>${esc(t("manager"))}</th><th>${esc(t("status"))}</th><th>${esc(t("updLast"))}</th><th>${esc(t("updComment"))}</th></tr></thead><tbody>
     ${rows.map(({p,s})=>{const pl=planOf(p.id)||{};const sub=pl.submitted&&pl.submitted.period===curPeriod()?pl.submitted:null;
-      return `<tr class="clickable" data-act="open-project" data-id="${esc(p.id)}"><td class="num psub" style="white-space:nowrap">${esc(p.code)}</td><td class="pname" style="max-width:340px">${esc(pname(p))}</td><td>${esc(p.manager||"—")}</td><td>${updChip(s)}</td><td class="psub" style="white-space:nowrap">${lastUpdTxt(pl)}</td><td class="psub" style="max-width:260px">${sub&&sub.note?esc(clip(sub.note,140)):""}</td></tr>`}).join("")}</tbody></table></div>`:`<div class="empty">${esc(t("none"))}</div>`}</div>`;
-  return head+updCharts(ps)+tbl+updFeed(ps);
+      return `<tr class="clickable" data-act="open-project" data-id="${esc(p.id)}"><td class="num psub" style="white-space:nowrap">${esc(p.code)}</td><td class="pname" style="max-width:340px">${esc(pname(p))}</td><td>${esc(p.manager||"—")}</td><td>${updChip(s)}${subLate(pl)?` <span class="age late">${esc(t("late"))}</span>`:""}</td><td class="psub" style="white-space:nowrap">${lastUpdTxt(pl)}</td><td class="psub" style="max-width:260px">${sub&&sub.note?esc(clip(sub.note,140)):""}</td></tr>`}).join("")}</tbody></table></div>`:`<div class="empty">${esc(t("none"))}</div>`}</div>`;
+  return head+cycCard()+updCharts(ps)+tbl+updFeed(ps);
 }
 function pmUpdCard(p,s){const m=metrics(p),pl=planOf(p.id)||{},A=attnActs(p.id);
   const sub=pl.submitted&&pl.submitted.period===curPeriod()?pl.submitted:null;
   return `<div class="card mt"><div class="card-head"><div style="min-width:0"><h2><span class="pchip num">${esc(p.code)}</span> ${esc(pname(p))}</h2><div class="sub">${esc(t("updLast"))}: ${lastUpdTxt(pl)}</div></div><div style="display:flex;gap:8px;align-items:center">${updChip(s)}<button class="btn sm" data-act="open-project" data-id="${esc(p.id)}">${esc(t("updOpen"))}</button></div></div>
   <div class="upd-meta"><span>${esc(t("progress"))}: <b class="num">${pct(m.prog)}</b></span><span>${esc(t("planned"))}: <b class="num">${pct(m.planned)}</b></span><span>${esc(t("updDueCount",{n:num(A.length)}))}</span></div>
   ${A.length?`<div class="table-wrap"><table><thead><tr><th>${esc(t("activity"))}</th><th>${esc(t("plannedDates"))}</th><th>${esc(t("status"))}</th><th>${esc(t("progress"))}</th><th></th></tr></thead><tbody>${A.map(a=>`<tr><td style="max-width:420px"><div>${esc(a.t)}</div><div class="psub">${esc(a.wp||"")}</div></td><td class="num psub" style="white-space:nowrap">${fdate(a.ps)} → ${fdate(a.pe)}</td><td>${actChip(actState(a))}</td><td style="min-width:200px">${prCtl(p.id,a)}</td><td class="r">${canP(p.id)?`<button class="btn sm" data-act="edit-act" data-id="${esc(p.id)}" data-aid="${esc(a.id)}">${esc(t("updNote"))}</button>`:""}</td></tr>`).join("")}</tbody></table></div>`:`<p class="ro">${esc(t("updNothing"))}</p>`}
-  ${canP(p.id)?`<div class="upd-submit"><input class="field" id="sn-${esc(p.id)}" placeholder="${esc(t("updCommentPh"))}" maxlength="1000"><button class="btn primary" data-act="upd-submit" data-id="${esc(p.id)}">${esc(t(s==="submitted"?"updResubmit":"updSubmit"))}</button></div>`:""}
+  ${canP(p.id)&&!cycClosed()?`<div class="upd-submit"><input class="field" id="sn-${esc(p.id)}" placeholder="${esc(t("updCommentPh"))}" maxlength="1000"><button class="btn primary" data-act="upd-submit" data-id="${esc(p.id)}">${esc(t(s==="submitted"?"updResubmit":"updSubmit"))}</button></div>`:""}
   ${sub&&sub.note?`<p class="ro" style="margin-top:8px">“${esc(sub.note)}”</p>`:""}</div>`}
 function updFeed(ps){const ids=new Set(ps.map(p=>p.id));const L=S.updates.filter(u=>ids.has(u.projectId)).sort((a,b)=>String(b.at).localeCompare(String(a.at))).slice(0,30);
   const line=u=>u.kind==="submit"?esc(t("updSubmitted"))+(u.note?` — “${esc(clip(u.note,140))}”`:""):(u.changes||[]).slice(0,3).map(c=>c.kind==="edit"?`${esc(clip(c.t,60))}: ${c.from&&c.to&&c.from.pr!==c.to.pr?`<span class="num">${pct(c.from.pr)} → ${pct(c.to.pr)}</span>`:esc(t("updEdited"))}`:`${esc(t("upd_"+c.kind))}: ${esc(clip(c.t,60))}`).join(" · ")+((u.changes||[]).length>3?` · +${num(u.changes.length-3)}`:"");
@@ -2355,14 +2399,65 @@ function execCharts(ps,g,by){
     ${card(t("vzProgBy",{g:t("exBy_"+by)}),hbarsHtml([...G].sort((a,b)=>b.g.prog-a.g.prog).map(x=>({l:x.lab,v:x.g.prog})),v=>pct(v),(r,i)=>CAT[i%CAT.length]))}</div>`}
 
 /* ================= approval workflow ================= */
-const wfStatus=at=>S.role==="pmo"?{status:"approved",reviewedBy:ME(),reviewedAt:at,auto:true}:{status:"pending"};
+const wfStatus=at=>({status:"pending"});
 const LOG_KIND={risks:"risk",milestones:"milestone",evidence:"evidence"};
 function logOther(coll,obj,isDel){if(!LOG_KIND[coll]||S.role!=="pm")return;
   const prev=(S[coll]||[]).find(x=>x.id===obj.id);const src=isDel?(prev||obj):obj;if(!src||!src.projectId)return;
   const at=nowIso();putDoc("updates",{id:uid("u"),projectId:src.projectId,at,by:ME(),role:S.role,period:curPeriod(),kind:LOG_KIND[coll],action:isDel?"delete":prev?"edit":"add",title:String(src.title||src.titleAr||src.name||"").slice(0,200),...(coll==="evidence"?{assetId:src.assetId||"",fileType:src.type||"",actId:src.actId||""}:{}),...wfStatus(at)}).catch(()=>{})}
-function canApprove(u){const p=projById(u.projectId);if(!p||!S.canWrite)return false;return S.role==="pmo"||(S.role==="lead"&&leadMatch(p,S.leadName))}
+/* ================= governance (approved by the PMO, Nov 2026) ================= */
+const GOV_DEF={slaLead:5,slaPmo:3,escalate:10,cutoff:2,headPmo:""};
+const gov=()=>({...GOV_DEF,...((S.settings||[]).find(x=>x.id==="governance")||{})});
+const sameP=(a,b)=>!!a&&!!b&&String(a).trim().toLowerCase()===String(b).trim().toLowerCase();
+const isHeadPmo=()=>{const h=gov().headPmo;return h?sameP(h,ME()):!!(S.isOwner&&!S.ownerTest)};
+/* working days: Sunday to Thursday */
+function wdays(from,to){const a=parseD(String(from||"").slice(0,10));if(!a)return 0;const b=to||TODAY;let n=0;const d=new Date(a);while(d<b){d.setDate(d.getDate()+1);const w=d.getDay();if(w!==5&&w!==6)n++}return n}
+const dlgActive=d=>!!d&&!d.cancelled&&String(d.start||"")<=isoToday()&&isoToday()<=String(d.end||"");
+const dlgState=d=>d.cancelled?"cancelled":String(d.end||"")<isoToday()?"ended":String(d.start||"")>isoToday()?"upcoming":"active";
+function leadOK(p){return (S.role==="lead"&&leadMatch(p,S.leadName))||(S.dlgLead||[]).some(l=>leadMatch(p,l))}
+/* every decision waiting on someone, with its age in working days */
+function pendAll(){const out=[];const G=gov();
+  const add=(kind,id,pid,stage,since)=>{if(!since)return;const age=wdays(since),lim=stage==="pmo"?+G.slaPmo:+G.slaLead;out.push({kind,id,pid,stage,since,age,lim,late:age>lim,esc:age>+G.escalate})};
+  for(const u of S.updates||[])if(u.status==="pending")add("update",u.id,u.projectId,"lead",u.at);
+  for(const c of S.changes||[]){if(c.status==="lead")add("change",c.id,c.projectId,"lead",c.submittedAt||c.updatedAt||c.createdAt);else if(c.status==="pmo")add("change",c.id,c.projectId,"pmo",(c.leadApproved&&c.leadApproved.at)||c.updatedAt)}
+  for(const c of S.closures||[])if(c.status==="pending")add("closure",c.id,c.projectId,"lead",c.requestedAt);
+  for(const r of S.recovery||[])if(r.status==="submitted")add("recovery",r.id,r.projectId,"pmo",r.at);
+  return out}
+const pendOf=(kind,id)=>pendAll().find(x=>x.kind===kind&&x.id===id);
+const ageChip=x=>x?`<span class="age ${x.esc?"esc":x.late?"late":""}" data-tip="${esc(t(x.esc?"slaEscTip":"slaTip",{n:num(x.lim),e:num(gov().escalate)}))}">${sIco("hourglass","s-ico xs")}${esc(t("wdN",{n:num(x.age)}))}</span>`:"";
+/* evidence is optional: attaching proof is encouraged, never required to mark an activity done */
+const needEv=()=>true;
+/* baselines */
+const blOf=pid=>(planOf(pid)||{}).baseline||null;
+const blBlocks=pid=>!!blOf(pid)&&!isAdmin();
+async function lockBaseline(pid,reason,quiet){const pl=planOf(pid);if(!pl||!isAdmin())return;const acts={};(pl.acts||[]).forEach(a=>acts[a.id]=[a.ps||"",a.pe||""]);
+  const ends=(pl.acts||[]).map(a=>a.pe).filter(Boolean).sort();const bl={at:nowIso(),by:ME(),acts,end:ends[ends.length-1]||"",n:(pl.acts||[]).length,reason:String(reason||"").slice(0,500)};
+  const hist=[...(pl.baselineHist||[])];if(pl.baseline)hist.push(pl.baseline);
+  await putDoc("plans",{...pl,baseline:bl,baselineHist:hist.slice(-20)});if(!quiet)toast(t("blLockedOk"))}
+function blBanner(p){const b=blOf(p.id);const adm=isAdmin();
+  if(!b)return adm&&actsOf(p.id).length?`<div class="gov-bar"><span>${sIco("file","s-ico sm")} ${esc(t("blNone"))}</span><button class="btn sm" data-act="bl-lock" data-id="${esc(p.id)}">${esc(t("blLock"))}</button></div>`:"";
+  const cur=actsOf(p.id).map(a=>a.pe).filter(Boolean).sort().slice(-1)[0]||"";const sh=b.end&&cur?days(parseD(b.end),parseD(cur)):0;
+  return `<div class="gov-bar locked"><span>${sIco("shield","s-ico sm")} ${esc(t("blLockedOn",{d:fdate(b.at),n:whoName(b.by)}))}${b.end?` · ${esc(t("blEnd"))} <b>${fdate(b.end)}</b>`:""}${cur&&cur!==b.end?` · ${esc(t("blNow"))} <b>${fdate(cur)}</b> <span class="age ${sh>0?"late":""}">${sh>0?"+":""}${num(sh)} ${esc(t("dShort"))}</span>`:""}${(blOf(p.id).reason)?` · <span class="psub">${esc(b.reason)}</span>`:""}</span>${adm?`<button class="btn sm" data-act="bl-rebase" data-id="${esc(p.id)}">${esc(t("blRebase"))}</button>`:`<span class="psub">${esc(t("blViaCr"))}</span>`}</div>`}
+/* critical risks */
+const riskCritical=r=>(+r.probability||0)*(+r.impact||0)>=15&&r.status!=="closed";
+/* reporting cycles: cut-off, publish, freeze */
+const cycOf=per=>(S.cycles||[]).find(c=>c.id===per||c.period===per);
+const cycDue=R=>{const d=parseD(R.e);if(!d)return R.e;d.setDate(d.getDate()-(+gov().cutoff||0));return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const subLate=pl=>{if(!pl||!pl.submitted||pl.submitted.period!==curPeriod())return false;return String(pl.submitted.at||"").slice(0,10)>cycDue(curCycle())};
+const cycClosed=()=>!!cycOf(curPeriod());
+function cycSorted(){return [...(S.cycles||[])].sort((a,b)=>String(b.s).localeCompare(String(a.s)))}
+async function publishCycle(){if(!isAdmin())return;const R=curCycle(),per=curPeriod();if(cycOf(per)){toast(t("cycAlready"),true);return}
+  const ps=S.projects.filter(p=>!p.archived);const g=grpStats(ps);
+  const projects=ps.map(p=>{const m=metrics(p),pl=planOf(p.id)||{};return {id:p.id,code:p.code||"",name:pname(p),prog:Math.round(m.prog*10)/10,planned:Math.round(m.planned*10)/10,variance:Math.round(m.variance*10)/10,status:ST(p),upd:updState(p),late:subLate(pl)}});
+  const doc={id:per,period:per,label:R.label,s:R.s,e:R.e,due:cycDue(R),publishedAt:nowIso(),by:ME(),
+    totals:{n:g.n,prog:Math.round(g.prog*10)/10,planned:Math.round(g.planned*10)/10,onTrack:g.onTrack+g.completed+g.closed,atRisk:g.atRisk,delayed:g.delayed,submitted:projects.filter(x=>x.upd==="submitted").length,late:projects.filter(x=>x.late).length,budget:g.budget},projects};
+  try{await putDoc("cycles",doc);toast(t("cycPublished"))}catch(e){}}
+/* two published cycles in a row in red → steering committee */
+function escIds(){const C=cycSorted().slice(0,2);if(C.length<2)return new Set();const red=c=>new Set((c.projects||[]).filter(x=>x.status==="delayed").map(x=>x.id));const a=red(C[0]),b=red(C[1]);return new Set([...a].filter(x=>b.has(x)))}
+const recOf=pid=>(S.recovery||[]).find(r=>r.projectId===pid);
+function recState(pid){const r=recOf(pid),c=cycSorted()[0];if(!r||!c||r.cycle!==c.period)return "missing";return r.status}
+function canApprove(u){const p=projById(u.projectId);if(!p||!S.canWrite)return false;if(sameP(u.by,ME()))return false;return S.role==="pmo"||leadOK(p)}
 function apScope(){return S.updates.filter(u=>{const p=projById(u.projectId);if(!p)return false;
-  if(S.role==="pmo"||S.role==="executive")return true;if(S.role==="lead")return leadMatch(p,S.leadName);if(S.role==="pm")return S.myProjects.has(p.id);return false})}
+  if(S.role==="pmo"||S.role==="executive"||leadOK(p)||(S.dlgPm&&S.dlgPm.has(p.id)))return true;if(S.role==="lead")return leadMatch(p,S.leadName);if(S.role==="pm")return S.myProjects.has(p.id);return false})}
 function myReturned(){const sc=apScope();return sc.filter(u=>u.status==="returned"&&!sc.some(v=>v.projectId===u.projectId&&String(v.at)>String(u.reviewedAt||u.at)))}
 function bellCountUpd(){if(S.role==="pmo"||S.role==="lead")return apScope().filter(u=>u.status==="pending").length;if(S.role==="pm")return myReturned().length;return 0}
 const AP_ICON={pending:["c-atRisk","●"],approved:["c-onTrack","✓"],returned:["c-delayed","↩"]};
@@ -2387,9 +2482,56 @@ function apItem(u,showProj){const p=projById(u.projectId);const can=u.status==="
     ${apDetails(u)}
     ${u.status!=="pending"&&u.reviewedBy&&!u.auto?`<div class="psub">${esc(t(u.status==="returned"?"apReturnedBy":"apApprovedBy",{n:whoName(u.reviewedBy)}))} · ${esc(fdate(u.reviewedAt))}${u.reviewNote?` — “${esc(u.reviewNote)}”`:""}</div>`:""}
     ${can?`<div class="ap-act"><button class="btn sm primary" data-act="ap-ok" data-id="${esc(u.id)}">✓ ${esc(t("apApprove"))}</button><button class="btn sm" data-act="ap-ret" data-id="${esc(u.id)}">↩ ${esc(t("apReturn"))}</button></div>`:""}</div>`}
-function bellCount(){return bellCountUpd()+(["pmo","lead"].includes(S.role)?crPendingMine().length+clPendingMine().length:S.role==="pm"?crReturnedMine().length+clReturnedMine().length:0)}
+function bellCount(){const esc_=isHeadPmo()?pendAll().filter(x=>x.esc).length:0;const rec=S.role==="pm"?[...escIds()].filter(id=>S.myProjects.has(id)&&["missing","returned"].includes(recState(id))).length:isAdmin()?(S.recovery||[]).filter(r=>r.status==="submitted"&&!sameP(r.by,ME())).length:0;return esc_+rec+bellCountUpd()+(["pmo","lead"].includes(S.role)?crPendingMine().length+clPendingMine().length:S.role==="pm"?crReturnedMine().length+clReturnedMine().length:0)}
+function peopleList(){const m=new Map();for(const a of S.access||[])if(a.email)m.set(String(a.email).toLowerCase(),{email:a.email,name:a.name||a.email,role:a.role,lead:a.lead||""});
+  for(const d of S.directory||[])if(d.email&&!m.has(String(d.email).toLowerCase()))m.set(String(d.email).toLowerCase(),{email:d.email,name:d.name||d.email,role:"pm"});
+  return [...m.values()].sort((a,b)=>String(a.name).localeCompare(String(b.name)))}
+const personOpts=(sel,excl)=>peopleList().filter(x=>!sameP(x.email,excl)).map(x=>`<option value="${esc(x.email)}" ${sameP(x.email,sel)?"selected":""}>${esc(x.name)} · ${esc(x.email)}</option>`).join("");
+/* ---- governance settings + delegations (Users page) ---- */
+async function saveGov(f){if(!canManageUsers())return;const fd=new FormData(f);const o={id:"governance",headPmo:String(fd.get("headPmo")||""),updatedAt:nowIso(),by:ME()};
+  for(const k of ["slaLead","slaPmo","escalate","cutoff"]){const v=Math.round(+fd.get(k));if(!isFinite(v)||v<0){toast(t("govBad"),true);return}o[k]=v}
+  try{await putDoc("settings",o);toast(t("saved"))}catch(e){}}
+function govCard(){if(!canManageUsers())return "";const G=gov();const pmo=peopleList().filter(x=>x.role==="pmo");
+  const n=(k,l,max)=>`<label>${esc(t(l))}<input class="field" type="number" min="0" max="${max}" step="1" name="${k}" value="${esc(G[k])}"></label>`;
+  return `<div class="card mt"><div class="card-head"><div><h2>${sIco("shield","s-ico sm")} ${esc(t("govTitle"))}</h2><div class="sub">${esc(t("govSub"))}</div></div></div>
+  <form id="govForm" novalidate class="form gov-form"><label class="span2">${esc(t("headPmo"))}<select class="field" name="headPmo"><option value="">${esc(t("headPmoOwner"))}</option>${pmo.map(x=>`<option value="${esc(x.email)}" ${sameP(x.email,G.headPmo)?"selected":""}>${esc(x.name)} · ${esc(x.email)}</option>`).join("")}</select></label>
+  ${n("slaLead","govSlaLead",30)}${n("slaPmo","govSlaPmo",30)}${n("escalate","govEsc",60)}${n("cutoff","govCutoff",14)}
+  <div class="span2" style="display:flex;justify-content:flex-end"><button class="btn primary" type="submit">${esc(t("save"))}</button></div></form></div>`}
+function dlgCard(){if(!canManageUsers())return "";const L=[...(S.delegations||[])].sort((a,b)=>String(b.start).localeCompare(String(a.start)));
+  return `<div class="card mt"><div class="card-head"><div><h2>${sIco("user","s-ico sm")} ${esc(t("dlgTitle"))}</h2><div class="sub">${esc(t("dlgSub"))}</div></div><button class="btn primary" data-act="dlg-new" data-v="any">＋ ${esc(t("dlgAdd"))}</button></div>
+  ${L.length?`<div class="table-wrap"><table><thead><tr><th>${esc(t("dlgKind"))}</th><th>${esc(t("dlgFrom"))}</th><th>${esc(t("dlgTo"))}</th><th>${esc(t("dlgPeriod"))}</th><th>${esc(t("status"))}</th><th>${esc(t("dlgReason"))}</th><th></th></tr></thead><tbody>${L.map(d=>{const st=dlgState(d);return `<tr><td>${esc(t("dlgK_"+d.kind))}</td><td>${esc(d.fromName||d.from)}</td><td>${esc(d.toName||d.to)}</td><td class="num psub" style="white-space:nowrap">${fdate(d.start)} → ${fdate(d.end)}</td><td><span class="chip dlg-${st}">${esc(t("dlgS_"+st))}</span></td><td class="psub">${esc(d.reason||"")}${d.kind==="pm"?` · ${num((d.projects||[]).length)} ${esc(t("nav_projects"))}`:""}</td><td class="r">${st==="active"||st==="upcoming"?`<button class="btn sm" data-act="dlg-cancel" data-id="${esc(d.id)}">${esc(t("dlgCancel"))}</button>`:""}</td></tr>`}).join("")}</tbody></table></div>`:`<p class="psub" style="margin:0">${esc(t("dlgNone"))}</p>`}</div>`}
+function dlgFromOpts(kind){if(kind==="lead")return peopleList().filter(x=>x.role==="lead").map(x=>`<option value="${esc(x.email)}">${esc(x.name)} · ${esc(tv(x.lead)||x.lead)}</option>`).join("");
+  return pmDirectory().filter(x=>x.email).map(x=>`<option value="${esc(String(x.email).split(/[\s,;]+/)[0])}">${esc(x.name)} · ${num(x.projects.length)} ${esc(t("nav_projects"))}</option>`).join("")}
+function dlgFormRefresh(){const k=$("#dlgKind");if(!k)return;$("#dlgFrom").innerHTML=dlgFromOpts(k.value)}
+function openDlgForm(mode){const self=mode==="self";const today=isoToday();
+  showModal(`<form id="frm" novalidate><div class="m-head"><div><h3>${esc(t(self?"dlgMine":"dlgAdd"))}</h3><div class="psub">${esc(t(self?"dlgMineSub":"dlgAddSub"))}</div></div><button type="button" class="x" data-act="close-modal">✕</button></div>
+  <div class="m-body"><div class="form">${self?"":`<label>${esc(t("dlgKind"))}<select class="field" id="dlgKind" name="kind"><option value="pm">${esc(t("dlgK_pm"))}</option><option value="lead">${esc(t("dlgK_lead"))}</option></select></label><label>${esc(t("dlgFrom"))}<select class="field" id="dlgFrom" name="from">${dlgFromOpts("pm")}</select></label>`}
+  <label class="${self?"span2":""}">${esc(t("dlgTo"))}<select class="field" name="to"><option value="">—</option>${personOpts("",self?ME():"")}</select></label>
+  <label>${esc(t("dlgStart"))}<input class="field" type="date" name="start" value="${today}"></label><label>${esc(t("dlgEnd"))}<input class="field" type="date" name="end" value=""></label>
+  <label class="span2">${esc(t("dlgReason"))}<input class="field" name="reason" maxlength="200" placeholder="${esc(t("dlgReasonPh"))}"></label></div><div class="err" id="frmErr"></div></div>
+  <div class="m-foot"><button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button type="submit" class="btn primary">${esc(t("save"))}</button></div></form>`);
+  $("#frm").addEventListener("submit",async e=>{e.preventDefault();const fd=new FormData(e.target);const kind=self?"lead":String(fd.get("kind"));const from=self?ME():String(fd.get("from")||"");const to=String(fd.get("to")||"");const start=String(fd.get("start")||""),end=String(fd.get("end")||"");
+    if(!from||!to||!start||!end){$("#frmErr").textContent=t("dlgReq");return}if(end<start){$("#frmErr").textContent=t("endBeforeStart");return}if(sameP(from,to)){$("#frmErr").textContent=t("dlgSame");return}
+    const P=peopleList();const fp=P.find(x=>sameP(x.email,from)),tp=P.find(x=>sameP(x.email,to));
+    const doc={id:uid("d"),kind,from,fromName:fp?fp.name:(kind==="pm"?(pmDirectory().find(x=>sameP(String(x.email).split(/[\s,;]+/)[0],from))||{}).name||from:from),to,toName:tp?tp.name:to,start,end,reason:String(fd.get("reason")||"").trim(),by:ME(),at:nowIso()};
+    if(kind==="lead"){doc.lead=self?S.leadName:(fp&&fp.lead)||"";if(!doc.lead){$("#frmErr").textContent=t("dlgNoLead");return}}else{doc.projects=pmProjectsOf(from);if(!doc.projects.length){$("#frmErr").textContent=t("dlgNoProj");return}}
+    try{await putDoc("delegations",doc);closeModal();toast(t("dlgSaved"))}catch(err){}})}
+async function dlgCancel(id){const d=(S.delegations||[]).find(x=>x.id===id);if(!d)return;confirmBox(t("dlgCancelQ",{n:d.toName||d.to}),t("dlgCancel"),async()=>{try{await putDoc("delegations",{...d,cancelled:true,cancelledBy:ME(),cancelledAt:nowIso()});toast(t("saved"))}catch(e){}})}
+function dlgBar(){const mine=(S.dlgFrom||[]);const out=[];
+  if(mine.length)out.push(`<div class="gov-bar info"><span>${sIco("user","s-ico sm")} ${mine.map(d=>esc(t(d.kind==="lead"?"dlgCoverLead":"dlgCoverPm",{n:d.fromName||whoName(d.from),d:fdate(d.end)}))).join(" · ")}</span></div>`);
+  if(S.role==="lead"&&S.canWrite){const given=(S.delegations||[]).filter(d=>d.kind==="lead"&&sameP(d.from,ME())&&dlgState(d)!=="ended"&&dlgState(d)!=="cancelled");
+    out.push(`<div class="gov-bar"><span>${sIco("user","s-ico sm")} ${given.length?given.map(d=>esc(t("dlgGiven",{n:d.toName||d.to,a:fdate(d.start),b:fdate(d.end)}))).join(" · "):esc(t("dlgNoneLead"))}</span><span style="display:flex;gap:6px">${given.map(d=>`<button class="btn sm" data-act="dlg-cancel" data-id="${esc(d.id)}">${esc(t("dlgCancel"))}</button>`).join("")}<button class="btn sm" data-act="dlg-new" data-v="self">${esc(t("dlgMine"))}</button></span></div>`)}
+  return out.join("")}
+function escCard(){if(!(isAdmin()||isHeadPmo()))return "";const L=pendAll().filter(x=>x.esc);if(!L.length)return "";
+  const lbl=x=>{const p=projById(x.pid);return `${p?`<span class="pchip num">${esc(p.code)}</span> `:""}${esc(t("pk_"+x.kind))}`};
+  return `<div class="card mb esc-card"><div class="cr-h"><h2>${sIco("stop","s-ico sm")} ${esc(t("escTitle"))}</h2><span class="psub">${esc(t("escSub",{n:num(gov().escalate),h:whoName(gov().headPmo)||t("headPmo")}))}</span></div>
+   ${L.sort((a,b)=>b.age-a.age).map(x=>`<div class="ap-item"><div class="ap-h">${lbl(x)}${ageChip(x)}<span class="psub">${esc(t("stage_"+x.stage))}</span><button class="btn sm" style="margin-inline-start:auto" data-act="${x.kind==="change"?"cr-open":"open-project"}" data-id="${esc(x.kind==="change"?x.id:x.pid)}">${esc(t("crReview"))}</button></div></div>`).join("")}</div>`}
+function recApCard(){if(!isAdmin())return "";const L=(S.recovery||[]).filter(r=>r.status==="submitted");if(!L.length)return "";
+  return `<div class="card mb"><div class="cr-h"><h2>${esc(t("recApTitle"))}</h2><span class="psub">${esc(t("recApSub"))}</span></div>${L.map(r=>{const p=projById(r.projectId);const mine=sameP(r.by,ME());return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b>${esc(p?pname(p):"")}</b>${ageChip(pendOf("recovery",r.id))}<span class="psub">${esc(whoName(r.by))} · ${esc(t("recBy"))} ${fdate(r.recoverBy)}</span><span class="ap-act" style="margin-inline-start:auto">${mine?`<span class="psub">${esc(t("sodOwn"))}</span>`:`<button class="btn sm primary" data-act="rec-ok" data-id="${esc(r.id)}">✓ ${esc(t("recAccept"))}</button><button class="btn sm" data-act="rec-ret" data-id="${esc(r.id)}">↩ ${esc(t("apReturn"))}</button>`}</span></div><div class="rec-txt">${esc(r.actions||"")}</div>${r.support?`<div class="psub">${esc(t("recSupport"))}: ${esc(r.support)}</div>`:""}</div>`}).join("")}</div>`}
 function vApprovals(){const sc=apScope(),c=k=>sc.filter(u=>(u.status||"approved")===k).length,f=S.apFilter||(S.role==="pm"?"returned":"pending");
-  const strip=snStrip([{ico:"inbox",val:num(c("pending")),lbl:t("ap_pending"),act:"apf",v:"pending",tone:c("pending")?"amber":"grey",on:f==="pending"},
+  const ids=new Set(sc.map(u=>u.projectId));const P=pendAll().filter(x=>ids.has(x.pid)||x.kind!=="update"),late=P.filter(x=>x.late).length;
+  const strip=dlgBar()+escCard()+recApCard()+snStrip([{ico:"inbox",val:num(c("pending")),lbl:t("ap_pending"),act:"apf",v:"pending",tone:c("pending")?"amber":"grey",on:f==="pending"},
+   {ico:"hourglass",val:num(late),lbl:t("slaLate"),tone:late?"red":"good"},
    {ico:"undo",val:num(c("returned")),lbl:t("ap_returned"),act:"apf",v:"returned",tone:c("returned")?"red":"grey",on:f==="returned"},
    {ico:"check",val:num(c("approved")),lbl:t("ap_approved"),act:"apf",v:"approved",tone:"good",on:f==="approved"},
    {ico:"file",val:num(crPendingMine().length),lbl:t("snCrAwait"),tone:crPendingMine().length?"amber":"grey"},
@@ -2404,7 +2546,8 @@ function vApprovalsUpd(){
   const seg=`<div class="seg-ctl">${["pending","returned","approved"].map(v=>`<button class="${f===v?"on":""}" data-act="apf" data-v="${v}">${esc(t("ap_"+v))} <span class="num">(${num(cnt(v))})</span></button>`).join("")}</div>`;
   const hint=(S.role==="lead"&&!S.canWrite)?`<div class="banner-in">${esc(t("apNeedWrite"))}</div>`:"";
   const body=L.length?[...byP.entries()].slice(0,80).map(([pid,list])=>{const p=projById(pid);const canAll=f==="pending"&&list.some(canApprove);
-    return `<div class="card mt"><div class="card-head"><div style="min-width:0"><h2><span class="pchip num">${esc(p.code)}</span> ${esc(pname(p))}</h2><div class="sub">${esc(p.manager||"—")} · ${esc(tv(p.sponsor)||"—")}</div></div>${canAll?`<button class="btn sm primary" data-act="ap-all" data-id="${esc(pid)}">✓ ${esc(t("apApproveAll",{n:num(list.length)}))}</button>`:""}</div>${list.map(u=>apItem(u,false)).join("")}</div>`}).join(""):`<div class="card mt"><div class="empty">${esc(t("apEmpty_"+f))}</div></div>`;
+    const old=f==="pending"?pendAll().filter(x=>x.kind==="update"&&x.pid===pid).sort((a,b)=>b.age-a.age)[0]:null;
+    return `<div class="card mt"><div class="card-head"><div style="min-width:0"><h2><span class="pchip num">${esc(p.code)}</span> ${esc(pname(p))} ${ageChip(old)}</h2><div class="sub">${esc(p.manager||"—")} · ${esc(tv(p.sponsor)||"—")}</div></div>${canAll?`<button class="btn sm primary" data-act="ap-all" data-id="${esc(pid)}">✓ ${esc(t("apApproveAll",{n:num(list.length)}))}</button>`:""}</div>${list.map(u=>apItem(u,false)).join("")}</div>`}).join(""):`<div class="card mt"><div class="empty">${esc(t("apEmpty_"+f))}</div></div>`;
   return `<div class="card"><div class="card-head"><div><h2>${esc(t("apTitle"))}</h2><div class="sub">${esc(t("apSub_"+(S.role==="pm"?"pm":"rev")))}</div></div>${seg}</div>${hint}</div>${body}`}
 async function apDecide(ids,status,note){const at=nowIso();for(const id of ids){const u=S.updates.find(x=>x.id===id);if(!u||!canApprove(u))continue;
   const doc={...u,status,reviewedBy:ME(),reviewedAt:at};if(note)doc.reviewNote=String(note).slice(0,1000);else delete doc.reviewNote;delete doc.auto;
@@ -2420,7 +2563,7 @@ function updCharts(ps){const ids=new Set(ps.map(p=>p.id));const U=S.updates.filt
   const mx=Math.max(1,...wk.map(w=>w.n));
   const bars=`<div class="vbars">${wk.map(w=>`<div class="vb2" data-tip="${esc(t("vzWeekOf",{d:fdate(w.a,{day:"numeric",month:"short"})}))}: <b>${num(w.n)}</b>"><b class="num">${w.n?num(w.n):""}</b><div class="vbc"><i style="height:${w.n/mx*100}%"></i></div><span>${esc(fdate(w.a,{day:"numeric",month:"numeric"}))}</span></div>`).join("")}</div>`;
   const as={done:0,inProgress:0,overdue:0,notStarted:0};let wE=0,nE=0;
-  for(const p of ps)for(const a of actsOf(p.id)){const s=actState(a);as[s]=(as[s]||0)+1;if(s==="done"){if(evOf(p.id,a.id).length)wE++;else nE++}}
+  for(const p of ps)for(const a of actsOf(p.id)){const s=actState(a);as[s]=(as[s]||0)+1;if(s==="done"&&needEv(p.id,a)){if(evOf(p.id,a.id).length)wE++;else nE++}}
   const acs=[{v:as.done,c:"var(--good)",l:t("ms_done")},{v:as.inProgress,c:"var(--s1)",l:t("ms_inProgress")},{v:as.overdue,c:"var(--critical)",l:t("ms_overdue")},{v:as.notStarted,c:"var(--neutral)",l:t("ms_notStarted")}];
   const ev=[{v:wE,c:"var(--good)",l:t("vzEvWith")},{v:nE,c:"var(--warning)",l:t("vzEvWithout")}];
   const ap=["pending","returned","approved"].map(k=>({v:U.filter(u=>(u.status||"approved")===k).length,c:k==="pending"?"var(--warning)":k==="returned"?"var(--critical)":"var(--good)",l:t("ap_"+k)}));
@@ -2460,10 +2603,10 @@ const crGet=(o,p)=>p.split(".").reduce((a,k)=>a==null?undefined:a[k],o);
 function crSet(o,p,v){const ks=p.split(".");let a=o;for(let i=0;i<ks.length-1;i++){const k=ks[i];if(a[k]==null||typeof a[k]!=="object")a[k]=/^\d+$/.test(ks[i+1])?[]:{};a=a[k]}a[ks[ks.length-1]]=v}
 function crLeadOf(p){if(!p)return "";const a=(S.access||[]).find(x=>x.role==="lead"&&x.lead&&leadMatch(p,x.lead));return a?a.lead:""}
 function crScope(){return (S.changes||[]).filter(c=>{const p=projById(c.projectId);if(!p)return false;
-  if(S.role==="pmo"||S.role==="executive")return true;if(S.role==="lead")return leadMatch(p,S.leadName);if(S.role==="pm")return S.myProjects.has(p.id);return false})}
+  if(S.role==="pmo"||S.role==="executive"||leadOK(p)||(S.dlgPm&&S.dlgPm.has(p.id)))return true;if(S.role==="lead")return leadMatch(p,S.leadName);if(S.role==="pm")return S.myProjects.has(p.id);return false})}
 function crCanEdit(c){return !!c&&S.canWrite&&["draft","returned"].includes(c.status)&&canP(c.projectId)}
-function crCanDecide(c){if(!c||!S.canWrite)return false;const p=projById(c.projectId);if(!p)return false;
-  if(c.status==="lead")return S.role==="pmo"||(S.role==="lead"&&leadMatch(p,S.leadName));
+function crCanDecide(c){if(!c||!S.canWrite)return false;const p=projById(c.projectId);if(!p)return false;if(sameP(c.createdBy,ME()))return false;
+  if(c.status==="lead")return S.role==="pmo"||leadOK(p);
   if(c.status==="pmo")return S.role==="pmo";return false}
 const crCanNpc=c=>!!c&&isAdmin()&&["npc","approved","rejected"].includes(c.status);
 const crPendingMine=()=>crScope().filter(crCanDecide);
@@ -2730,7 +2873,7 @@ function vChanges(){
 /* ---- approvals card ---- */
 function crApCard(){const pend=crPendingMine(),ret=crReturnedMine(),npcL=isAdmin()?crScope().filter(c=>c.status==="npc"):[];const L=[...pend,...ret];if(!L.length&&!npcL.length)return "";
   const npcHtml=npcL.length?`<div class="cr-h" style="margin-top:${L.length?16:0}px"><h2>${esc(t("crNpcAwait"))}</h2><span class="psub">${esc(t("crNpcAwaitSub"))}</span></div>${npcL.map(c=>{const p=projById(c.projectId);const pv=crApplyPreview(c);return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b class="num" dir="ltr">${esc(c.code||"")}</b><span>${esc(crPair(CRL.types[c.f&&c.f.level]||[],c.f&&c.f.type))}</span>${crChip(c.status)}<span class="ap-act" style="margin-inline-start:auto"><span class="psub">${esc(t("crNpcQ"))}</span><button class="btn sm primary" data-act="cr-npc-yes" data-id="${esc(c.id)}">✓ ${esc(t("crY"))}</button><button class="btn sm" data-act="cr-npc-no" data-id="${esc(c.id)}">✕ ${esc(t("crN"))}</button><button class="btn sm" data-act="cr-open" data-id="${esc(c.id)}">${esc(t("crReview"))}</button></span></div><div class="psub">${pv.length?esc(t("crWillApply"))+" "+pv.map(x=>esc(x.l)).join(" · "):esc(crApplyKeys(c)===undefined?t("crApManual"):t("crNoApply"))}</div></div>`}).join("")}`:"";
-  return `<div class="card mb">${L.length?`<div class="cr-h"><h2>${esc(t("crApTitle"))}</h2><span class="psub">${esc(t(pend.length?"crApSub":"crApSubPm"))}</span></div>`:""}${L.map(c=>{const p=projById(c.projectId);return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b class="num" dir="ltr">${esc(c.code||"")}</b><span>${esc(crPair(CRL.types[c.f&&c.f.level]||[],c.f&&c.f.type))}</span>${crChip(c.status)}<span class="psub">${esc(c.f&&c.f.requester||"")}</span><button class="btn sm primary" data-act="cr-open" data-id="${esc(c.id)}" style="margin-inline-start:auto">${esc(t("crReview"))}</button></div>${c.status==="returned"&&c.returnNote?`<div class="psub">↩ ${esc(c.returnNote)}${c.returnedBy?` — ${esc(whoName(c.returnedBy))}`:""}</div>`:""}${crAttLinks(c)?`<div class="att-row">${crAttLinks(c)}</div>`:""}</div>`}).join("")}${npcHtml}</div>`}
+  return `<div class="card mb">${L.length?`<div class="cr-h"><h2>${esc(t("crApTitle"))}</h2><span class="psub">${esc(t(pend.length?"crApSub":"crApSubPm"))}</span></div>`:""}${L.map(c=>{const p=projById(c.projectId);return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b class="num" dir="ltr">${esc(c.code||"")}</b><span>${esc(crPair(CRL.types[c.f&&c.f.level]||[],c.f&&c.f.type))}</span>${crChip(c.status)}${ageChip(pendOf("change",c.id))}<span class="psub">${esc(c.f&&c.f.requester||"")}</span><button class="btn sm primary" data-act="cr-open" data-id="${esc(c.id)}" style="margin-inline-start:auto">${esc(t("crReview"))}</button></div>${c.status==="returned"&&c.returnNote?`<div class="psub">↩ ${esc(c.returnNote)}${c.returnedBy?` — ${esc(whoName(c.returnedBy))}`:""}</div>`:""}${crAttLinks(c)?`<div class="att-row">${crAttLinks(c)}</div>`:""}</div>`}).join("")}${npcHtml}</div>`}
 /* ---- printable form ---- */
 function crFormHtml(c){const f=c.f||{},nv=c.npc||crBlankNpc(),p=projById(c.projectId),ar=S.lang==="ar";const types=CRL.types[f.level]||[];
   const row=(n,a,e,v)=>`<tr><th><span class="n">${n}</span> ${esc(L2(a,e))}</th><td>${v?esc(v):"&nbsp;"}</td></tr>`;
@@ -2769,7 +2912,8 @@ document.addEventListener("change",e=>{const el=e.target;if(el&&el.id==="crChart
 let KPIS=null;
 async function loadKpis(){try{const r=await fetch("data/kpis.json");if(r.ok){KPIS=await r.json();if(S.view==="kpis")render()}}catch(e){}}
 const KPI_OUT_EN={1:"Cohesive families able to face challenges",2:"Empowered women",3:"Inclusive society that empowers priority groups",4:"Cohesive and responsible society",5:"Productive society with a decent standard of living",6:"Enablers"};
-const kpiCanSee=()=>["pmo","executive"].includes(S.role);
+const kpiOwned=()=>(S.kpis||[]).some(d=>sameP(d.ownerEmail,ME()));
+const kpiCanSee=()=>["pmo","executive"].includes(S.role)||kpiOwned();
 function kpiOutName(n){const p=S.projects.find(x=>String(x.portfolio||"").trim().startsWith(n+"."));if(S.lang==="ar")return p?p.portfolio:("النتيجة "+n);return n+". "+(KPI_OUT_EN[n]||"")}
 const projByCode=c=>S.projects.find(p=>p.code===c);
 const kpiDoc=id=>(S.kpis||[]).find(x=>x.id===id)||{};
@@ -2787,7 +2931,8 @@ function kpiAch(k){const d=kpiDoc(k.id);const b=+d.baseline,c=+d.current;const t
   if(d.baseline===""||d.baseline==null||d.current===""||d.current==null||tg==null||!isFinite(b)||!isFinite(c)||!isFinite(tg)||tg===b)return null;
   return clamp((c-b)/(tg-b)*100,-100,200)}
 function kpiList(){if(!KPIS)return [];const cat=S.kpiCat||"strategic";let L=(KPIS[cat]||[]).map(k=>({...k,cat}));
-  if(S.role==="lead")L=L.filter(k=>kpiLinks(k).some(x=>leadMatch(x.p,S.leadName)));
+  if(S.role==="lead")L=L.filter(k=>kpiLinks(k).some(x=>leadMatch(x.p,S.leadName))||sameP(kpiDoc(k.id).ownerEmail,ME()));
+  else if(!["pmo","executive"].includes(S.role))L=L.filter(k=>sameP(kpiDoc(k.id).ownerEmail,ME()));
   if(S.kpiOut)L=L.filter(k=>String(k.outcome)===String(S.kpiOut));
   return L}
 const kpiVal=(v,u)=>v===""||v==null?'<span class="psub">—</span>':esc(num(+v,(+v%1)?1:0))+(u?`<span class="psub"> ${esc(u)}</span>`:"");
@@ -2817,7 +2962,7 @@ function vKpis(){
       const imp=[3,2,1].map(w=>{const n=c.L.filter(x=>x.w===w).length;return n&&cat==="strategic"?`<span class="imp imp${w}" data-tip="${esc(t("kpiImp"+w))}">${IMP_L[w]} ${n}</span>`:""}).join("");
       return `<tr class="clickable ${open?"on":""}" data-act="kpi-open" data-id="${esc(k.id)}"><td class="num" dir="ltr" style="white-space:nowrap">${esc(cat==="strategic"?k.id:"")}</td><td><div class="kpi-nm">${esc(k.name)}</div>${a!=null?`<div class="psub">${esc(t("kpiAch",{v:pct(a)}))}</div>`:""}</td>
       <td class="r">${kpiVal(d.baseline,u)}${d.baseYear?`<div class="psub">${esc(d.baseYear)}</div>`:""}</td><td class="r">${kpiVal(tg,u)}${tg!=null&&tg!==""?`<div class="psub">${esc(d.targetYear||"2030")}</div>`:""}</td><td class="r">${kpiVal(d.current,u)}${d.curYear?`<div class="psub">${esc(d.curYear)}</div>`:""}</td>
-      <td>${c.n?progBar({prog:c.prog,planned:c.planned}):'<span class="psub">—</span>'}</td><td>${kpiStChip(c.st)}</td><td style="white-space:nowrap"><span class="num">${num(S.role==="lead"?c.mine:c.n)}</span>${S.role==="lead"&&c.mine!==c.n?`<span class="psub"> / ${num(c.n)}</span>`:""} ${imp}</td></tr>
+      <td>${c.n?progBar({prog:c.prog,planned:c.planned}):'<span class="psub">—</span>'}</td><td>${kpiStChip(c.st)}${kpiSoChip(d)}</td><td style="white-space:nowrap"><span class="num">${num(S.role==="lead"?c.mine:c.n)}</span>${S.role==="lead"&&c.mine!==c.n?`<span class="psub"> / ${num(c.n)}</span>`:""} ${imp}</td></tr>
       ${open?`<tr class="kpi-det"><td colspan="8">${kpiDetail(k,c,d)}</td></tr>`:""}`}).join("")}</tbody></table></div></div>`}).join("");
   const kAtt=cnt("atRisk")+cnt("delayed"),kOk=cnt("onTrack")+cnt("completed");
   const kmix=[["onTrack",kOk,"check"],["atRisk",cnt("atRisk"),"warn"],["delayed",cnt("delayed"),"stop"],["noLinks",cnt("noLinks"),"projects"]];
@@ -2826,14 +2971,27 @@ function vKpis(){
    {ico:"gauge",val:num(C.length),lbl:t("kpiCount")},
    {ico:"check",val:num(kOk),lbl:t("st_onTrack"),tone:"good"},
    {ico:"warn",val:num(kAtt),lbl:t("kpiAttention"),tone:kAtt?"warn":"good"},
-   {ico:"file",val:`${num(withBase)}<small>/${num(C.length)}</small>`,lbl:t("kpiBaselines"),tone:withBase<C.length?"amber":"good"}]);
+   {ico:"file",val:`${num(C.filter(x=>x.d.signoff&&x.d.signoff.status==="approved").length)}<small>/${num(C.length)}</small>`,lbl:t("kpiSoTile"),tone:C.every(x=>x.d.signoff&&x.d.signoff.status==="approved")?"good":"amber"}]);
   return kTop+head+charts+(groups||`<div class="card"><div class="empty"><h3>${esc(t("kpiNone"))}</h3></div></div>`)}
+const kpiDue=d=>!!d.ownerEmail&&(!d.curAt||days(parseD(String(d.curAt).slice(0,10)),TODAY)>92);
+const kpiSoChip=d=>{const so=d&&d.signoff;return so?` <span class="chip so-${so.status}" data-tip="${esc(so.status==="approved"?t("kpiSignedBy",{n:whoName(so.by),d:fdate(so.at)}):t("kpiSignWait",{n:whoName(d.enteredBy)||"—"}))}">${so.status==="approved"?"✓ "+esc(t("kpiSoOk")):esc(t("kpiSoWait"))}</span>`:""};
+async function kpiSign(id){const d=kpiDoc(id);const so=d.signoff;if(!so||so.status!=="pending"||sameP(d.enteredBy,ME())||!(isHeadPmo()||(S.isOwner&&!S.ownerTest)))return;
+  try{await putDoc("kpis",{...d,signoff:{status:"approved",by:ME(),at:nowIso(),baseline:d.baseline,target:d.target}});toast(t("kpiSigned"))}catch(e){}}
+function kpiValForm(id){const d=kpiDoc(id);if(!(sameP(d.ownerEmail,ME())||isAdmin()))return;
+  showModal(`<form id="frm" novalidate><div class="m-head"><div><h3>${esc(t("kpiValUpd"))}</h3><div class="psub">${esc(id)}</div></div><button type="button" class="x" data-act="close-modal">✕</button></div>
+  <div class="m-body"><div class="form"><label>${esc(t("kpiCurrent"))}<input class="field" type="number" step="any" name="current" value="${esc(d.current??"")}"></label><label>${esc(t("kpiYear"))}<input class="field" name="curYear" maxlength="9" value="${esc(d.curYear||"")}"></label><label class="span2">${esc(t("kpiValNote"))}<input class="field" name="valueNote" maxlength="300" value="${esc(d.valueNote||"")}"></label></div><div class="err" id="frmErr"></div></div>
+  <div class="m-foot"><button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button type="submit" class="btn primary">${esc(t("save"))}</button></div></form>`,true);
+  $("#frm").addEventListener("submit",async e=>{e.preventDefault();const fd=new FormData(e.target);const v=String(fd.get("current")||"").trim();if(v!==""&&!isFinite(+v)){$("#frmErr").textContent=t("kpiBadNum");return}
+    try{await putDoc("kpis",{...d,id,current:v===""?"":+v,curYear:String(fd.get("curYear")||"").trim(),valueNote:String(fd.get("valueNote")||"").trim(),curAt:nowIso(),curBy:ME()});closeModal();toast(t("saved"))}catch(err){}})}
 function kpiDetail(k,c,d){const cat=k.cat;
   const meta=cat==="ministry"?`<div class="psub" style="margin-bottom:8px">${esc(k.objective||"")}${k.init&&k.init.length?" · "+esc(k.init.join(" · ")):""}</div>`:"";
   const rows=c.L.slice().sort((a,b)=>b.w-a.w||String(a.p.code).localeCompare(String(b.p.code),undefined,{numeric:true})).map(x=>{const m=metrics(x.p);const mine=S.role==="lead"&&leadMatch(x.p,S.leadName);
     return `<tr class="clickable ${mine?"mine":""}" data-act="open-project" data-id="${esc(x.p.id)}"><td class="num">${esc(x.p.code)}</td><td>${esc(pname(x.p))}</td>${cat==="strategic"?`<td><span class="imp imp${x.w}">${esc(t("kpiImp"+x.w))}</span></td>`:""}<td style="min-width:150px">${progBar(m)}</td><td>${statusChip(ST(x.p))}</td><td>${esc(tv(x.p.sponsor)||"—")}</td></tr>`}).join("");
-  const edit=isAdmin()?`<button class="btn sm" data-act="kpi-edit" data-id="${esc(k.id)}">✎ ${esc(t("kpiEdit"))}</button>`:"";
-  return `<div class="kpi-detail">${meta}<div class="cr-h" style="margin-bottom:6px"><b>${esc(t("kpiLinkedProj"))}</b>${edit}</div>
+  const so=d.signoff,canSign=so&&so.status==="pending"&&(isHeadPmo()||(S.isOwner&&!S.ownerTest))&&!sameP(d.enteredBy,ME());
+  const own=sameP(d.ownerEmail,ME())||isAdmin();
+  const edit=`${isAdmin()?`<button class="btn sm" data-act="kpi-edit" data-id="${esc(k.id)}">✎ ${esc(t("kpiEdit"))}</button>`:""}${own&&!isAdmin()?`<button class="btn sm" data-act="kpi-val" data-id="${esc(k.id)}">✎ ${esc(t("kpiValUpd"))}</button>`:""}${canSign?`<button class="btn sm primary" data-act="kpi-sign" data-id="${esc(k.id)}">✓ ${esc(t("kpiSign"))}</button>`:""}`;
+  const gl=`<div class="gov-bar ${so&&so.status==="approved"?"ok":""}"><span>${sIco("file","s-ico sm")} ${so?so.status==="approved"?esc(t("kpiSignedBy",{n:whoName(so.by),d:fdate(so.at)})):esc(t("kpiSignWait",{n:whoName(d.enteredBy)||"—"})):esc(t("kpiNoBase"))}${d.ownerEmail?` · ${esc(t("kpiOwnerEmail"))}: <b>${esc(whoName(d.ownerEmail)||d.ownerEmail)}</b>`:` · <span class="psub">${esc(t("kpiNoOwner"))}</span>`}${kpiDue(d)?` · <span class="age late">${esc(t("kpiValDue"))}</span>`:d.curAt?` · <span class="psub">${esc(t("kpiValAt",{d:fdate(d.curAt)}))}</span>`:""}</span>${canSign||sameP(d.enteredBy,ME())&&so&&so.status==="pending"?`<span class="psub">${esc(canSign?"":t("sodOwn"))}</span>`:""}</div>`;
+  return `<div class="kpi-detail">${meta}${gl}<div class="cr-h" style="margin-bottom:6px"><b>${esc(t("kpiLinkedProj"))}</b><span style="display:flex;gap:6px">${edit}</span></div>
     ${rows?`<table class="kpi-sub"><thead><tr><th>${esc(t("code"))}</th><th>${esc(t("project"))}</th>${cat==="strategic"?`<th>${esc(t("kpiImpact"))}</th>`:""}<th>${esc(t("progress"))}</th><th>${esc(t("status"))}</th><th>${esc(t("sponsor"))}</th></tr></thead><tbody>${rows}</tbody></table>`:`<div class="psub">${esc(t("kpiNoLinksLong"))}</div>`}
     ${d.notes?`<div class="banner-in">${esc(d.notes)}</div>`:""}<div class="psub" style="margin-top:6px">${esc(t(cat==="strategic"?"kpiCalcNoteS":"kpiCalcNoteM"))}</div></div>`}
 function kpiEdit(id){const k=[...(KPIS.strategic||[]).map(x=>({...x,cat:"strategic"})),...(KPIS.ministry||[]).map(x=>({...x,cat:"ministry"}))].find(x=>x.id===id);if(!k||!isAdmin())return;const d=kpiDoc(id);
@@ -2845,15 +3003,18 @@ function kpiEdit(id){const k=[...(KPIS.strategic||[]).map(x=>({...x,cat:"strateg
   ${f("unit","kpiUnit",d.unit!==undefined?d.unit:(k.unit||""),"text",'maxlength="40"')}${f("owner","kpiOwner",d.owner,"text",'maxlength="120"')}
   <label class="span2">${esc(t("kpiNotes"))}<textarea class="field" name="notes" maxlength="1000">${esc(d.notes||"")}</textarea></label></div><div class="err" id="frmErr"></div></div>
   <div class="m-foot"><button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button class="btn primary">${esc(t("save"))}</button></div></form>`);
-  $("#frm").addEventListener("submit",async e=>{e.preventDefault();const fd=new FormData(e.target);const o={id,cat:k.cat||"",updatedAt:nowIso(),by:ME()};
+  $("#frm [name=owner]").closest("label").insertAdjacentHTML("afterend",`<label>${esc(t("kpiOwnerEmail"))}<select class="field" name="ownerEmail"><option value="">—</option>${personOpts(d.ownerEmail||"")}</select></label>`);
+  $("#frm").addEventListener("submit",async e=>{e.preventDefault();const fd=new FormData(e.target);const o={...d,id,cat:k.cat||"",updatedAt:nowIso(),by:ME()};
     for(const n of ["baseline","target","current"]){const v=String(fd.get(n)||"").trim();if(v!==""&&!isFinite(+v)){$("#frmErr").textContent=t("kpiBadNum");return}o[n]=v===""?"":+v}
-    for(const n of ["baseYear","targetYear","curYear","unit","owner","notes"])o[n]=String(fd.get(n)||"").trim();
+    for(const n of ["baseYear","targetYear","curYear","unit","owner","notes","ownerEmail"])o[n]=String(fd.get(n)||"").trim();
+    const bt=x=>JSON.stringify([x.baseline??"",x.target??"",x.baseYear||"",x.targetYear||""]);if(bt(o)!==bt(d)){o.enteredBy=ME();o.enteredAt=nowIso();o.signoff=(o.baseline!==""||o.target!=="")?{status:"pending"}:null}
+    if(o.current!==d.current||o.curYear!==d.curYear){o.curAt=nowIso();o.curBy=ME()}
     try{await putDoc("kpis",o);closeModal();toast(t("saved"))}catch(err){}})}
 /* ================= project closure ================= */
 const clOf=pid=>(S.closures||[]).filter(c=>c.projectId===pid).sort((a,b)=>String(b.requestedAt).localeCompare(String(a.requestedAt)))[0];
 function clApproverName(p){return crLeadOf(p)||""}
-function clCanDecide(c){if(!c||c.status!=="pending"||!S.canWrite)return false;const p=projById(c.projectId);if(!p)return false;
-  if(S.role==="pmo")return true;if(S.role==="lead")return leadMatch(p,S.leadName)&&!!crLeadOf(p);return false}
+function clCanDecide(c){if(!c||c.status!=="pending"||!S.canWrite)return false;const p=projById(c.projectId);if(!p)return false;if(sameP(c.requestedBy,ME()))return false;
+  if(S.role==="pmo")return true;if(leadOK(p))return !!crLeadOf(p);return false}
 const clPendingMine=()=>(S.closures||[]).filter(clCanDecide);
 const clReturnedMine=()=>S.role==="pm"?(S.closures||[]).filter(c=>c.status==="returned"&&S.myProjects.has(c.projectId)&&clOf(c.projectId)===c):[];
 function clDeliverables(p){return wpGroups(actsOf(p.id)).map(([wp,l])=>({wp,prog:Math.round(mean(l.map(a=>clamp(+a.pr||0,0,100)))),acts:l.length,done:l.filter(a=>actState(a)==="done").length}))}
@@ -2919,7 +3080,7 @@ function drawerClosure(p){const c=S.clDraft&&S.clDraft.projectId===p.id?S.clDraf
   return head+`<div class="d-sec">${sum}</div>`+dl+files+acts+hist}
 function clApCard(){const pend=clPendingMine(),ret=clReturnedMine();const L=[...pend,...ret];if(!L.length)return "";
   return `<div class="card mb"><div class="cr-h"><h2>${esc(t("clApTitle"))}</h2><span class="psub">${esc(t(pend.length?"clApSub":"crApSubPm"))}</span></div>${L.map(c=>{const p=projById(c.projectId);const a=(c.deliverables||[]).filter(d=>d.acc==="accepted").length;
-    return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b>${esc(p?pname(p):"")}</b>${clChip(c.status)}<span class="psub">${esc(t("clAccN",{a:num(a),n:num((c.deliverables||[]).length)}))}</span><button class="btn sm primary" data-act="cl-review" data-id="${esc(c.projectId)}" style="margin-inline-start:auto">${esc(t("crReview"))}</button></div>${c.status==="returned"&&c.returnNote?`<div class="psub">↩ ${esc(c.returnNote)}</div>`:""}</div>`}).join("")}</div>`}
+    return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b>${esc(p?pname(p):"")}</b>${clChip(c.status)}${ageChip(pendOf("closure",c.id))}<span class="psub">${esc(t("clAccN",{a:num(a),n:num((c.deliverables||[]).length)}))}</span><button class="btn sm primary" data-act="cl-review" data-id="${esc(c.projectId)}" style="margin-inline-start:auto">${esc(t("crReview"))}</button></div>${c.status==="returned"&&c.returnNote?`<div class="psub">↩ ${esc(c.returnNote)}</div>`:""}</div>`}).join("")}</div>`}
 document.addEventListener("input",e=>{const el=e.target.closest&&e.target.closest("[data-clf]");if(!el||!S.clDraft)return;crSet(S.clDraft,el.dataset.clf,el.value)});
 document.addEventListener("change",e=>{if(e.target&&e.target.id==="cycleSel")setCycle(e.target.value)});
 document.addEventListener("change",e=>{const el=e.target;if(el&&el.id==="clFile"){const fs=[...(el.files||[])];el.value="";(async()=>{for(const f of fs)await clUpload(f)})()}if(el&&el.id==="kpiOut"){S.kpiOut=el.value;S.kpiOpen=null;render()}});
@@ -3005,6 +3166,7 @@ function execSnap(ps,g){
   const ids=new Set(ps.map(p=>p.id));
   const crN=(S.changes||[]).filter(c=>ids.has(c.projectId)&&["lead","pmo","npc"].includes(c.status)).length,clN=(S.closures||[]).filter(c=>ids.has(c.projectId)&&c.status==="pending").length;
   const scope=S.filters.lead?leadLabel(S.filters.lead):S.role==="lead"?S.leadName:t("exAllPortfolio");
+  const PD=pendAll().filter(x=>ids.has(x.pid)),dU=PD.filter(x=>x.kind==="update").length,dLate=PD.filter(x=>x.late).length;
   const pil=STRAT.outcomes.map(o=>{const L=ps.filter(p=>outNo(p)===o.n);if(!L.length)return "";const q=grpStats(L),qs=snVerdict(q.prog-q.planned);
      return `<button class="sn-mp" data-act="os-filter" data-v="${o.n}" data-tip="${esc(L2(o.ar,o.en))}<br>${esc(t("snActual"))} ${pct(q.prog)} · ${esc(t("snPlanned"))} ${pct(q.planned)}"><span class="sn-mpr"><span class="sn-mpi" style="--oc:${OC[o.n]}">${sIco(PIL_ICON[o.n])}</span><b class="num">${pct(q.prog)}</b><i class="sn-mpd c-${qs}"></i></span><span class="sn-mpt">${esc(L2(o.pil[0],o.pil[1]))}</span></button>`}).join("");
   const side=`<div class="sn-side-h">${esc(t("snPillars"))}</div><div class="sn-mps">${pil}</div>`;
@@ -3012,7 +3174,7 @@ function execSnap(ps,g){
    {ico:"projects",val:num(g.n),lbl:t("snProjects"),href:"#projects"},
    {ico:"budget",val:moneyKpi(g.budget),lbl:t("snBudget")},
    kp?{ico:"gauge",val:`${num(kp.ok)}<small>/${num(kp.n)}</small>`,lbl:t("snKpis"),href:"#kpis"}:{ico:"done",val:num((g.closed||0)+(g.completed||0)),lbl:t("exClosedTile"),tone:"good"},
-   {ico:"hourglass",val:num(crN+clN),lbl:t("snDecisions"),href:tabAllowed("approvals")?"#approvals":"",tone:crN+clN?"amber":""}])}
+   {ico:"hourglass",val:num(crN+clN+dU),lbl:dLate?t("snDecisionsLate",{n:num(dLate)}):t("snDecisions"),href:tabAllowed("approvals")?"#approvals":"",tone:dLate?"warn":crN+clN+dU?"amber":""}])}
 function execHero(ps,g){const isE=S.role==="executive";const n=g.n||1;
   const kp=(KPIS&&["pmo","executive"].includes(S.role))?(()=>{const L=(KPIS.strategic||[]).map(k=>kpiCalc(k)).filter(c=>c.n);return {ok:L.filter(c=>c.st==="onTrack"||c.st==="completed").length,n:L.length}})():null;
   const ids=new Set(ps.map(p=>p.id));
@@ -3106,6 +3268,14 @@ function snTile(x){const cv=typeof x.val==="string"&&/^[0-9,٬]+$/.test(x.val)?+
 function snTiles(items){return `<div class="sn-tiles" style="--n:${items.length}">${items.map(snTile).join("")}</div>`}
 function snStrip(items){return `<div class="sn-strip" style="--n:${items.length}">${items.map(x=>{const inner=`<span class="sn-sico">${sIco(x.ico)}</span><span class="sn-stxt"><b class="num">${x.val}</b><span>${esc(x.lbl)}</span></span>`;const cls=`sn-s${x.tone?" "+x.tone:""}${x.on?" on":""}`;
   return x.href?`<a class="${cls}" href="${x.href}">${inner}</a>`:x.act?`<button class="${cls}" data-act="${x.act}" data-v="${esc(x.v||"")}">${inner}</button>`:`<div class="${cls} static">${inner}</div>`}).join("")}</div>`}
+function govLeadCards(ps){const ids=new Set(ps.map(p=>p.id));const C=cycSorted();const last=C[0];const E=[...escIds()].filter(id=>ids.has(id)).map(projById).filter(Boolean);
+  const g=grpStats(ps);
+  const pub=last?`<div class="card gov-pub"><div class="cr-h"><h2>${sIco("flag","s-ico sm")} ${esc(t("pubTitle"))}</h2><span class="psub">${esc(t("pubSub",{l:last.label,d:fdate(last.publishedAt)}))}</span></div>
+     <div class="gov-pub-g"><div><small>${esc(t("progress"))}</small><b class="num">${pct(last.totals.prog)}</b><span class="psub">${esc(t("pubNow",{v:pct(g.prog)}))}</span></div><div><small>${esc(t("planned"))}</small><b class="num">${pct(last.totals.planned)}</b></div><div><small>${esc(t("st_delayed"))}</small><b class="num">${num(last.totals.delayed)}</b><span class="psub">${esc(t("pubNow",{v:num(g.delayed)}))}</span></div><div><small>${esc(t("upd_submitted"))}</small><b class="num">${num(last.totals.submitted)}<small>/${num(last.totals.n)}</small></b></div></div></div>`
+    :`<div class="card gov-pub"><div class="cr-h"><h2>${sIco("flag","s-ico sm")} ${esc(t("pubTitle"))}</h2></div><p class="psub" style="margin:0">${esc(t("pubNone"))}</p></div>`;
+  const steer=`<div class="card"><div class="cr-h"><h2>${sIco("stop","s-ico sm")} ${esc(t("steerTitle"))}</h2><span class="psub">${esc(t("steerSub"))}</span></div>
+     ${E.length?`<div class="list">${E.map(p=>{const st=recState(p.id);return `<div class="li clickable" style="grid-template-columns:auto 1fr auto" data-act="open-project" data-id="${esc(p.id)}"><span class="pchip num">${esc(p.code)}</span><div style="min-width:0"><div class="t">${esc(pname(p))}</div><div class="s">${esc(p.manager||"—")}</div></div><span class="chip rec-${st}">${esc(t("rec_"+st))}</span></div>`}).join("")}</div>`:`<p class="psub" style="margin:0">${esc(C.length<2?t("steerNeed2"):t("steerNone"))}</p>`}</div>`;
+  return `<div class="grid g2 mb gov-row">${steer}${pub}</div>`}
 function vExec(){
   const {ps,g,by,rows,attn,kd}=execData();const isE=S.role==="executive";S._hero=execSnap(ps,g);
   const card=(title,sub,body,cls)=>`<div class="card ${cls||""}"><div class="cr-h"><h2>${esc(title)}</h2>${sub?`<span class="psub">${esc(sub)}</span>`:""}</div>${body}</div>`;
@@ -3113,7 +3283,7 @@ function vExec(){
   const att=attn.length?`<div class="list">${attn.slice(0,8).map(({p,m,s})=>`<div class="li clickable" style="grid-template-columns:auto 1fr auto" data-act="open-project" data-id="${esc(p.id)}"><span class="pchip num">${esc(p.code)}</span><div style="min-width:0"><div class="t">${esc(pname(p))}</div><div class="s">${esc(leadLabel(p.sponsor||"__none"))} · ${esc(p.manager||"—")}</div></div><div style="text-align:end">${statusChip(s)}<div class="psub num" style="margin-top:4px">${pct(m.prog)} / ${pct(m.planned)} · ${varChip(m.variance)}</div></div></div>`).join("")}</div>`:`<div class="empty">${esc(t("none"))}</div>`;
   const kdl=kd.length?`<div class="list">${kd.filter(x=>!isE||x.s!=="overdue").slice(0,8).map(({p,a,s})=>`<div class="li clickable" style="grid-template-columns:auto 1fr auto" data-act="open-project" data-id="${esc(p.id)}"><div class="datebox"><b class="num">${fdate(a.pe,{day:"numeric"})}</b><small>${fdate(a.pe,{month:"short"})}</small></div><div style="min-width:0"><div class="t" style="font-weight:400">${esc(a.t)}</div><div class="s">${esc(p.code)} · ${esc(pname(p))}</div></div>${isE?"":actChip(s)}</div>`).join("")}</div>`:`<div class="empty">${esc(t("none"))}</div>`;
   const sec=(t1)=>`<div class="sec-title mt">${esc(t1)}</div>`;
-  let h=sec(t("exSecOutcomes"))+outcomeStrip(ps);
+  let h=govLeadCards(ps)+sec(t("exSecOutcomes"))+outcomeStrip(ps);
   if(S.role!=="lead")h+=card(t("exLeadPerf"),t("exLeadPerfSub"),leadPerf(ps),"mt");
   h+=`<div class="grid g2 mt">${card(t("cSCurve"),t("exSCurveSub"),`<div class="legend" style="margin-bottom:6px"><span><i style="background:var(--s2)"></i>${esc(t("planned"))}</span><span><i style="background:var(--s1)"></i>${esc(t("actualDone"))}</span></div>${sCurve(ps)}`)}${card(t("cTreemap"),t("biSub"),budgetInit(ps,10))}</div>`;
   h+=`<div class="grid g2 mt">${card(t("exAttention"),t("exAttentionSub"),att)}${card(t("exKeyDel"),t(isE?"exKeyDelSubE":"exKeyDelSub"),kdl)}</div>`;
@@ -3129,7 +3299,7 @@ function vExec(){
 
 /* ================= role-based tabs, overflow menu, settings ================= */
 const TAB_ROLES={home:"*",overview:["pmo","lead","pm"],exec:["pmo","executive","lead"],kpis:["pmo","executive"],projects:"*",workplan:["pmo","lead","pm"],updates:["pmo","lead","pm"],approvals:["pmo","lead","pm"],changes:["pmo","pm"],risks:["pmo","lead","pm"],timeline:"*",data:"admin",users:"users"};
-function tabAllowed(v){const r=TAB_ROLES[v];if(!r)return false;if(r==="*")return true;if(r==="admin")return isAdmin();if(r==="users")return canManageUsers();if(v==="changes"&&S.role==="lead"&&S.crOpen)return true;return r.includes(S.role)}
+function tabAllowed(v){const r=TAB_ROLES[v];if(!r)return false;if(r==="*")return true;if(r==="admin")return isAdmin();if(r==="users")return canManageUsers();if(v==="changes"&&S.role==="lead"&&S.crOpen)return true;if(v==="kpis"&&kpiOwned())return true;return r.includes(S.role)}
 function fitTabs(){const nav=$("#tabs"),more=$("#tabMore");if(!nav||!more)return;if(document.body.classList.contains("locked")){more.style.display="none";return}const menu=more.querySelector(".tm-menu"),btn=more.querySelector(".tm-btn");
   btn.textContent=t("tabMore")+" ▾";const links=[...nav.querySelectorAll("a[data-view]")];links.forEach(a=>a.classList.remove("ovf"));
   const vis=links.filter(a=>a.style.display!=="none");more.style.display="none";menu.innerHTML="";
@@ -3207,7 +3377,7 @@ function openReportForm(){const ty=S.rpType||"monthly";
 
 /* ================= roles & access ================= */
 function isAdmin(){return S.canWrite&&S.role==="pmo"}
-function canP(pid){return S.canWrite&&(S.role==="pmo"||(S.role==="pm"&&S.myProjects.has(pid)))}
+function canP(pid){return S.canWrite&&(S.role==="pmo"||(S.role==="pm"&&S.myProjects.has(pid))||!!(S.dlgPm&&S.dlgPm.has(pid)))}
 const canManageUsers=()=>S.mode==="demo"||(S.isOwner&&!S.ownerTest)||(S.canEditArt&&S.role==="pmo"&&!S.viewAs);
 const roleDocId=uid=>String(uid||"").replace(/[^A-Za-z0-9_\-.~:@+]/g,"_").slice(0,180)||"u";
 const roleRec=uid=>uid?S.roles.find(r=>r.uid===uid):null;
@@ -3222,7 +3392,11 @@ function computeRole(){
     else{const a=accessOf(em);
       if(a){role=a.role;if(role==="lead")lead=a.lead||"";if(role==="pm")mine=new Set(pmProjectsOf(em))}
       else{const ps=pmProjectsOf(em);role=ps.length?"pm":"none";mine=new Set(ps)}}}
-  if(S.viewAs&&(S.mode==="demo"||(S.isOwner&&!S.ownerTest)||(S.canEditArt&&role==="pmo"))){role=S.viewAs.role;mine=new Set(S.viewAs.projects||[]);lead=S.viewAs.lead||""}
+  const myEm=(S.isOwner&&S.ownerTest&&S.session&&S.session.email)||S.me||"";const dl=(S.delegations||[]).filter(d=>dlgActive(d)&&sameP(d.to,myEm));
+  S.dlgLead=dl.filter(d=>d.kind==="lead"&&d.lead).map(d=>d.lead);S.dlgPm=new Set(dl.filter(d=>d.kind==="pm").flatMap(d=>d.projects||[]));S.dlgFrom=dl;
+  if(role==="none"&&S.dlgPm.size)role="pm";else if(role==="none"&&S.dlgLead.length){role="lead";lead=S.dlgLead[0]}
+  if(role==="pm")S.dlgPm.forEach(id=>mine.add(id));
+  if(S.viewAs&&(S.mode==="demo"||(S.isOwner&&!S.ownerTest)||(S.canEditArt&&role==="pmo"))){role=S.viewAs.role;mine=new Set(S.viewAs.projects||[]);lead=S.viewAs.lead||"";S.dlgLead=[];S.dlgPm=new Set();S.dlgFrom=[]}
   S.role=role;S.myProjects=mine;S.leadName=lead;
 }
 function roleBanner(){
@@ -3263,7 +3437,7 @@ function vUsers(){
   return `<div class="card"><h2>${esc(t("rolesTitle"))}</h2><div class="sub">${esc(t("rolesSub"))}</div>
     <div class="role-cards">${roleCard("pmo","lvlEditor")}${roleCard("pm","lvlContributor")}${roleCard("executive","lvlViewer")}</div>
     <p class="ro" style="margin:12px 0 0">${esc(t("rolesNote"))}</p></div>
-  ${accessCard()}${pmDirCard()}
+  ${accessCard()}${govCard()}${dlgCard()}${pmDirCard()}
   <div class="grid g3 mt"><div class="card"><div class="card-head"><div><h2>${esc(t("people"))}</h2><div class="sub">${esc(t("peopleSub",{n:num(recs.length)}))}</div></div></div>
     <div class="usearch"><input class="field" id="userQ" placeholder="${esc(t("findPerson"))}" autocomplete="off"><div id="userHits" class="uhits"></div></div>
     ${recs.length?`<div class="table-wrap" style="margin-top:14px"><table><thead><tr><th>${esc(t("person"))}</th><th>${esc(t("role"))}</th><th>${esc(t("nav_projects"))}</th><th></th></tr></thead><tbody>
@@ -3378,7 +3552,7 @@ document.addEventListener("click",async e=>{
     case"role-new":{const uid=el.dataset.uid;if(el.dataset.name)S.names[uid]=el.dataset.name;if(el.dataset.email)S.emails[uid]=el.dataset.email;const ex=roleRec(uid);const pend=S.pendingPm;S.pendingPm=null;openRoleForm(ex?{...ex,...(pend?{role:"pm",projects:[...new Set([...(ex.projects||[]),...pend.projects])]}:{})}:{uid,...(pend?{role:"pm",projects:pend.projects}:{})});break}
     case"role-edit":{const r=S.roles.find(x=>x.id===id);if(r)openRoleForm({...r});break}
     case"role-del":{const r=S.roles.find(x=>x.id===id);confirmBox(t("confirmRemoveAccess",{n:whoName(r&&r.uid)}),t("removeAccess"),async()=>{await delDoc("roles",id);toast(t("deleted"))});break}
-    case"upd-submit":{const inp=document.getElementById("sn-"+id);const note=inp?inp.value.trim():"";el.disabled=true;try{await submitUpdate(id,note);toast(t("updDone"))}catch(err){el.disabled=false}break}
+    case"upd-submit":{if(cycClosed()){toast(t("cycClosedPm",{l:curCycle().label}),true);break}const inp=document.getElementById("sn-"+id);const note=inp?inp.value.trim():"";el.disabled=true;try{await submitUpdate(id,note);toast(t("updDone"))}catch(err){el.disabled=false}break}
     case"updf":S.updFilter=el.dataset.v;render();break;
     case"dir-email":openEmailForm(+el.dataset.i);break;
     case"link-all":el.disabled=true;await linkAllPms();break;
@@ -3404,6 +3578,20 @@ document.addEventListener("click",async e=>{
     case"kpi-cat":S.kpiCat=el.dataset.v;S.kpiOut="";S.kpiOpen=null;render();break;
     case"kpi-open":S.kpiOpen=S.kpiOpen===id?null:id;render();break;
     case"kpi-edit":kpiEdit(id);break;
+    case"kpi-sign":el.disabled=true;await kpiSign(id);break;
+    case"kpi-val":kpiValForm(id);break;
+    case"bl-lock":confirmBox(t("blLockQ"),t("blLock"),async()=>{await lockBaseline(id,"")});break;
+    case"bl-rebase":{const pid=id;showModal(`<form id="frm" novalidate><div class="m-head"><h3>${esc(t("blRebase"))}</h3><button type="button" class="x" data-act="close-modal">✕</button></div><div class="m-body"><p class="ro">${esc(t("blRebaseSub"))}</p><div class="form" style="grid-template-columns:1fr"><label>${esc(t("blReason"))} *<input class="field" name="reason" maxlength="300" placeholder="${esc(t("blReasonPh"))}"></label></div><div class="err" id="frmErr"></div></div><div class="m-foot"><button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button type="submit" class="btn primary">${esc(t("blRebase"))}</button></div></form>`,true);
+      $("#frm").addEventListener("submit",async e=>{e.preventDefault();const r=String(new FormData(e.target).get("reason")||"").trim();if(!r){$("#frmErr").textContent=t("blReasonReq");return}await lockBaseline(pid,r);closeModal()});break}
+    case"bl-lock-all":{const L=S.projects.filter(p=>!p.archived&&actsOf(p.id).length&&!blOf(p.id));confirmBox(t("blLockAllQ",{n:num(L.length)}),t("blLock"),async()=>{for(const p of L){try{await lockBaseline(p.id,"",true)}catch(e){}}toast(t("blLockedOk"))});break}
+    case"cyc-publish":confirmBox(t("cycPublishQ",{l:curCycle().label}),t("cycPublish"),publishCycle);break;
+    case"cyc-view":cycView(id);break;
+    case"rec-new":openRecForm(id);break;
+    case"rec-ok":el.disabled=true;await recDecide(id,true);break;
+    case"rec-ret":showModal(`<form id="frm" novalidate><div class="m-head"><h3>${esc(t("apReturn"))}</h3><button type="button" class="x" data-act="close-modal">✕</button></div><div class="m-body"><div class="form" style="grid-template-columns:1fr"><label>${esc(t("updComment"))}<textarea class="field" name="note" rows="3"></textarea></label></div><div class="err" id="frmErr"></div></div><div class="m-foot"><button type="button" class="btn" data-act="close-modal">${esc(t("cancel"))}</button><button type="submit" class="btn primary">${esc(t("apReturn"))}</button></div></form>`,true);
+      $("#frm").addEventListener("submit",async e=>{e.preventDefault();const n=String(new FormData(e.target).get("note")||"").trim();if(!n){$("#frmErr").textContent=t("apNoteReq");return}await recDecide(id,false,n);closeModal()});break;
+    case"dlg-new":openDlgForm(el.dataset.v);break;
+    case"dlg-cancel":dlgCancel(id);break;
     case"cl-start":clStartForm(id);break;
     case"cl-cancel":S.clDraft=null;S.clErr="";renderDrawer(true);break;
     case"cl-submit":el.disabled=true;await clSubmit();break;
@@ -3429,9 +3617,9 @@ document.addEventListener("click",async e=>{
     case"ap-all":{el.disabled=true;const ids=S.updates.filter(u=>u.projectId===id&&u.status==="pending"&&canApprove(u)).map(u=>u.id);await apDecide(ids,"approved");break}
     case"pm-link":{const x=pmDirectory()[+el.dataset.i];if(!x)break;S.pendingPm={name:x.name,projects:x.projects.map(p=>p.id)};const q=$("#userQ");if(q){q.value=x.email||x.name;q.scrollIntoView({block:"center"});q.focus();userSearch(q.value)}toast(t("pickAccount",{n:x.name}),true);break}
     case"sg-open":$("#sugg").hidden=true;openDrawer(id);break;
-    case"add-act":if(!S.projects.length)return;openActForm(el.dataset.pid||S.drawer||fProjects()[0]?.id||S.projects[0].id,null);break;
+    case"add-act":if(!S.projects.length)return;if(blBlocks(el.dataset.pid||S.drawer)){toast(t("blNoAdd"),true);break}openActForm(el.dataset.pid||S.drawer||fProjects()[0]?.id||S.projects[0].id,null);break;
     case"edit-act":openActForm(id,el.dataset.aid);break;
-    case"del-act":{const pid=id,aid=el.dataset.aid;const a=actsOf(pid).find(x=>x.id===aid);confirmBox(t("confirmDelete",{n:a?a.t:""}),t("delete"),async()=>{await savePlan(pid,actsOf(pid).filter(x=>x.id!==aid));toast(t("deleted"))});break}
+    case"del-act":{const pid=id,aid=el.dataset.aid;if(blBlocks(pid)){toast(t("blNoAdd"),true);break}const a=actsOf(pid).find(x=>x.id===aid);confirmBox(t("confirmDelete",{n:a?a.t:""}),t("delete"),async()=>{await savePlan(pid,actsOf(pid).filter(x=>x.id!==aid));toast(t("deleted"))});break}
     case"actf":S.actFilter=el.dataset.v;S.actLimit=200;render();break;
     case"more-acts":S.actLimit+=200;render();break;
     case"goto-acts":S.actFilter=el.dataset.v||"overdue";location.hash="#workplan";break;
@@ -3464,12 +3652,12 @@ document.addEventListener("click",async e=>{
   }
 });
 $("#overlay").addEventListener("click",closeDrawer);
-document.addEventListener("submit",e=>{if(e.target&&e.target.id==="tplForm"){e.preventDefault();saveTpl(e.target)}if(e.target&&e.target.id==="loginForm"){e.preventDefault();doLogin(e.target)}});
+document.addEventListener("submit",e=>{if(e.target&&e.target.id==="govForm"){e.preventDefault();saveGov(e.target);return}if(e.target&&e.target.id==="tplForm"){e.preventDefault();saveTpl(e.target)}if(e.target&&e.target.id==="loginForm"){e.preventDefault();doLogin(e.target)}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#modal").classList.contains("open"))closeModal();else if(S.drawer)closeDrawer()}});
 document.addEventListener("input",e=>{const x=e.target;if(x.classList&&x.classList.contains("tpl-in")){const ty=x.dataset.ty,f=x.form;const s=PH_LIST.reduce((a,k)=>a+(+f.elements[ty+"."+k].value||0),0);const c=f.querySelector(`.tpl-sum[data-ty="${ty}"]`);if(c){c.textContent=num(s);c.style.color=s===100?"":"var(--critical)"}return}if(x.classList&&x.classList.contains("pr-range")){const n=x.parentNode.querySelector(".pr-num");if(n)n.value=x.value}});
 document.addEventListener("focusout",e=>{if(S.drawerDirty&&e.target.matches&&e.target.matches("input.pr-num"))setTimeout(()=>{if(S.drawerDirty)renderDrawer()},0)});
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches&&e.target.matches("input.pr-num")){e.target.blur()}});
-document.addEventListener("change",e=>{const x=e.target;if(x.classList&&x.classList.contains("wp-ph")){setWpPhase(x.dataset.pid,x.dataset.wp,x.value);return}if(x.id==="wType"){setProjType(x.dataset.pid,x.value);return}if(x.id==="updOff"){S.updOfficer=x.value;render();return}if(x.classList&&(x.classList.contains("pr-range")||x.classList.contains("pr-num"))){let v=+x.value;if(isNaN(v))v=0;setActPr(x.dataset.pid,x.dataset.aid,v);return}
+document.addEventListener("change",e=>{const x=e.target;if(x.classList&&x.classList.contains("wp-ph")){setWpPhase(x.dataset.pid,x.dataset.wp,x.value);return}if(x.id==="dlgKind"){dlgFormRefresh();return}if(x.id==="wType"){setProjType(x.dataset.pid,x.value);return}if(x.id==="updOff"){S.updOfficer=x.value;render();return}if(x.classList&&(x.classList.contains("pr-range")||x.classList.contains("pr-num"))){let v=+x.value;if(isNaN(v))v=0;setActPr(x.dataset.pid,x.dataset.aid,v);return}
   if(x.classList&&x.classList.contains("ev-input")&&x.files&&x.files.length){uploadEvidence(x.dataset.pid,x.dataset.aid,[...x.files]);x.value="";return}
   if(e.target.id==="fileIn"&&e.target.files[0])analyzeFile(e.target.files[0]);if(e.target.id==="rmMissing"&&S.imp){S.imp.removeMissing=e.target.checked}});
 document.addEventListener("dragover",e=>{const d=e.target.closest&&e.target.closest("#drop");if(d){e.preventDefault();d.classList.add("over")}});

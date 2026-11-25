@@ -41,3 +41,15 @@ Only people added to Tamkeen get any data. That means an owner, anyone on the Us
 **Test link (Codespace).** Port 5173 is set to **Public**, so the link opens on any device without a GitHub account. The test sign-in asks only for an email. Anyone who has the link and knows a registered email can therefore sign in as that person. Keep the test link for test data and trusted testers. Production uses Microsoft sign-in (Entra ID).
 
 **After the Codespace restarts**, GitHub resets the port to Private, so only the owner can open the link. To reopen it to colleagues: Ports tab → right-click 5173 → Port Visibility → Public. The first time someone opens the link, GitHub shows a "You are about to access a development port" page; they tap **Continue**.
+
+## Permissions enforced by the server (from 25 Nov 2026)
+| Who | Can change |
+|---|---|
+| Owner / PMO | Everything, on every project ("super users"); users, settings, KPIs, baselines, published cycles, delegations |
+| Head of the PMO | As PMO, plus KPI sign-off and the escalated-items list |
+| Project manager | Their own projects (and any they cover for through a delegation) |
+| Sector lead | Projects in their sector: approvals, risks, closure decisions; can delegate their own approvals |
+| KPI owner | The current value of the KPIs they own |
+| Executive | Nothing (read-only) |
+
+Nobody can approve their own submission. See business-rules.md → Governance rules.

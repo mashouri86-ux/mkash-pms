@@ -10,7 +10,7 @@ namespace MKAsh.Api.Controllers;
 
 /// <summary>The dashboard's collections, stored in the database.</summary>
 [ApiController, Route("api/docs")]
-public class DocsController(PmsDbContext db, Account me) : ControllerBase
+public class DocsController(PmsDbContext db, Account me, ProjectAccess access) : ControllerBase
 {
     private static JsonNode? Parse(string json) => JsonNode.Parse(json);
 
@@ -49,12 +49,18 @@ public class DocsController(PmsDbContext db, Account me) : ControllerBase
         if (!DocsRules.Collections.Contains(collection)) return NotFound(new { error = "Unknown collection." });
         if (string.IsNullOrWhiteSpace(id) || id.Length > 200) return BadRequest(new { error = "Bad id." });
         if (body.ValueKind != JsonValueKind.Object) return BadRequest(new { error = "A record must be a JSON object." });
-        if (DocsRules.AdminOnly.Contains(collection) && !await me.IsAdminAsync(ct)) return StatusCode(403, new { error = "Only the PMO can change this." });
         var json = body.GetRawText();
         if (Encoding.UTF8.GetByteCount(json) > DocsRules.MaxJsonBytes) return StatusCode(413, new { error = "Record too large." });
+        var neu = JsonNode.Parse(json) as JsonObject ?? new JsonObject();
+        var doc = await db.Docs.FirstOrDefaultAsync(d => d.Collection == collection && d.Id == id, ct);
+        var old = doc is { Deleted: false } ? JsonNode.Parse(doc.Json) as JsonObject : null;
+        var admin = await me.IsAdminAsync(ct);
+        if (DocsRules.AdminOnly.Contains(collection) && !admin && !(collection == "kpis" && GovernanceRules.IsKpiOwnerValueUpdate(old, neu, me.Email)))
+            return StatusCode(403, new { error = "Only the PMO can change this." });
+        var refusal = await GovernanceRules.CheckPutAsync(collection, id, neu, old, me.Email, admin, access, db, ct);
+        if (refusal is not null) return StatusCode(refusal.Status, new { error = refusal.Error });
 
         var now = DateTime.UtcNow;
-        var doc = await db.Docs.FirstOrDefaultAsync(d => d.Collection == collection && d.Id == id, ct);
         if (doc is null) db.Docs.Add(doc = new Doc { Collection = collection, Id = id });
         doc.Json = json;
         doc.Deleted = false;
@@ -72,6 +78,8 @@ public class DocsController(PmsDbContext db, Account me) : ControllerBase
         if (DocsRules.AdminOnly.Contains(collection) && !await me.IsAdminAsync(ct)) return StatusCode(403, new { error = "Only the PMO can change this." });
         var doc = await db.Docs.FirstOrDefaultAsync(d => d.Collection == collection && d.Id == id, ct);
         if (doc is null) return NoContent();
+        var refusal = await GovernanceRules.CheckDeleteAsync(collection, id, doc.Deleted ? null : JsonNode.Parse(doc.Json) as JsonObject, await me.IsOwnerAsync(ct), access, ct);
+        if (refusal is not null) return StatusCode(refusal.Status, new { error = refusal.Error });
         // Kept as a tombstone so other open screens learn about the deletion.
         var now = DateTime.UtcNow;
         doc.Deleted = true;
