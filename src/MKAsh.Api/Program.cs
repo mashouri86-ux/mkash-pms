@@ -13,11 +13,25 @@ using MKAsh.Api.Services;
 
 // The web app (the dashboard screens) lives in /web. Run from the repository it is served from there;
 // a published build carries it in wwwroot.
-var repoWeb = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "web"));
+// Look upwards from where the server runs for the repository's web folder; otherwise use wwwroot.
+static string? FindWebRoot()
+{
+    foreach (var start in new[] { Directory.GetCurrentDirectory(), AppContext.BaseDirectory })
+    {
+        for (var dir = new DirectoryInfo(start); dir is not null; dir = dir.Parent)
+        {
+            var web = Path.Combine(dir.FullName, "web");
+            if (File.Exists(Path.Combine(web, "index.html")) && Directory.Exists(Path.Combine(web, "system"))) return web;
+            var root = Path.Combine(dir.FullName, "wwwroot");
+            if (File.Exists(Path.Combine(root, "index.html"))) return root;
+        }
+    }
+    return null;
+}
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
-    WebRootPath = Directory.Exists(repoWeb) ? repoWeb : "wwwroot",
+    WebRootPath = FindWebRoot(),
 });
 var cfg = builder.Configuration;
 

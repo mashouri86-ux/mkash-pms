@@ -6,7 +6,7 @@ Browser
   web/system/claude-shim.js ─ the system data layer
         │  same-origin requests with the sign-in cookie
         ▼
-MKAsh.Api (ASP.NET Core 8)
+MKAsh.Api (ASP.NET Core 10, LTS)
   /signin, /signout ............ Entra ID (production) or the test form (development)
   /api/me, /api/profiles ....... the signed-in account, owner/PMO flags, names
   /api/docs/{collection} ....... list / save / delete records

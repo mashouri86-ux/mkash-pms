@@ -13,10 +13,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - run: dotnet restore MKAsh.sln
       - run: dotnet build MKAsh.sln --no-restore -c Release
       - run: dotnet test MKAsh.sln --no-build -c Release --logger "console;verbosity=normal"
+      - name: Release package contains the server and all screens
+        run: |
+          dotnet publish src/MKAsh.Api -c Release -o out
+          test -f out/MKAsh.Api.dll
+          test -f out/wwwroot/index.html
+          test -f out/wwwroot/system/claude-shim.js
+          test -f out/wwwroot/data/brand/tamkeen-logo.png
+          echo "Release package OK: $(du -sh out | cut -f1)"
 
   web:
     name: Dashboard screens and data layer
@@ -58,7 +66,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - name: Start the API (Development mode, demo users, seeded data)
         working-directory: src/MKAsh.Api
         env:
@@ -93,7 +101,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
