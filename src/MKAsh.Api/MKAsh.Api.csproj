@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>MKAsh.Api</RootNamespace>
     <UserSecretsId>mkash-pms-api</UserSecretsId>
+    <!-- The server serves the screens from web/ itself (see Program.cs); no static web assets manifest. -->
+    <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
   </PropertyGroup>
 
   <ItemGroup>
