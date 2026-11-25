@@ -7,12 +7,13 @@ public static class DocsRules
     {
         "projects", "risks", "milestones", "plans", "evidence", "roles", "updates",
         "changes", "kpis", "closures", "directory", "settings", "access",
+        "delegations", "cycles", "recovery",
     };
 
     /// <summary>Same as the dashboard's rules: user lists, roles, settings and KPI values are PMO-only.</summary>
     public static readonly HashSet<string> AdminOnly = new(StringComparer.Ordinal)
     {
-        "roles", "settings", "directory", "access", "kpis",
+        "roles", "settings", "directory", "access", "kpis", "cycles",
     };
 
     /// <summary>Largest JSON accepted for one record (a work plan can be a few hundred KB).</summary>
