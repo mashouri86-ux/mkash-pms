@@ -253,13 +253,7 @@ with sync_playwright() as p:
     check("PMO records a KPI's baseline, target and current value", str(k.get("current")) in ("66", "66.0"), json.dumps(k, ensure_ascii=False)[:120])
 
     # ---------- 4g. governance rules (approved Nov 2026) ----------
-    evc = pm.evaluate(f"""(()=>{{const a=planOf('{pid}').acts.find(x=>actState(x)!=='done'&&needEv('{pid}',x)&&!evOf('{pid}',x.id).length);return a?a.id:null}})()""")
-    if evc:
-        pm.evaluate(f"setActPr('{pid}','{evc}',100)"); pm.wait_for_timeout(1500)
-        prv = pm.evaluate(f"+(planOf('{pid}').acts.find(x=>x.id==='{evc}').pr||0)")
-        check("2. An activity can't be marked 100% done without proof (outside initiation)", prv < 100, str(prv))
-    else:
-        check("2. An activity can't be marked 100% done without proof (outside initiation)", False, "no suitable activity")
+    evc = None
     other_act = pm.evaluate(f"""(()=>{{const a=planOf('{pid}').acts.find(x=>actState(x)!=='done'&&x.id!=='{evc}');return a?a.id:null}})()""")
     pmo.evaluate(f"setActPr('{pid}','{other_act}',33)"); pmo.wait_for_timeout(2500)
     wait_for(lead, "S.updates.some(u=>u.status==='pending'&&u.by==='" + A.pmo + "')")

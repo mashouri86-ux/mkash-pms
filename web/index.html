@@ -1734,9 +1734,9 @@ const prQ={};
 function patchAct(a,pr){const o={...a,pr};if(pr>=100){o.st="done";if(!o.ae)o.ae=isoToday()}else{o.st=pr>0?"inProgress":"notStarted";delete o.ae}if(pr>0&&!o.as)o.as=isoToday();return o}
 function setActPr(pid,aid,pr){
   pr=clamp(Math.round(+pr||0),0,100);const pl=planOf(pid);if(!pl)return;const cur=pl.acts.find(x=>x.id===aid);if(!cur||+cur.pr===pr)return;
-  if(pr>=100&&needEv(pid,cur)&&!evOf(pid,aid).length){toast(t("evFirst"),true);if(S.drawer)renderDrawer(true);else scheduleRender();return}
   const q=prQ[pid]||(prQ[pid]={ch:new Map(),t:0,busy:false});if(!q.orig)q.orig=new Map();if(!q.orig.has(aid))q.orig.set(aid,{...cur});q.ch.set(aid,pr);
   S.plans=S.plans.map(x=>x.id===pid?{...x,acts:x.acts.map(a=>a.id===aid?patchAct(a,pr):a)}:x);
+  if(pr>=100&&!evOf(pid,aid).length)toast(t("doneHint"));
   scheduleRender();
   clearTimeout(q.t);q.t=setTimeout(()=>flushPr(pid),600);
 }
@@ -1849,7 +1849,6 @@ function openActForm(pid,aid){
     for(const k of ["as","ae","n","pmo"])if(!o[k])delete o[k];
     const list=acts.map(x=>({...x}));const i=list.findIndex(x=>x.id===o.id);if(i>=0)list[i]=o;else list.push(o);
     if(locked){const o0=acts.find(x=>x.id===a.id)||a;o.ps=o0.ps;o.pe=o0.pe}
-    if((+o.pr>=100||o.st==="done")&&needEv(pid,o)&&!evOf(pid,o.id).length){$("#frmErr").textContent=t("evFirst");return}
     const btn=e.target.querySelector("[type=submit]");btn.disabled=true;
     try{await savePlan(pid,list,acts);closeModal();toast(t("saved"))}catch(err){btn.disabled=false}
   });
@@ -2286,13 +2285,10 @@ function drawerWeights(p,acts){const b=wpBreakdown(p,acts);const adm=isAdmin();
     <div class="w-kpis"><div><div class="psub">${esc(t("wWeighted"))}</div><b class="num">${pct(b.prog)}</b> <span class="psub">/ ${pct(b.planned)} ${esc(t("planned"))}</span></div><div><div class="psub">${esc(t("wSimple"))}</div><b class="num">${pct(simple)}</b></div></div></div>
     <div class="psub" style="margin:10px 0 4px">${esc(t("wTplOf"))}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${tplChips}</div>
     <p class="ro" style="margin:10px 0 0">${esc(t("wHint"))}</p></div>
-  <div class="table-wrap"><table><thead><tr><th>${esc(t("workPackage"))}</th><th>${esc(t("wPhase"))}</th><th class="r">${esc(t("wSpan"))}</th><th class="r">${esc(t("wWpProg"))}</th><th class="r">${esc(t("wWeight"))}</th><th class="r">${esc(t("wPts"))}</th><th>${esc(t("evRuleCol"))}</th></tr></thead><tbody>
-  ${b.rows.map(r=>`<tr><td style="max-width:260px"><div style="unicode-bidi:plaintext">${esc(r.wp)}</div><div class="psub">${esc(t("wActs",{n:num(r.n)}))}</div></td><td>${phCtl(r)}</td><td class="r num">${num(r.span)}</td><td class="r num">${pct(r.prog)}</td><td class="r num"><b>${num(r.w*100,1)}%</b><div class="wbar"><i style="width:${Math.min(100,r.w*100*2)}%"></i></div></td><td class="r num">${num(r.w*r.prog,1)}</td><td>${evRuleCell(p,r)}</td></tr>`).join("")}
-  <tr class="w-tot"><td colspan="4">${esc(t("wTotal"))}</td><td class="r num">100%</td><td class="r num"><b>${num(b.prog,1)}</b></td><td></td></tr></tbody></table></div>
+  <div class="table-wrap"><table><thead><tr><th>${esc(t("workPackage"))}</th><th>${esc(t("wPhase"))}</th><th class="r">${esc(t("wSpan"))}</th><th class="r">${esc(t("wWpProg"))}</th><th class="r">${esc(t("wWeight"))}</th><th class="r">${esc(t("wPts"))}</th></tr></thead><tbody>
+  ${b.rows.map(r=>`<tr><td style="max-width:260px"><div style="unicode-bidi:plaintext">${esc(r.wp)}</div><div class="psub">${esc(t("wActs",{n:num(r.n)}))}</div></td><td>${phCtl(r)}</td><td class="r num">${num(r.span)}</td><td class="r num">${pct(r.prog)}</td><td class="r num"><b>${num(r.w*100,1)}%</b><div class="wbar"><i style="width:${Math.min(100,r.w*100*2)}%"></i></div></td><td class="r num">${num(r.w*r.prog,1)}</td></tr>`).join("")}
+  <tr class="w-tot"><td colspan="4">${esc(t("wTotal"))}</td><td class="r num">100%</td><td class="r num"><b>${num(b.prog,1)}</b></td></tr></tbody></table></div>
   ${b.dup?`<p class="ro" style="margin-top:8px">${esc(t("wDup",{n:num(b.dup)}))}</p>`:""}`}
-function evRuleCell(p,r){const pl=planOf(p.id)||{};const ex=(pl.noEv||[]).includes(r.wp),init=r.phase==="init";
-  if(init)return `<span class="chip dim">${esc(t("evNotInit"))}</span>`;
-  return isAdmin()?`<label class="chk"><input type="checkbox" class="wp-noev" data-pid="${esc(p.id)}" data-wp="${esc(r.wp)}" ${ex?"checked":""}> ${esc(t("evNotNeeded"))}</label>`:`<span class="chip ${ex?"dim":""}">${esc(t(ex?"evNotNeeded":"evRequired"))}</span>`}
 async function setWpPhase(pid,wp,v){const pl=planOf(pid);if(!pl)return;const wpPhase={...(pl.wpPhase||{})};if(v)wpPhase[wp]=v;else delete wpPhase[wp];try{await putDoc("plans",{...pl,wpPhase});toast(t("saved"))}catch(e){}}
 async function setProjType(pid,v){const p=projById(pid);if(!p)return;try{await putDoc("projects",{...p,ptype:v});toast(t("saved"))}catch(e){}}
 function tplCard(){if(!isAdmin())return "";const T=curTpl();
@@ -2428,9 +2424,8 @@ function pendAll(){const out=[];const G=gov();
   return out}
 const pendOf=(kind,id)=>pendAll().find(x=>x.kind===kind&&x.id===id);
 const ageChip=x=>x?`<span class="age ${x.esc?"esc":x.late?"late":""}" data-tip="${esc(t(x.esc?"slaEscTip":"slaTip",{n:num(x.lim),e:num(gov().escalate)}))}">${sIco("hourglass","s-ico xs")}${esc(t("wdN",{n:num(x.age)}))}</span>`:"";
-/* evidence: required to finish an activity, except initiation-phase work packages and those the PMO exempts */
-function needEv(pid,a){const pl=planOf(pid)||{};const wp=a.wp||"—";if((pl.noEv||[]).includes(wp))return false;const ph=(pl.wpPhase||{})[wp]||autoPhase(wp);return ph!=="init"}
-async function setNoEv(pid,wp,on){const pl=planOf(pid);if(!pl||!isAdmin())return;const L=new Set(pl.noEv||[]);if(on)L.add(wp);else L.delete(wp);try{await putDoc("plans",{...pl,noEv:[...L]});toast(t("saved"))}catch(e){}}
+/* evidence is optional: attaching proof is encouraged, never required to mark an activity done */
+const needEv=()=>true;
 /* baselines */
 const blOf=pid=>(planOf(pid)||{}).baseline||null;
 const blBlocks=pid=>!!blOf(pid)&&!isAdmin();
@@ -3662,7 +3657,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("#modal").clas
 document.addEventListener("input",e=>{const x=e.target;if(x.classList&&x.classList.contains("tpl-in")){const ty=x.dataset.ty,f=x.form;const s=PH_LIST.reduce((a,k)=>a+(+f.elements[ty+"."+k].value||0),0);const c=f.querySelector(`.tpl-sum[data-ty="${ty}"]`);if(c){c.textContent=num(s);c.style.color=s===100?"":"var(--critical)"}return}if(x.classList&&x.classList.contains("pr-range")){const n=x.parentNode.querySelector(".pr-num");if(n)n.value=x.value}});
 document.addEventListener("focusout",e=>{if(S.drawerDirty&&e.target.matches&&e.target.matches("input.pr-num"))setTimeout(()=>{if(S.drawerDirty)renderDrawer()},0)});
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches&&e.target.matches("input.pr-num")){e.target.blur()}});
-document.addEventListener("change",e=>{const x=e.target;if(x.classList&&x.classList.contains("wp-ph")){setWpPhase(x.dataset.pid,x.dataset.wp,x.value);return}if(x.classList&&x.classList.contains("wp-noev")){setNoEv(x.dataset.pid,x.dataset.wp,x.checked);return}if(x.id==="dlgKind"){dlgFormRefresh();return}if(x.id==="wType"){setProjType(x.dataset.pid,x.value);return}if(x.id==="updOff"){S.updOfficer=x.value;render();return}if(x.classList&&(x.classList.contains("pr-range")||x.classList.contains("pr-num"))){let v=+x.value;if(isNaN(v))v=0;setActPr(x.dataset.pid,x.dataset.aid,v);return}
+document.addEventListener("change",e=>{const x=e.target;if(x.classList&&x.classList.contains("wp-ph")){setWpPhase(x.dataset.pid,x.dataset.wp,x.value);return}if(x.id==="dlgKind"){dlgFormRefresh();return}if(x.id==="wType"){setProjType(x.dataset.pid,x.value);return}if(x.id==="updOff"){S.updOfficer=x.value;render();return}if(x.classList&&(x.classList.contains("pr-range")||x.classList.contains("pr-num"))){let v=+x.value;if(isNaN(v))v=0;setActPr(x.dataset.pid,x.dataset.aid,v);return}
   if(x.classList&&x.classList.contains("ev-input")&&x.files&&x.files.length){uploadEvidence(x.dataset.pid,x.dataset.aid,[...x.files]);x.value="";return}
   if(e.target.id==="fileIn"&&e.target.files[0])analyzeFile(e.target.files[0]);if(e.target.id==="rmMissing"&&S.imp){S.imp.removeMissing=e.target.checked}});
 document.addEventListener("dragover",e=>{const d=e.target.closest&&e.target.closest("#drop");if(d){e.preventDefault();d.classList.add("over")}});

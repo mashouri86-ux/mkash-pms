@@ -111,8 +111,8 @@ public static class GovernanceRules
         {
             if (!JsonNode.DeepEquals(old?["baseline"], neu["baseline"]) || !JsonNode.DeepEquals(old?["baselineHist"], neu["baselineHist"]))
                 return new(403, "Only the PMO can lock or change a baseline.");
-            if (!JsonNode.DeepEquals(old?["wpPhase"], neu["wpPhase"]) || !JsonNode.DeepEquals(old?["noEv"], neu["noEv"]))
-                return new(403, "Only the PMO can change work-package phases or evidence exemptions.");
+            if (!JsonNode.DeepEquals(old?["wpPhase"], neu["wpPhase"]))
+                return new(403, "Only the PMO can change work-package phases.");
             if (old?["baseline"] is JsonObject && !SameSchedule(old, neu))
                 return new(403, "The baseline is locked: planned dates and activities change only through an approved change request.");
             var sub = S(neu["submitted"], "period");
