@@ -12,7 +12,7 @@ Tamkeen (تمكين) is the project management system of the Ministry of Social 
 |---|---|---|
 | Screens | The dashboard, served by the system. It has every page: Home (strategy roadmap), Overview, Leadership, KPIs, Projects, Work plan, Progress updates, Approvals, Change requests, Risks, Timeline, Data and Users. | `web/index.html`, `web/data` |
 | System data layer | Connects the screens to the server: records, files, sign-in and downloads | `web/system/claude-shim.js` |
-| Server | ASP.NET Core 8. It handles sign-in, the record store, file uploads and live updates. | `src/MKAsh.Api` |
+| Server | ASP.NET Core 10 (LTS, supported to November 2028). It handles sign-in, the record store, file uploads and live updates. | `src/MKAsh.Api` |
 | Business rules library | Progress, weighting, status, KPIs, reporting periods and permissions as .NET code, tested against the dashboard's figures | `src/MKAsh.Core`, `tests` |
 | Starting data | The 50 PQI projects and their work plans | `database/seed/docs` |
 
