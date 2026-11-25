@@ -17,6 +17,14 @@ jobs:
       - run: dotnet restore MKAsh.sln
       - run: dotnet build MKAsh.sln --no-restore -c Release
       - run: dotnet test MKAsh.sln --no-build -c Release --logger "console;verbosity=normal"
+      - name: Release package contains the server and all screens
+        run: |
+          dotnet publish src/MKAsh.Api -c Release -o out
+          test -f out/MKAsh.Api.dll
+          test -f out/wwwroot/index.html
+          test -f out/wwwroot/system/claude-shim.js
+          test -f out/wwwroot/data/brand/tamkeen-logo.png
+          echo "Release package OK: $(du -sh out | cut -f1)"
 
   web:
     name: Dashboard screens and data layer
