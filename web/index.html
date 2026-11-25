@@ -301,7 +301,26 @@ td.r,th.r{text-align:end}
 .sn-hero{position:relative;border-radius:20px;overflow:hidden;color:#fff;margin:4px 0 16px;background:radial-gradient(900px 320px at 85% -20%,rgba(162,148,117,.4),transparent 60%),linear-gradient(135deg,#8A1538 0%,#6d1030 55%,#511C3C 100%);box-shadow:0 10px 30px rgba(81,28,60,.22)}
 .sn-hero-in{display:flex;gap:36px;align-items:center;padding:26px 34px;flex-wrap:wrap}
 .sn-ringbox{position:relative;width:176px;height:176px;flex:none}.sn-ringtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.sn-ringtxt b{font-size:44px;line-height:1;font-weight:700}.sn-ringtxt span{opacity:.8;font-size:13px;margin-top:4px}
-.sn-verdict{flex:1;min-width:260px}.sn-eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;opacity:.75;margin-bottom:10px}
+.sn-verdict{flex:1;min-width:260px}
+.sn-side{flex:0 1 420px;min-width:290px;align-self:stretch;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.sn-side-h{font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;opacity:.75}
+.sn-mps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 8px}
+.sn-mp{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:7px 8px;border-radius:10px;min-width:0}.sn-mpr{display:flex;align-items:center;gap:7px}.sn-mp:hover{background:rgba(255,255,255,.1)}
+.sn-mpi{width:28px;height:28px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--oc)}.sn-mpi .s-ico{width:17px;height:17px}
+.sn-mpt{font-size:11.5px;line-height:1.3;opacity:.88;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.sn-mp b{font-size:17px}
+.sn-mpd{width:8px;height:8px;border-radius:50%;flex:none}.sn-mpd.c-onTrack{background:#7fe0c9}.sn-mpd.c-atRisk{background:#F3D68A}.sn-mpd.c-delayed{background:#ffb3b0}
+.sn-cyc{display:flex;align-items:baseline;gap:10px;color:#fff;text-decoration:none}.sn-cyc b{font-size:34px;line-height:1}.sn-cyc b small{font-size:16px;opacity:.6}.sn-cyc span{opacity:.85;font-size:13px}
+.sn-cbar,.sn-kbar{display:flex;height:9px;border-radius:6px;overflow:hidden;background:rgba(255,255,255,.16)}.sn-cbar i{background:#fff}.sn-cbar i.e{background:#E9C56B}
+.sn-cl,.sn-kl{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;opacity:.9}.sn-cl span{display:inline-flex;align-items:center;gap:6px}.sn-dot.g{background:rgba(255,255,255,.3)}
+.sn-cyc2{display:inline-flex;align-items:center;gap:7px;color:#fff;text-decoration:none;font-size:13px;margin-top:auto;padding-top:6px;border-top:1px solid rgba(255,255,255,.14)}.sn-cyc2 b{font-size:16px}.sn-cyc2:hover{text-decoration:underline}
+.sn-kbar i.c-onTrack{background:#7fe0c9}.sn-kbar i.c-atRisk{background:#F3D68A}.sn-kbar i.c-delayed{background:#ffb3b0}.sn-kbar i.c-noLinks{background:rgba(255,255,255,.35)}
+.sn-kl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;font-size:12.5px}.sn-kl span{display:inline-flex;align-items:center;gap:7px;color:#fff!important}.sn-kl b{font-size:18px}.sn-kl .c-onTrack .s-ico{color:#7fe0c9}.sn-kl .c-atRisk .s-ico{color:#F3D68A}.sn-kl .c-delayed .s-ico{color:#ffb3b0}
+[data-theme=dark] .sn-tico,[data-theme=dark] .sn-sico,[data-theme=dark] .ins-ic{background:rgba(240,170,190,.13);color:#f0aabe}
+[data-theme=dark] .sn-tile.good .sn-tico,[data-theme=dark] .sn-s.good .sn-sico{background:rgba(127,224,201,.13);color:#7fe0c9}
+[data-theme=dark] .sn-tile.amber .sn-tico,[data-theme=dark] .sn-s.amber .sn-sico{background:rgba(243,214,138,.15);color:#F3D68A}
+[data-theme=dark] .sn-s.red .sn-sico,[data-theme=dark] .ins-bad .ins-ic{background:#c0475f;color:#fff}
+@keyframes snDraw{from{stroke-dasharray:0 1000}}main.anim .sn-arc{animation:snDraw 1.3s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){main.anim .sn-arc{animation:none}}.sn-eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;opacity:.75;margin-bottom:10px}
 .sn-big{display:flex;align-items:center;gap:14px;font-size:34px;font-weight:700;line-height:1.15}.sn-vico{display:inline-flex;width:58px;height:58px;border-radius:16px;align-items:center;justify-content:center;background:rgba(255,255,255,.14);flex:none}.sn-vico .s-ico{width:34px;height:34px}
 .sn-vico.c-onTrack{color:#7fe0c9}.sn-vico.c-atRisk{color:#F3D68A}.sn-vico.c-delayed{color:#ffb3b0}
 .sn-legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:14px;opacity:.92;align-items:center}.sn-legend span{display:inline-flex;align-items:center;gap:7px}.sn-dot{width:10px;height:10px;border-radius:3px;display:inline-block}.sn-dot.w{background:#fff}.sn-dot.y{background:#E9C56B}
@@ -621,7 +640,6 @@ td{font-size:13px}
   <a class="brand" href="#home"><span class="brand-min" hidden><img src="data/brand/ministry-logo.png" alt="" onload="this.parentNode.hidden=false" onerror="this.parentNode.remove()"></span><img class="brand-logo" src="data/brand/tamkeen-logo-white.png" alt="Tamkeen · تمكين"><span class="brand-sub" data-i18n="portfolioOffice"></span></a>
   <nav class="tabs" id="tabs">
     <a href="#home" data-view="home" data-i18n="nav_home"></a>
-    <a href="#snap" data-view="snap" data-i18n="nav_snap"></a>
     <a href="#overview" data-view="overview" data-i18n="nav_overview"></a>
     <a href="#exec" data-view="exec" data-i18n="nav_exec"></a>
     <a href="#kpis" data-view="kpis" data-i18n="nav_kpis"></a>
@@ -816,7 +834,7 @@ en:{
   evCount:"{n} evidence file(s)", evMissingOne:"Completed — evidence not attached yet", attach:"Attach evidence", attachHint:"Attach PDFs or images (up to 20 MB each) as evidence of completion. Save Word, Excel or PowerPoint files as PDF first.",
   evDemo:"Attaching files works in the published dashboard, not in this preview.", evNoUpload:"Only people with Editor access to this dashboard can attach or remove evidence files.",
   evFAll:"All activities", evFNeed:"Done · missing evidence", evFHas:"With evidence", uploading:"Uploading…", uploaded:"{n} file(s) attached",
-  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",nav_snap:"Snapshot",title_snap:"Snapshot",sub_snap:"The portfolio in one look · {n} projects",snEyebrow:"Strategy delivery · {d}",snOnPlan:"On plan",snBehind:"{n} points behind plan",snDelivered:"delivered",snActual:"Actual",snPlanned:"Planned",snNeed:"{n} of {m} projects need attention",snProjects:"Projects",snBudget:"Budget",snKpis:"Strategic KPIs on track",snOverdue:"Overdue activities",snDue:"Key deliverables · next 30 days",snHealth:"Project health",snPillars:"Strategy pillars",snInits:"Your initiatives",snNProj:"{n} projects",snNProj1:"1 project",snAttention:"Needs attention",snVsPlan:" · plan {p}",snFoot:"Click any tile for the details.",ovEyebrow:"Portfolio performance · {d}",snDue30:"Due in 30 days",snNoEv:"Done, no evidence yet",snDecisions:"Awaiting decision",snKpiOk:"{n} of {m} KPIs on track",snCrAwait:"Change requests for me",snClAwait:"Closures for me",snScheduled:"Projects scheduled",snStarted:"Started",snEndYear:"Ending in {y}",snMsDue:"Milestones · next 30 days",snMsLate:"Overdue milestones",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
+  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",nav_snap:"Snapshot",title_snap:"Snapshot",sub_snap:"The portfolio in one look · {n} projects",snEyebrow:"Strategy delivery · {d}",snOnPlan:"On plan",snBehind:"{n} points behind plan",snDelivered:"delivered",snActual:"Actual",snPlanned:"Planned",snNeed:"{n} of {m} projects need attention",snProjects:"Projects",snBudget:"Budget",snKpis:"Strategic KPIs on track",snOverdue:"Overdue activities",snDue:"Key deliverables · next 30 days",snHealth:"Project health",snPillars:"Strategy pillars",snInits:"Your initiatives",snNProj:"{n} projects",snNProj1:"1 project",snAttention:"Needs attention",snVsPlan:" · plan {p}",snFoot:"Click any tile for the details.",snCycle:"This reporting cycle",ovEyebrow:"Portfolio performance · {d}",snDue30:"Due in 30 days",snNoEv:"Done, no evidence yet",snDecisions:"Awaiting decision",snKpiOk:"{n} of {m} KPIs on track",snCrAwait:"Change requests for me",snClAwait:"Closures for me",snScheduled:"Projects scheduled",snStarted:"Started",snEndYear:"Ending in {y}",snMsDue:"Milestones · next 30 days",snMsLate:"Overdue milestones",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
   evDelete:"Remove file", confirmEvDelete:"Remove “{n}”? The file will be deleted for everyone.", evNotUploader:"Only the person who uploaded this file can remove it.",
   doneHint:"Marked complete — remember to attach evidence (📎).", fDoneNoEv:"Done · no evidence", evDone:"Completed activities", evWith:"With evidence", evMissing:"Missing evidence", evFiles:"Files",
   cProjBars:"Planned vs actual progress by project", cProjBarsSub:"Planned and actual completion for each project, with the variance in points", sortCode:"By code", sortVariance:"Most behind", sortActual:"Most complete",
@@ -913,7 +931,7 @@ ar:{
   evCount:"{n} ملف شواهد", evMissingOne:"منجز — لم تُرفق الشواهد بعد", attach:"إرفاق شاهد", attachHint:"أرفق ملفات PDF أو صورًا (حتى 20 ميجابايت لكل ملف) كشواهد على الإنجاز. احفظ ملفات Word أو Excel أو PowerPoint بصيغة PDF أولًا.",
   evDemo:"إرفاق الملفات يعمل في لوحة المعلومات المنشورة وليس في هذه المعاينة.", evNoUpload:"إرفاق ملفات الشواهد أو حذفها متاح فقط لمن لديهم صلاحية محرر.",
   evFAll:"كل الأنشطة", evFNeed:"منجزة · بدون شواهد", evFHas:"لها شواهد", uploading:"جارٍ الرفع…", uploaded:"تم إرفاق {n} ملف",
-  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",nav_snap:"لمحة",title_snap:"لمحة",sub_snap:"المحفظة بنظرة واحدة · {n} مشروعًا",snEyebrow:"تنفيذ الاستراتيجية · {d}",snOnPlan:"وفق الخطة",snBehind:"متأخر عن الخطة {n} نقطة",snDelivered:"منجز",snActual:"الفعلي",snPlanned:"المخطط",snNeed:"{n} من {m} مشروعًا تحتاج متابعة",snProjects:"المشاريع",snBudget:"الميزانية",snKpis:"مؤشرات استراتيجية على المسار",snOverdue:"أنشطة متأخرة",snDue:"مخرجات رئيسية · 30 يومًا",snHealth:"صحة المشاريع",snPillars:"محاور الاستراتيجية",snInits:"مبادراتك",snNProj:"{n} مشاريع",snNProj1:"مشروع واحد",snAttention:"تحتاج متابعة",snVsPlan:" · المخطط {p}",snFoot:"اضغط على أي مربع لعرض التفاصيل.",ovEyebrow:"أداء المحفظة · {d}",snDue30:"مستحقة خلال 30 يومًا",snNoEv:"منجزة بلا دليل بعد",snDecisions:"بانتظار قرار",snKpiOk:"{n} من {m} مؤشرًا على المسار",snCrAwait:"طلبات تغيير بانتظاري",snClAwait:"طلبات إغلاق بانتظاري",snScheduled:"مشاريع مجدولة",snStarted:"بدأت",snEndYear:"تنتهي في {y}",snMsDue:"معالم · 30 يومًا",snMsLate:"معالم متأخرة",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
+  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",nav_snap:"لمحة",title_snap:"لمحة",sub_snap:"المحفظة بنظرة واحدة · {n} مشروعًا",snEyebrow:"تنفيذ الاستراتيجية · {d}",snOnPlan:"وفق الخطة",snBehind:"متأخر عن الخطة {n} نقطة",snDelivered:"منجز",snActual:"الفعلي",snPlanned:"المخطط",snNeed:"{n} من {m} مشروعًا تحتاج متابعة",snProjects:"المشاريع",snBudget:"الميزانية",snKpis:"مؤشرات استراتيجية على المسار",snOverdue:"أنشطة متأخرة",snDue:"مخرجات رئيسية · 30 يومًا",snHealth:"صحة المشاريع",snPillars:"محاور الاستراتيجية",snInits:"مبادراتك",snNProj:"{n} مشاريع",snNProj1:"مشروع واحد",snAttention:"تحتاج متابعة",snVsPlan:" · المخطط {p}",snFoot:"اضغط على أي مربع لعرض التفاصيل.",snCycle:"دورة التحديث الحالية",ovEyebrow:"أداء المحفظة · {d}",snDue30:"مستحقة خلال 30 يومًا",snNoEv:"منجزة بلا دليل بعد",snDecisions:"بانتظار قرار",snKpiOk:"{n} من {m} مؤشرًا على المسار",snCrAwait:"طلبات تغيير بانتظاري",snClAwait:"طلبات إغلاق بانتظاري",snScheduled:"مشاريع مجدولة",snStarted:"بدأت",snEndYear:"تنتهي في {y}",snMsDue:"معالم · 30 يومًا",snMsLate:"معالم متأخرة",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
   evDelete:"حذف الملف", confirmEvDelete:"حذف «{n}»؟ سيُحذف الملف للجميع.", evNotUploader:"لا يمكن حذف هذا الملف إلا من قِبل من قام برفعه.",
   doneHint:"تم تحديده كمنجز — لا تنسَ إرفاق الشواهد (📎).", fDoneNoEv:"منجزة · بدون شواهد", evDone:"الأنشطة المنجزة", evWith:"لها شواهد", evMissing:"بدون شواهد", evFiles:"الملفات",
   cProjBars:"الإنجاز المخطط مقابل الفعلي لكل مشروع", cProjBarsSub:"نسبة الإنجاز المخططة والفعلية لكل مشروع مع الانحراف بالنقاط", sortCode:"حسب الرمز", sortVariance:"الأكثر تأخرًا", sortActual:"الأعلى إنجازًا",
@@ -1198,7 +1216,7 @@ function render(){
   if(!S.projects.length&&S.view!=="data"){v.innerHTML=emptyState();return}
   if(S.role==="pm"&&!S.myProjects.size){v.innerHTML=`<div class="card"><div class="empty"><h3>${esc(t("pmNoneTitle"))}</h3><div>${esc(t("pmNone"))}</div></div></div>`;return}
   S._hero="";
-  v.innerHTML=({snap:vSnap,overview:vOverview,exec:vExec,projects:vProjects,workplan:vWorkplan,updates:vUpdates,approvals:vApprovals,changes:vChanges,kpis:vKpis,home:vHome,risks:vRisks,timeline:vTimeline,data:vData}[S.view]||vOverview)();
+  v.innerHTML=({overview:vOverview,exec:vExec,projects:vProjects,workplan:vWorkplan,updates:vUpdates,approvals:vApprovals,changes:vChanges,kpis:vKpis,home:vHome,risks:vRisks,timeline:vTimeline,data:vData}[S.view]||vOverview)();
   $("#heroSlot").innerHTML=["overview","exec","home"].includes(S.view)?S._hero:"";
   $(".page-head").classList.toggle("ph-hero",["overview","exec","home"].includes(S.view)&&!!S._hero);
   if(["overview","exec"].includes(S.view)&&S._hero)animateCounts();
@@ -1225,7 +1243,9 @@ function vOverview(){
   const kpi=(l,v,s,meter,act)=>`<div class="card kpi ${act?"clickable":""}" ${act||""}><div class="kpi-label">${esc(l)}</div><div class="kpi-value num">${v}</div><div class="kpi-sub">${s}</div>${meter!=null?`<div class="meter"><b style="width:${clamp(meter,0,100)}%"></b></div>`:""}</div>`;
   const o={avgP,avgPl,vari,totB,nPf,active:active.length,completed,overdue:overdue.length,due30:due30.length,counts:Object.fromEntries(STATUSES.map(st=>[st,ps.filter(p=>ST(p)===st).length]))};
   {let noEv=0;ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&!evOf(p.id,a.id).length)noEv++}));
-  S._hero=snHero(o.avgP,o.avgPl,t("ovEyebrow",{d:fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"})}),snHealthChips(grpStats(ps)))+snTiles([
+  const us=ps.map(p=>updState(p)),uN=k=>us.filter(x=>x===k).length,apN=apScope().filter(u=>u.status==="pending").length;
+  const side=`<div class="sn-side-h">${esc(t("snCycle"))} · ${esc(curCycle().label)}</div><a class="sn-cyc" href="#updates"><b class="num">${num(uN("submitted"))}<small> / ${num(ps.length)}</small></b><span>${esc(t("upd_submitted"))}</span></a><div class="sn-cbar"><i style="width:${ps.length?uN("submitted")/ps.length*100:0}%"></i><i class="e" style="width:${ps.length?uN("edited")/ps.length*100:0}%"></i></div><div class="sn-cl"><span><i class="sn-dot w"></i>${esc(t("upd_submitted"))} ${num(uN("submitted"))}</span><span><i class="sn-dot y"></i>${esc(t("upd_edited"))} ${num(uN("edited"))}</span><span><i class="sn-dot g"></i>${esc(t("upd_none"))} ${num(uN("none"))}</span></div><a class="sn-cyc2" href="#approvals">${sIco("inbox","s-ico sm")}<b class="num">${num(apN)}</b> ${esc(t("ap_pending"))}</a>`;
+  S._hero=snHero(o.avgP,o.avgPl,t("ovEyebrow",{d:fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"})}),snHealthChips(grpStats(ps)),side)+snTiles([
    {ico:"projects",val:num(ps.length),lbl:t("snProjects"),href:"#projects"},
    {ico:"budget",val:moneyKpi(o.totB),lbl:t("snBudget")},
    {ico:"clockAlert",val:num(o.overdue),lbl:t("snOverdue"),act:"goto-acts",v:"overdue",tone:o.overdue?"warn":"good"},
@@ -2790,7 +2810,7 @@ function vKpis(){
   const allOuts=[...new Set(S.projects.map(p=>parseInt(String(p.portfolio||"").trim(),10)).filter(n=>n>0))].sort();const outRows=allOuts.filter(n=>!S.kpiOut||String(n)===String(S.kpiOut)).map(n=>{let ps=S.projects.filter(p=>String(p.portfolio||"").trim().startsWith(n+"."));if(S.role==="lead")ps=ps.filter(p=>leadMatch(p,S.leadName));if(!ps.length)return null;
     const g=grpStats(ps);const ks=C.filter(x=>String(x.k.outcome)===String(n));return {n,g,ks}}).filter(Boolean);
   const outBars=`<div class="kpi-ob">${outRows.map(r=>`<div class="kpi-obr"><div class="kpi-obl"><span class="kpi-obt"><span class="os-ico" style="--oc:${OC[r.n]||"var(--brand)"}">${sIco(PIL_ICON[r.n]||"target")}</span><b>${esc(kpiOutName(r.n))}</b></span><span class="psub">${esc(t("kpiOutSub",{p:num(r.g.n),k:num(r.ks.length)}))}</span></div>${progBar({prog:r.g.prog,planned:r.g.planned})}${mixBar(r.g)}</div>`).join("")||`<div class="psub">—</div>`}</div>`;
-  const charts=`<div class="grid g3 mb"><div class="card chart-card"><h2>${esc(t("kpiOutProg"))}</h2><div class="psub" style="margin:-4px 0 10px">${esc(t("kpiOutProgSub"))}</div>${outBars}</div><div class="card chart-card"><h2>${esc(t("kpiByStatus"))}</h2><div class="dn">${donutSvg(segs,num(C.length),t("kpiKpis"),150)}${lgdHtml(segs)}</div></div></div>`;
+  const charts=`<div class="card chart-card mb"><h2>${esc(t("kpiOutProg"))}</h2><div class="psub" style="margin:-4px 0 10px">${esc(t("kpiOutProgSub"))}</div><div class="kpi-ob2">${outBars}</div></div>`;
   const groups=[...new Set(C.map(x=>x.k.outcome))].sort().map(n=>{const rows=C.filter(x=>x.k.outcome===n);
     return `<div class="card mb"><div class="cr-h"><h2>${esc(kpiOutName(n))}</h2><span class="psub">${esc(t("kpiNKpis",{n:num(rows.length)}))}</span></div><div class="table-wrap"><table class="kpi-t"><thead><tr><th>${esc(t("kpiCode"))}</th><th>${esc(t("kpiName"))}</th><th class="r">${esc(t("kpiBaseline"))}</th><th class="r">${esc(t("kpiTarget"))}</th><th class="r">${esc(t("kpiCurrent"))}</th><th style="min-width:170px">${esc(t("kpiDelivery"))}</th><th>${esc(t("status"))}</th><th>${esc(t("kpiProjects"))}</th></tr></thead><tbody>
     ${rows.map(({k,c,a,d})=>{const open=S.kpiOpen===k.id;const tg=d.target!==undefined&&d.target!==""?d.target:k.target;const u=d.unit||k.unit||"";
@@ -2800,8 +2820,10 @@ function vKpis(){
       <td>${c.n?progBar({prog:c.prog,planned:c.planned}):'<span class="psub">—</span>'}</td><td>${kpiStChip(c.st)}</td><td style="white-space:nowrap"><span class="num">${num(S.role==="lead"?c.mine:c.n)}</span>${S.role==="lead"&&c.mine!==c.n?`<span class="psub"> / ${num(c.n)}</span>`:""} ${imp}</td></tr>
       ${open?`<tr class="kpi-det"><td colspan="8">${kpiDetail(k,c,d)}</td></tr>`:""}`}).join("")}</tbody></table></div></div>`}).join("");
   const kAtt=cnt("atRisk")+cnt("delayed"),kOk=cnt("onTrack")+cnt("completed");
-  const kTop=snHero(avgP,avgPl,t("kpiTitle_"+cat),`<span>${sIco("target","s-ico sm")}${esc(t("snKpiOk",{n:num(kOk),m:num(C.length)}))}</span>`)+snTiles([
-   {ico:"target",val:num(C.length),lbl:t("kpiCount")},
+  const kmix=[["onTrack",kOk,"check"],["atRisk",cnt("atRisk"),"warn"],["delayed",cnt("delayed"),"stop"],["noLinks",cnt("noLinks"),"projects"]];
+  const kside=`<div class="sn-side-h">${esc(t("kpiByStatus"))}</div><div class="sn-kbar">${kmix.filter(x=>x[1]).map(([k,n])=>`<i class="c-${k}" style="flex:${n}"></i>`).join("")}</div><div class="sn-kl">${kmix.map(([k,n,ico])=>`<span class="c-${k}">${sIco(ico,"s-ico sm")}<b class="num">${num(n)}</b>${esc(k==="noLinks"?t("kpiNoLinks"):t("st_"+k))}</span>`).join("")}</div>`;
+  const kTop=snHero(avgP,avgPl,t("kpiTitle_"+cat),`<span>${sIco("gauge","s-ico sm")}${esc(t("snKpiOk",{n:num(kOk),m:num(C.length)}))}</span>`,kside)+snTiles([
+   {ico:"gauge",val:num(C.length),lbl:t("kpiCount")},
    {ico:"check",val:num(kOk),lbl:t("st_onTrack"),tone:"good"},
    {ico:"warn",val:num(kAtt),lbl:t("kpiAttention"),tone:kAtt?"warn":"good"},
    {ico:"file",val:`${num(withBase)}<small>/${num(C.length)}</small>`,lbl:t("kpiBaselines"),tone:withBase<C.length?"amber":"good"}]);
@@ -2983,11 +3005,14 @@ function execSnap(ps,g){
   const ids=new Set(ps.map(p=>p.id));
   const crN=(S.changes||[]).filter(c=>ids.has(c.projectId)&&["lead","pmo","npc"].includes(c.status)).length,clN=(S.closures||[]).filter(c=>ids.has(c.projectId)&&c.status==="pending").length;
   const scope=S.filters.lead?leadLabel(S.filters.lead):S.role==="lead"?S.leadName:t("exAllPortfolio");
-  return snHero(g.prog,g.planned,scope+" · "+fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"}),snHealthChips(g))+snTiles([
+  const pil=STRAT.outcomes.map(o=>{const L=ps.filter(p=>outNo(p)===o.n);if(!L.length)return "";const q=grpStats(L),qs=snVerdict(q.prog-q.planned);
+     return `<button class="sn-mp" data-act="os-filter" data-v="${o.n}" data-tip="${esc(L2(o.ar,o.en))}<br>${esc(t("snActual"))} ${pct(q.prog)} · ${esc(t("snPlanned"))} ${pct(q.planned)}"><span class="sn-mpr"><span class="sn-mpi" style="--oc:${OC[o.n]}">${sIco(PIL_ICON[o.n])}</span><b class="num">${pct(q.prog)}</b><i class="sn-mpd c-${qs}"></i></span><span class="sn-mpt">${esc(L2(o.pil[0],o.pil[1]))}</span></button>`}).join("");
+  const side=`<div class="sn-side-h">${esc(t("snPillars"))}</div><div class="sn-mps">${pil}</div>`;
+  return snHero(g.prog,g.planned,scope+" · "+fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"}),snHealthChips(g),side)+snTiles([
    {ico:"projects",val:num(g.n),lbl:t("snProjects"),href:"#projects"},
    {ico:"budget",val:moneyKpi(g.budget),lbl:t("snBudget")},
-   kp?{ico:"target",val:`${num(kp.ok)}<small>/${num(kp.n)}</small>`,lbl:t("snKpis"),href:"#kpis"}:{ico:"done",val:num((g.closed||0)+(g.completed||0)),lbl:t("exClosedTile"),tone:"good"},
-   {ico:"gavel",val:num(crN+clN),lbl:t("snDecisions"),href:tabAllowed("approvals")?"#approvals":"",tone:crN+clN?"amber":""}])}
+   kp?{ico:"gauge",val:`${num(kp.ok)}<small>/${num(kp.n)}</small>`,lbl:t("snKpis"),href:"#kpis"}:{ico:"done",val:num((g.closed||0)+(g.completed||0)),lbl:t("exClosedTile"),tone:"good"},
+   {ico:"hourglass",val:num(crN+clN),lbl:t("snDecisions"),href:tabAllowed("approvals")?"#approvals":"",tone:crN+clN?"amber":""}])}
 function execHero(ps,g){const isE=S.role==="executive";const n=g.n||1;
   const kp=(KPIS&&["pmo","executive"].includes(S.role))?(()=>{const L=(KPIS.strategic||[]).map(k=>kpiCalc(k)).filter(c=>c.n);return {ok:L.filter(c=>c.st==="onTrack"||c.st==="completed").length,n:L.length}})():null;
   const ids=new Set(ps.map(p=>p.id));
@@ -3058,54 +3083,29 @@ const SI={
  play:'<circle cx="12" cy="12" r="8.5"/><path d="M10.2 8.6v6.8l5.4-3.4z"/>',
  archive:'<rect x="3" y="4" width="18" height="4.5" rx="1"/><path d="M5 8.5V20h14V8.5M10 12.5h4"/>',
  gavel:'<path d="m14.5 3.5 6 6M12 6l6 6M13.5 4.5l-6 6 3 3 6-6"/><path d="M9 12 3.5 17.5l3 3L12 15"/>',
- user:'<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>'};
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>',
+ gauge:'<path d="M3.5 17.5a8.5 8.5 0 1 1 17 0"/><path d="m12 14 4-5"/><circle cx="12" cy="14.5" r="1.4"/><path d="M6.3 14h1.2M16.5 14h1.2M12 7v1.2M7.8 9.3l.8.8"/>',
+ hourglass:'<path d="M6 3h12M6 21h12"/><path d="M7.5 3v3.2c0 1.6 1.1 2.7 2.5 3.8L12 11.5l2-1.5c1.4-1.1 2.5-2.2 2.5-3.8V3M7.5 21v-3.2c0-1.6 1.1-2.7 2.5-3.8l2-1.5 2 1.5c1.4 1.1 2.5 2.2 2.5 3.8V21"/><path d="M9.5 19h5"/>'};
 const PIL_ICON={1:"family",2:"women",3:"care",4:"community",5:"living",6:"gear"};
 const sIco=(k,cls)=>`<svg class="${cls||"s-ico"}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${SI[k]||""}</svg>`;
 function snapRing(a,p,size){const r=size/2-9,c=2*Math.PI*r,C=size/2,ang=clamp(p,0,100)/100*2*Math.PI-Math.PI/2;
   const mk=(rr)=>[C+rr*Math.cos(ang),C+rr*Math.sin(ang)];const [x1,y1]=mk(r-11),[x2,y2]=mk(r+11);
-  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="sn-ring" aria-hidden="true"><circle cx="${C}" cy="${C}" r="${r}" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="14"/><circle cx="${C}" cy="${C}" r="${r}" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-dasharray="${c*clamp(a,0,100)/100} ${c}" transform="rotate(-90 ${C} ${C})"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#E9C56B" stroke-width="3" stroke-linecap="round"/></svg>`}
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="sn-ring" aria-hidden="true"><circle cx="${C}" cy="${C}" r="${r}" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="14"/><circle cx="${C}" cy="${C}" r="${r}" fill="none" class="sn-arc" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-dasharray="${c*clamp(a,0,100)/100} ${c}" transform="rotate(-90 ${C} ${C})"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#E9C56B" stroke-width="3" stroke-linecap="round"/></svg>`}
 function miniRing(a,p,col){const size=64,r=26,c=2*Math.PI*r,C=32,ang=clamp(p,0,100)/100*2*Math.PI-Math.PI/2;const x1=C+(r-4)*Math.cos(ang),y1=C+(r-4)*Math.sin(ang),x2=C+(r+5.5)*Math.cos(ang),y2=C+(r+5.5)*Math.sin(ang);
-  return `<svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="${col}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c*clamp(a,0,100)/100} ${c}" transform="rotate(-90 32 32)"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/></svg>`}
+  return `<svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" class="sn-arc" stroke="${col}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c*clamp(a,0,100)/100} ${c}" transform="rotate(-90 32 32)"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/></svg>`}
 function snVerdict(v){return v>=-5?"onTrack":v>=-15?"atRisk":"delayed"}
-function snHero(prog,planned,eyebrow,extra){const v=prog-planned,vs=snVerdict(v);
+function snHero(prog,planned,eyebrow,extra,side){const v=prog-planned,vs=snVerdict(v);
   return `<section class="sn-hero"><div class="sn-hero-in">
     <div class="sn-ringbox">${snapRing(prog,planned,176)}<div class="sn-ringtxt"><b class="num">${pct(prog)}</b><span>${esc(t("snDelivered"))}</span></div></div>
     <div class="sn-verdict"><div class="sn-eyebrow">${esc(eyebrow)}</div>
       <div class="sn-big"><span class="sn-vico c-${vs}">${sIco(vs==="onTrack"?"check":vs==="atRisk"?"warn":"stop")}</span>${esc(vs==="onTrack"?t("snOnPlan"):t("snBehind",{n:num(Math.abs(v),0)}))}</div>
-      <div class="sn-legend"><span><i class="sn-dot w"></i>${esc(t("snActual"))} ${pct(prog)}</span><span><i class="sn-dot y"></i>${esc(t("snPlanned"))} ${pct(planned)}</span>${extra||""}</div></div></div></section>`}
+      <div class="sn-legend"><span><i class="sn-dot w"></i>${esc(t("snActual"))} ${pct(prog)}</span><span><i class="sn-dot y"></i>${esc(t("snPlanned"))} ${pct(planned)}</span>${extra||""}</div></div>${side?`<div class="sn-side">${side}</div>`:""}</div></section>`}
 function snHealthChips(g){return `<span class="sn-hchips">${[["onTrack","check",(g.onTrack||0)+(g.completed||0)+(g.closed||0)],["atRisk","warn",g.atRisk||0],["delayed","stop",g.delayed||0]].map(([k,ico,n])=>`<button class="sn-hc c-${k}" data-act="filter-status" data-v="${k}" data-tip="${esc(t("st_"+k))}">${sIco(ico,"s-ico sm")}<b class="num">${num(n)}</b></button>`).join("")}</span>`}
-function snTile(x){const inner=`<span class="sn-tico">${sIco(x.ico)}</span><span class="sn-tval num">${x.val}</span><span class="sn-tlbl">${esc(x.lbl)}</span>`;const cls=`sn-tile${x.tone?" "+x.tone:""}`;
+function snTile(x){const cv=typeof x.val==="string"&&/^[0-9,٬]+$/.test(x.val)?+x.val.replace(/[^0-9]/g,""):null;const inner=`<span class="sn-tico">${sIco(x.ico)}</span><span class="sn-tval num">${cv!=null?`<span data-count="${cv}">${x.val}</span>`:x.val}</span><span class="sn-tlbl">${esc(x.lbl)}</span>`;const cls=`sn-tile${x.tone?" "+x.tone:""}`;
   return x.href?`<a class="${cls}" href="${x.href}">${inner}</a>`:x.act?`<button class="${cls}" data-act="${x.act}" data-v="${esc(x.v||"")}">${inner}</button>`:`<div class="${cls} static">${inner}</div>`}
 function snTiles(items){return `<div class="sn-tiles" style="--n:${items.length}">${items.map(snTile).join("")}</div>`}
 function snStrip(items){return `<div class="sn-strip" style="--n:${items.length}">${items.map(x=>{const inner=`<span class="sn-sico">${sIco(x.ico)}</span><span class="sn-stxt"><b class="num">${x.val}</b><span>${esc(x.lbl)}</span></span>`;const cls=`sn-s${x.tone?" "+x.tone:""}${x.on?" on":""}`;
   return x.href?`<a class="${cls}" href="${x.href}">${inner}</a>`:x.act?`<button class="${cls}" data-act="${x.act}" data-v="${esc(x.v||"")}">${inner}</button>`:`<div class="${cls} static">${inner}</div>`}).join("")}</div>`}
-function vSnap(){
-  const saved=S.filters;S.filters={q:"",portfolio:"",init:"",dept:"",status:"",lead:""};const ps=fProjects();S.filters=saved;
-  const g=grpStats(ps),v=g.prog-g.planned,vs=v>=-5?"onTrack":v>=-15?"atRisk":"delayed";
-  const kpi=tabAllowed("kpis")&&KPIS?(()=>{const L=(KPIS.strategic||[]).map(k=>kpiCalc(k)).filter(c=>c.n);return {ok:L.filter(c=>c.st==="onTrack"||c.st==="completed").length,n:L.length}})():null;
-  const due=keyDeliverables(ps,30).filter(x=>x.s!=="overdue").length;
-  const need=g.atRisk+g.delayed;
-  const verdict=vs==="onTrack"?t("snOnPlan"):t("snBehind",{n:num(Math.abs(v),0)});
-  const hero=`<section class="sn-hero"><div class="sn-hero-in">
-    <div class="sn-ringbox">${snapRing(g.prog,g.planned,176)}<div class="sn-ringtxt"><b class="num">${pct(g.prog)}</b><span>${esc(t("snDelivered"))}</span></div></div>
-    <div class="sn-verdict"><div class="sn-eyebrow">${esc(t("snEyebrow",{d:fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"})}))}</div>
-      <div class="sn-big"><span class="sn-vico c-${vs}">${sIco(vs==="onTrack"?"check":vs==="atRisk"?"warn":"stop")}</span>${esc(verdict)}</div>
-      <div class="sn-legend"><span><i class="sn-dot w"></i>${esc(t("snActual"))} ${pct(g.prog)}</span><span><i class="sn-dot y"></i>${esc(t("snPlanned"))} ${pct(g.planned)}</span>${need?`<span>${sIco("warn","s-ico sm")}${esc(t("snNeed",{n:num(need),m:num(g.n)}))}</span>`:""}</div></div></div></section>`;
-  const tile=(ico,val,lbl,href,tone)=>`<a class="sn-tile${tone?" "+tone:""}" href="${href}"><span class="sn-tico">${sIco(ico)}</span><span class="sn-tval num">${val}</span><span class="sn-tlbl">${esc(lbl)}</span></a>`;
-  const tiles=`<div class="sn-tiles">${tile("projects",num(g.n),t("snProjects"),"#projects")}${tile("budget",moneyKpi(g.budget),t("snBudget"),"#exec")}${kpi?tile("target",`${num(kpi.ok)}<small>/${num(kpi.n)}</small>`,t("snKpis"),"#kpis"):tile("clockAlert",num(g.od),t("snOverdue"),"#workplan",g.od?"warn":"")}${tile("calendar",num(due),t("snDue"),"#timeline")}</div>`;
-  const hs=[["onTrack","check",g.onTrack+g.completed+g.closed],["atRisk","warn",g.atRisk],["delayed","stop",g.delayed]];
-  const health=`<div class="sn-sec"><h3>${esc(t("snHealth"))}</h3><div class="sn-health">${hs.map(([k,ico,n])=>`<button class="sn-h c-${k}" data-act="snap-status" data-v="${k}"><span class="sn-hico">${sIco(ico)}</span><span class="sn-hn num">${num(n)}</span><span class="sn-hl">${esc(t("st_"+k))}</span><span class="sn-hbar"><i style="width:${g.n?n/g.n*100:0}%"></i></span></button>`).join("")}</div></div>`;
-  const nPil=STRAT.outcomes.filter(o=>projsOfOutcome(o.n,ps).length).length;
-  const card=(key,act,v,ico,col,name,L)=>{const q=grpStats(L),qv=q.prog-q.planned,qs=qv>=-5?"onTrack":qv>=-15?"atRisk":"delayed";
-      return `<button class="sn-p" style="--oc:${col}" data-act="${act}" data-v="${esc(v)}"><span class="sn-pico">${sIco(ico)}</span><span class="sn-pname">${esc(name)}</span><span class="sn-pring">${miniRing(q.prog,q.planned,col)}<b class="num">${pct(q.prog)}</b></span><span class="sn-pmeta"><span class="ico c-${qs}">${STATUS_ICON[qs]}</span> ${esc(L.length===1?t("snNProj1"):t("snNProj",{n:num(L.length)}))}</span></button>`};
-  const inits=()=>{const m=new Map();for(const p of ps){const k=String(p.initiative||"").trim();if(!k)continue;if(!m.has(k))m.set(k,[]);m.get(k).push(p)}
-      return [...m.entries()].sort((a,b)=>a[0].localeCompare(b[0],undefined,{numeric:true})).slice(0,6).map(([k,L])=>{const n=outNo(L[0]);return card(k,"home-init",k.split(" ")[0],PIL_ICON[n]||"target",OC[n]||"var(--brand)",tv(k).replace(/^\S+\s+/,""),L)}).join("")};
-  const pil=nPil<3?`<div class="sn-sec"><h3>${esc(t("snInits"))}</h3><div class="sn-pil">${inits()}</div></div>`:`<div class="sn-sec"><h3>${esc(t("snPillars"))}</h3><div class="sn-pil">${STRAT.outcomes.map(o=>{const L=projsOfOutcome(o.n,ps);if(!L.length)return "";const q=grpStats(L),qv=q.prog-q.planned,qs=qv>=-5?"onTrack":qv>=-15?"atRisk":"delayed";
-      return `<button class="sn-p" style="--oc:${OC[o.n]}" data-act="home-out" data-v="${o.n}"><span class="sn-pico">${sIco(PIL_ICON[o.n])}</span><span class="sn-pname">${esc(L2(o.pil[0],o.pil[1]))}</span><span class="sn-pring">${miniRing(q.prog,q.planned,OC[o.n])}<b class="num">${pct(q.prog)}</b></span><span class="sn-pmeta"><span class="ico c-${qs}">${STATUS_ICON[qs]}</span> ${esc(L.length===1?t("snNProj1"):t("snNProj",{n:num(L.length)}))}</span></button>`}).join("")}</div></div>`;
-  const attn=g.ms.filter(x=>x.s==="delayed"||x.s==="atRisk").sort((a,b)=>a.m.variance-b.m.variance).slice(0,3);
-  const att=attn.length?`<div class="sn-sec"><h3>${esc(t("snAttention"))}</h3><div class="sn-att">${attn.map(({p,m,s})=>`<button class="sn-a" data-act="open-project" data-id="${esc(p.id)}"><span class="sn-aico c-${s}">${sIco(s==="delayed"?"stop":"warn")}</span><span class="sn-at"><span class="psub num">${esc(p.code)}</span><b>${esc(pname(p))}</b></span><span class="sn-av num">${pct(m.prog)}<small>${esc(t("snVsPlan",{p:pct(m.planned)}))}</small></span>${sIco("arrow","s-ico sm sn-go")}</button>`).join("")}</div></div>`:"";
-  return hero+tiles+`<div class="sn-row">${health}${att}</div>`+pil+`<div class="sn-foot psub">${esc(t("snFoot"))}</div>`;
-}
 function vExec(){
   const {ps,g,by,rows,attn,kd}=execData();const isE=S.role==="executive";S._hero=execSnap(ps,g);
   const card=(title,sub,body,cls)=>`<div class="card ${cls||""}"><div class="cr-h"><h2>${esc(title)}</h2>${sub?`<span class="psub">${esc(sub)}</span>`:""}</div>${body}</div>`;
@@ -3128,7 +3128,7 @@ function vExec(){
   return h}
 
 /* ================= role-based tabs, overflow menu, settings ================= */
-const TAB_ROLES={home:"*",snap:["pmo","executive","lead"],overview:["pmo","lead","pm"],exec:["pmo","executive","lead"],kpis:["pmo","executive"],projects:"*",workplan:["pmo","lead","pm"],updates:["pmo","lead","pm"],approvals:["pmo","lead","pm"],changes:["pmo","pm"],risks:["pmo","lead","pm"],timeline:"*",data:"admin",users:"users"};
+const TAB_ROLES={home:"*",overview:["pmo","lead","pm"],exec:["pmo","executive","lead"],kpis:["pmo","executive"],projects:"*",workplan:["pmo","lead","pm"],updates:["pmo","lead","pm"],approvals:["pmo","lead","pm"],changes:["pmo","pm"],risks:["pmo","lead","pm"],timeline:"*",data:"admin",users:"users"};
 function tabAllowed(v){const r=TAB_ROLES[v];if(!r)return false;if(r==="*")return true;if(r==="admin")return isAdmin();if(r==="users")return canManageUsers();if(v==="changes"&&S.role==="lead"&&S.crOpen)return true;return r.includes(S.role)}
 function fitTabs(){const nav=$("#tabs"),more=$("#tabMore");if(!nav||!more)return;if(document.body.classList.contains("locked")){more.style.display="none";return}const menu=more.querySelector(".tm-menu"),btn=more.querySelector(".tm-btn");
   btn.textContent=t("tabMore")+" ▾";const links=[...nav.querySelectorAll("a[data-view]")];links.forEach(a=>a.classList.remove("ovf"));
@@ -3392,8 +3392,7 @@ document.addEventListener("click",async e=>{
     case"ac-del":{const a=(S.access||[]).find(x=>x.id===id);confirmBox(t("confirmDelete",{n:a?(a.name||a.email):""}),t("delete"),async()=>{await delDoc("access",id);closeModal();toast(t("deleted"))});break}
     case"home-tab":S.homeTab=el.dataset.v;render();break;
     case"home-pdf":await homePdf();break;
-    case"snap-status":{S.filters={q:"",portfolio:"",init:"",dept:"",status:el.dataset.v,lead:""};$("#fq").value="";location.hash="#projects";break}
-     case"home-out":{const n=+el.dataset.v;const q=S.projects.find(p=>outNo(p)===n);S.filters={q:"",portfolio:q?q.portfolio:"",init:"",dept:"",status:"",lead:""};$("#fq").value="";location.hash="#projects";break}
+    case"home-out":{const n=+el.dataset.v;const q=S.projects.find(p=>outNo(p)===n);S.filters={q:"",portfolio:q?q.portfolio:"",init:"",dept:"",status:"",lead:""};$("#fq").value="";location.hash="#projects";break}
     case"home-init":{const q=S.projects.find(p=>String(p.initiative||"").trim().startsWith(el.dataset.v+" "));S.filters={q:"",portfolio:"",init:q?q.initiative:"",dept:"",status:"",lead:""};$("#fq").value="";location.hash="#projects";break}
     case"goto":location.hash="#"+el.dataset.v;break;
     case"bi-init":S.filters.init=el.dataset.v;render();window.scrollTo(0,0);break;
@@ -3495,7 +3494,7 @@ $("#langBtn").addEventListener("click",()=>{S.lang=S.lang==="ar"?"en":"ar";store
 $("#themeBtn").addEventListener("click",()=>{S.theme=document.documentElement.dataset.theme==="dark"?"light":"dark";store.set("theme",S.theme);render()});
 $("#progMode").addEventListener("change",e=>{S.progMode=e.target.value;store.set("progMode",S.progMode);render()});
 $("#currency").addEventListener("change",e=>{S.currency=e.target.value;store.set("currency",S.currency);render()});
-const VIEWS=["home","snap","overview","exec","kpis","projects","workplan","updates","approvals","changes","risks","timeline","data","users"];
+const VIEWS=["home","overview","exec","kpis","projects","workplan","updates","approvals","changes","risks","timeline","data","users"];
 function route(){const h=location.hash.replace("#","");if(h!=="changes"&&S.view==="changes"){S.crOpen=null;S.crDraft=null}S.view=VIEWS.includes(h)?h:"overview";render();window.scrollTo(0,0)}
 window.addEventListener("hashchange",route);
 /* tooltip */
