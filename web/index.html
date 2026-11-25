@@ -306,7 +306,28 @@ td.r,th.r{text-align:end}
 .sn-vico.c-onTrack{color:#7fe0c9}.sn-vico.c-atRisk{color:#F3D68A}.sn-vico.c-delayed{color:#ffb3b0}
 .sn-legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:14px;opacity:.92;align-items:center}.sn-legend span{display:inline-flex;align-items:center;gap:7px}.sn-dot{width:10px;height:10px;border-radius:3px;display:inline-block}.sn-dot.w{background:#fff}.sn-dot.y{background:#E9C56B}
 .s-ico{width:28px;height:28px}.s-ico.sm{width:18px;height:18px}
-.sn-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.sn-tiles{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:14px;margin-bottom:16px}
+button.sn-tile{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--border);color:var(--text);transition:transform .15s,box-shadow .15s}
+.sn-tile.static:hover{transform:none;box-shadow:none}
+.sn-tile.good .sn-tico{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}.sn-tile.amber .sn-tico{background:color-mix(in srgb,var(--warning) 22%,transparent);color:#9a7413}
+.sn-hchips{display:inline-flex;gap:8px}.sn-hc{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 7px;border-radius:999px;background:rgba(255,255,255,.14);font-size:15px}.sn-hc:hover{background:rgba(255,255,255,.24)}.sn-hc.c-onTrack .s-ico{color:#7fe0c9}.sn-hc.c-atRisk .s-ico{color:#F3D68A}.sn-hc.c-delayed .s-ico{color:#ffb3b0}
+.sn-strip{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:12px;margin-bottom:16px}
+.sn-s{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--border);transition:transform .15s,box-shadow .15s,border-color .15s;text-decoration:none;color:var(--text)}
+.sn-s:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.07)}.sn-s.static{cursor:default}.sn-s.static:hover{transform:none;box-shadow:none}
+.sn-s.on{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+.sn-sico{width:42px;height:42px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand) 10%,transparent);color:var(--brand)}.sn-sico .s-ico{width:24px;height:24px}
+.sn-s.good .sn-sico{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}.sn-s.amber .sn-sico{background:color-mix(in srgb,var(--warning) 22%,transparent);color:#9a7413}.sn-s.red .sn-sico{background:var(--critical);color:#fff}.sn-s.grey .sn-sico{background:var(--track);color:var(--muted)}
+.sn-stxt{display:flex;flex-direction:column;min-width:0}.sn-stxt b{font-size:24px;line-height:1.05;font-weight:700}.sn-stxt b small{font-size:14px;opacity:.55;font-weight:600}.sn-stxt span{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.os-ico{width:34px;height:34px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--oc) 15%,transparent);color:var(--oc)}.os-ico .s-ico{width:20px;height:20px}
+.ins-ic .s-ico{width:22px;height:22px}
+.insights.sn3{grid-template-columns:repeat(3,minmax(0,1fr))}.insights.sn3 .ins-b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.insights.sn3 .ins-h{font-weight:600}
+.ins-ic{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--brand) 9%,transparent);color:var(--brand)}
+.ins-bad .ins-ic{background:var(--critical);color:#fff}.ins-warn .ins-ic{background:color-mix(in srgb,var(--warning) 25%,transparent);color:#9a7413}.ins-good .ins-ic{background:color-mix(in srgb,var(--good) 14%,transparent);color:var(--good)}
+.kpi-obt{display:inline-flex;align-items:center;gap:8px}.kpi-obt .os-ico{width:28px;height:28px}.kpi-obt .os-ico .s-ico{width:17px;height:17px}
+.os-h{align-items:center}
+@media(max-width:900px){.insights.sn3{grid-template-columns:1fr}}
+@media(max-width:1100px){.sn-strip{grid-template-columns:repeat(min(var(--n,4),3),minmax(0,1fr))}}
+@media(max-width:640px){.sn-strip,.sn-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .sn-tile{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--border);color:var(--text);text-decoration:none;transition:transform .15s,box-shadow .15s}
 .sn-tile:hover,.sn-h:hover,.sn-p:hover,.sn-a:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
 .sn-tico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--brand) 10%,transparent);color:var(--brand);margin-bottom:6px}
@@ -795,7 +816,7 @@ en:{
   evCount:"{n} evidence file(s)", evMissingOne:"Completed — evidence not attached yet", attach:"Attach evidence", attachHint:"Attach PDFs or images (up to 20 MB each) as evidence of completion. Save Word, Excel or PowerPoint files as PDF first.",
   evDemo:"Attaching files works in the published dashboard, not in this preview.", evNoUpload:"Only people with Editor access to this dashboard can attach or remove evidence files.",
   evFAll:"All activities", evFNeed:"Done · missing evidence", evFHas:"With evidence", uploading:"Uploading…", uploaded:"{n} file(s) attached",
-  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",nav_snap:"Snapshot",title_snap:"Snapshot",sub_snap:"The portfolio in one look · {n} projects",snEyebrow:"Strategy delivery · {d}",snOnPlan:"On plan",snBehind:"{n} points behind plan",snDelivered:"delivered",snActual:"Actual",snPlanned:"Planned",snNeed:"{n} of {m} projects need attention",snProjects:"Projects",snBudget:"Budget",snKpis:"Strategic KPIs on track",snOverdue:"Overdue activities",snDue:"Key deliverables · next 30 days",snHealth:"Project health",snPillars:"Strategy pillars",snInits:"Your initiatives",snNProj:"{n} projects",snNProj1:"1 project",snAttention:"Needs attention",snVsPlan:" · plan {p}",snFoot:"Click any tile for the details.",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
+  maxFiles:"Up to {n} files can be attached here.", attachMore:"Attach files ({n} more allowed)", attachUpTo:"Attach (up to {n})", attTypes:"PDF, Word, Excel or image (PNG/JPG), up to {n} files.", crReqPm:"Project manager", crReqPmo:"PMO team", noInit:"Initiative not set yet",nav_snap:"Snapshot",title_snap:"Snapshot",sub_snap:"The portfolio in one look · {n} projects",snEyebrow:"Strategy delivery · {d}",snOnPlan:"On plan",snBehind:"{n} points behind plan",snDelivered:"delivered",snActual:"Actual",snPlanned:"Planned",snNeed:"{n} of {m} projects need attention",snProjects:"Projects",snBudget:"Budget",snKpis:"Strategic KPIs on track",snOverdue:"Overdue activities",snDue:"Key deliverables · next 30 days",snHealth:"Project health",snPillars:"Strategy pillars",snInits:"Your initiatives",snNProj:"{n} projects",snNProj1:"1 project",snAttention:"Needs attention",snVsPlan:" · plan {p}",snFoot:"Click any tile for the details.",ovEyebrow:"Portfolio performance · {d}",snDue30:"Due in 30 days",snNoEv:"Done, no evidence yet",snDecisions:"Awaiting decision",snKpiOk:"{n} of {m} KPIs on track",snCrAwait:"Change requests for me",snClAwait:"Closures for me",snScheduled:"Projects scheduled",snStarted:"Started",snEndYear:"Ending in {y}",snMsDue:"Milestones · next 30 days",snMsLate:"Overdue milestones",backUpdates:"Back to Updates", noValue:"Not set", evBadType:"“{f}” can't be attached. Use PDF, Word, Excel or an image (PNG/JPG).", evTooBig:"“{f}” is larger than 20 MB.",
   evDelete:"Remove file", confirmEvDelete:"Remove “{n}”? The file will be deleted for everyone.", evNotUploader:"Only the person who uploaded this file can remove it.",
   doneHint:"Marked complete — remember to attach evidence (📎).", fDoneNoEv:"Done · no evidence", evDone:"Completed activities", evWith:"With evidence", evMissing:"Missing evidence", evFiles:"Files",
   cProjBars:"Planned vs actual progress by project", cProjBarsSub:"Planned and actual completion for each project, with the variance in points", sortCode:"By code", sortVariance:"Most behind", sortActual:"Most complete",
@@ -892,7 +913,7 @@ ar:{
   evCount:"{n} ملف شواهد", evMissingOne:"منجز — لم تُرفق الشواهد بعد", attach:"إرفاق شاهد", attachHint:"أرفق ملفات PDF أو صورًا (حتى 20 ميجابايت لكل ملف) كشواهد على الإنجاز. احفظ ملفات Word أو Excel أو PowerPoint بصيغة PDF أولًا.",
   evDemo:"إرفاق الملفات يعمل في لوحة المعلومات المنشورة وليس في هذه المعاينة.", evNoUpload:"إرفاق ملفات الشواهد أو حذفها متاح فقط لمن لديهم صلاحية محرر.",
   evFAll:"كل الأنشطة", evFNeed:"منجزة · بدون شواهد", evFHas:"لها شواهد", uploading:"جارٍ الرفع…", uploaded:"تم إرفاق {n} ملف",
-  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",nav_snap:"لمحة",title_snap:"لمحة",sub_snap:"المحفظة بنظرة واحدة · {n} مشروعًا",snEyebrow:"تنفيذ الاستراتيجية · {d}",snOnPlan:"وفق الخطة",snBehind:"متأخر عن الخطة {n} نقطة",snDelivered:"منجز",snActual:"الفعلي",snPlanned:"المخطط",snNeed:"{n} من {m} مشروعًا تحتاج متابعة",snProjects:"المشاريع",snBudget:"الميزانية",snKpis:"مؤشرات استراتيجية على المسار",snOverdue:"أنشطة متأخرة",snDue:"مخرجات رئيسية · 30 يومًا",snHealth:"صحة المشاريع",snPillars:"محاور الاستراتيجية",snInits:"مبادراتك",snNProj:"{n} مشاريع",snNProj1:"مشروع واحد",snAttention:"تحتاج متابعة",snVsPlan:" · المخطط {p}",snFoot:"اضغط على أي مربع لعرض التفاصيل.",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
+  maxFiles:"يمكن إرفاق {n} ملفات كحد أقصى هنا.", attachMore:"إرفاق ملفات (متبقٍ {n})", attachUpTo:"إرفاق (حتى {n})", attTypes:"PDF أو Word أو Excel أو صورة (PNG/JPG)، حتى {n} ملفات.", crReqPm:"مدير المشروع", crReqPmo:"فريق مكتب إدارة المشاريع", noInit:"لم تُحدَّد المبادرة بعد",nav_snap:"لمحة",title_snap:"لمحة",sub_snap:"المحفظة بنظرة واحدة · {n} مشروعًا",snEyebrow:"تنفيذ الاستراتيجية · {d}",snOnPlan:"وفق الخطة",snBehind:"متأخر عن الخطة {n} نقطة",snDelivered:"منجز",snActual:"الفعلي",snPlanned:"المخطط",snNeed:"{n} من {m} مشروعًا تحتاج متابعة",snProjects:"المشاريع",snBudget:"الميزانية",snKpis:"مؤشرات استراتيجية على المسار",snOverdue:"أنشطة متأخرة",snDue:"مخرجات رئيسية · 30 يومًا",snHealth:"صحة المشاريع",snPillars:"محاور الاستراتيجية",snInits:"مبادراتك",snNProj:"{n} مشاريع",snNProj1:"مشروع واحد",snAttention:"تحتاج متابعة",snVsPlan:" · المخطط {p}",snFoot:"اضغط على أي مربع لعرض التفاصيل.",ovEyebrow:"أداء المحفظة · {d}",snDue30:"مستحقة خلال 30 يومًا",snNoEv:"منجزة بلا دليل بعد",snDecisions:"بانتظار قرار",snKpiOk:"{n} من {m} مؤشرًا على المسار",snCrAwait:"طلبات تغيير بانتظاري",snClAwait:"طلبات إغلاق بانتظاري",snScheduled:"مشاريع مجدولة",snStarted:"بدأت",snEndYear:"تنتهي في {y}",snMsDue:"معالم · 30 يومًا",snMsLate:"معالم متأخرة",backUpdates:"العودة إلى التحديثات", noValue:"غير محدد", evBadType:"لا يمكن إرفاق «{f}». استخدم PDF أو Word أو Excel أو صورة (PNG/JPG).", evTooBig:"حجم «{f}» أكبر من 20 ميجابايت.",
   evDelete:"حذف الملف", confirmEvDelete:"حذف «{n}»؟ سيُحذف الملف للجميع.", evNotUploader:"لا يمكن حذف هذا الملف إلا من قِبل من قام برفعه.",
   doneHint:"تم تحديده كمنجز — لا تنسَ إرفاق الشواهد (📎).", fDoneNoEv:"منجزة · بدون شواهد", evDone:"الأنشطة المنجزة", evWith:"لها شواهد", evMissing:"بدون شواهد", evFiles:"الملفات",
   cProjBars:"الإنجاز المخطط مقابل الفعلي لكل مشروع", cProjBarsSub:"نسبة الإنجاز المخططة والفعلية لكل مشروع مع الانحراف بالنقاط", sortCode:"حسب الرمز", sortVariance:"الأكثر تأخرًا", sortActual:"الأعلى إنجازًا",
@@ -1203,7 +1224,13 @@ function vOverview(){
   const spentPct=totB?totA/totB*100:0;
   const kpi=(l,v,s,meter,act)=>`<div class="card kpi ${act?"clickable":""}" ${act||""}><div class="kpi-label">${esc(l)}</div><div class="kpi-value num">${v}</div><div class="kpi-sub">${s}</div>${meter!=null?`<div class="meter"><b style="width:${clamp(meter,0,100)}%"></b></div>`:""}</div>`;
   const o={avgP,avgPl,vari,totB,nPf,active:active.length,completed,overdue:overdue.length,due30:due30.length,counts:Object.fromEntries(STATUSES.map(st=>[st,ps.filter(p=>ST(p)===st).length]))};
-  S._hero=heroHtml(ps,M,o);
+  {let noEv=0;ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&!evOf(p.id,a.id).length)noEv++}));
+  S._hero=snHero(o.avgP,o.avgPl,t("ovEyebrow",{d:fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"})}),snHealthChips(grpStats(ps)))+snTiles([
+   {ico:"projects",val:num(ps.length),lbl:t("snProjects"),href:"#projects"},
+   {ico:"budget",val:moneyKpi(o.totB),lbl:t("snBudget")},
+   {ico:"clockAlert",val:num(o.overdue),lbl:t("snOverdue"),act:"goto-acts",v:"overdue",tone:o.overdue?"warn":"good"},
+   {ico:"calendar",val:num(o.due30),lbl:t("snDue30"),act:"goto-acts",v:"due30"},
+   {ico:"clip",val:num(noEv),lbl:t("snNoEv"),act:"goto-acts",v:"noev",tone:noEv?"amber":"good"}])}
   let h=insights(ps,M,items);
   const counts=STATUSES.map(s=>({s,n:ps.filter(p=>ST(p)===s).length}));
   const health=`<div class="card"><h2>${esc(t("cHealth"))}</h2><div class="sub">${esc(t("cHealthSub"))}</div>
@@ -1334,7 +1361,8 @@ function insights(ps,M,items){
   out.push({ic:"◷",k:od.length?"warn":"good",h:t("insOverdueH",{n:num(od.length)}),b:t("insOverdueB",{n:num(recent)}),act:"overdue"});
   const doneNoEv=[];ps.forEach(p=>actsOf(p.id).forEach(a=>{if(actState(a)==="done"&&!evOf(p.id,a.id).length)doneNoEv.push(a)}));
   out.push({ic:"📎",k:doneNoEv.length?"warn":"good",h:t("insEvH",{n:num(doneNoEv.length)}),b:t("insEvB"),act:"noev"});
-  return `<div class="insights">${out.slice(0,5).map(x=>`<div class="ins ins-${x.k} ${x.id||x.act||x.pf?"clickable":""}" ${x.id?`data-act="open-project" data-id="${esc(x.id)}"`:x.act?`data-act="goto-acts" data-v="${x.act}"`:x.pf?`data-act="filter-pf" data-v="${esc(x.pf)}"`:""}><div class="ins-ic">${x.ic}</div><div style="min-width:0"><div class="ins-h">${esc(x.h)}</div><div class="ins-b">${esc(x.b)}</div></div></div>`).join("")}</div>`;
+  const IC={"⚑":"stop","▼":"trend","◆":"pie","◷":"clockAlert","📎":"clip"};
+  return `<div class="insights sn3">${out.slice(0,3).map(x=>`<div data-tip="${esc(x.h+" — "+x.b)}" class="ins ins-${x.k} ${x.id||x.act||x.pf?"clickable":""}" ${x.id?`data-act="open-project" data-id="${esc(x.id)}"`:x.act?`data-act="goto-acts" data-v="${x.act}"`:x.pf?`data-act="filter-pf" data-v="${esc(x.pf)}"`:""}><div class="ins-ic">${sIco(IC[x.ic]||"target")}</div><div style="min-width:0"><div class="ins-h">${esc(x.h)}</div><div class="ins-b">${esc(x.b)}</div></div></div>`).join("")}</div>`;
 }
 function sCurve(ps){
   const acts=[];ps.forEach(p=>actsOf(p.id).forEach(a=>{const s=parseD(a.ps),e=parseD(a.pe);if(s&&e)acts.push({s,e,pr:clamp(+a.pr||0,0,100),done:actState(a)==="done",ae:parseD(a.ae)||e})}));
@@ -1402,7 +1430,13 @@ function vProjects(){
     case"phase":return PHASES.indexOf(p.phase);case"status":return STATUSES.indexOf(ST(p));case"end":return p.end||"";case"name":return pname(p);default:return String(p[k]||"")}};
   ps.sort((a,b)=>{const x=val(a),y=val(b);return (typeof x==="number"?x-y:String(x).localeCompare(String(y),undefined,{numeric:true}))*d});
   const th=(key,lab,cls="")=>`<th class="${cls}" data-sort="${key}">${esc(t(lab))}${k===key?`<span class="arr">${d>0?"▲":"▼"}</span>`:""}</th>`;
-  return `<div class="card" style="padding-bottom:18px"><div class="table-wrap" style="border-top:0;margin-top:-18px"><table><thead><tr>
+  const gq=grpStats(ps),fs=S.filters.status;
+  const strip=snStrip([{ico:"projects",val:num(ps.length),lbl:t("snProjects")},
+   {ico:"check",val:num(gq.onTrack+gq.completed+gq.closed),lbl:t("st_onTrack"),act:"filter-status",v:"onTrack",tone:"good",on:fs==="onTrack"},
+   {ico:"warn",val:num(gq.atRisk),lbl:t("st_atRisk"),act:"filter-status",v:"atRisk",tone:"amber",on:fs==="atRisk"},
+   {ico:"stop",val:num(gq.delayed),lbl:t("st_delayed"),act:"filter-status",v:"delayed",tone:"red",on:fs==="delayed"},
+   {ico:"budget",val:moneyKpi(gq.budget),lbl:t("snBudget")}]);
+  return strip+`<div class="card" style="padding-bottom:18px"><div class="table-wrap" style="border-top:0;margin-top:-18px"><table><thead><tr>
     ${th("code","code")}${th("name","project")}${th("department","department")}${th("manager","manager")}${th("phase","phase")}${th("status","status")}${th("progress","progress")}${th("variance","variance","r")}${th("budget","budget","r")}${hasAct?th("actual","actual","r"):""}${th("spi","spi","r")}${hasAct?th("cpi","cpi","r"):""}${th("end","end")}
     </tr></thead><tbody>${ps.map(p=>{const m=M.get(p.id);return `<tr class="clickable" data-act="open-project" data-id="${esc(p.id)}">
     <td class="num psub" style="white-space:nowrap">${esc(p.code)}</td><td style="min-width:240px"><div class="pname">${esc(pname(p))}</div><div class="psub">${esc(tv(p.initiative||p.portfolio))}</div></td>
@@ -1421,7 +1455,9 @@ function vWorkplanList(){
   const segs=[["overdue","fOverdue"],["due30","fDue30"],["inProgress","ms_inProgress"],["notStarted","ms_notStarted"],["done","fDone"],["noev","fDoneNoEv"],["all","fAll"]];
   const f=S.actFilter;const list=rows.filter(F[f]||F.all).sort((x,y)=>((parseD(x.a.pe)||0)-(parseD(y.a.pe)||0))*(f==="overdue"||f==="done"?-1:1));
   const shown=list.slice(0,S.actLimit);
-  return `<div class="card"><div class="card-head"><div><h2>${esc(t("activities"))}</h2><div class="sub">${esc(t("showing",{n:num(shown.length),m:num(list.length)}))}</div></div>
+  const wc=k=>rows.filter(F[k]).length;
+  const strip=snStrip([["overdue","clockAlert","fOverdue","red"],["due30","calendar","fDue30","amber"],["inProgress","play","ms_inProgress",""],["done","done","fDone","good"],["noev","clip","fDoneNoEv","amber"]].map(([k,ico,l,tone])=>({ico,val:num(wc(k)),lbl:t(l),act:"actf",v:k,tone:wc(k)?tone:"grey",on:f===k})));
+  return strip+`<div class="card"><div class="card-head"><div><h2>${esc(t("activities"))}</h2><div class="sub">${esc(t("showing",{n:num(shown.length),m:num(list.length)}))}</div></div>
     <div class="seg-ctl">${segs.map(([v,l])=>`<button class="${f===v?"on":""}" data-act="actf" data-v="${v}">${esc(t(l))} <span class="psub num">${num(rows.filter(F[v]).length)}</span></button>`).join("")}</div></div>
     ${list.length?`<div class="table-wrap"><table><thead><tr><th>${esc(t("project"))}</th><th>${esc(t("workPackage"))}</th><th>${esc(t("activity"))}</th><th>${esc(t("plannedDates"))}</th><th>${esc(t("progress"))}</th><th>${esc(t("status"))}</th><th>${esc(t("notes"))}</th></tr></thead><tbody>
     ${shown.map(({p,a,st})=>`<tr class="clickable" data-act="${canP(p.id)?"edit-act":"open-project"}" data-id="${esc(p.id)}" data-aid="${esc(a.id)}">
@@ -1449,7 +1485,13 @@ function vRisks(){
   if(S.riskFilter.cell){const[p,i]=S.riskFilter.cell.split("-").map(Number);list=list.filter(r=>r.probability===p&&r.impact===i)}
   list=[...list].sort((a,b)=>b.probability*b.impact-a.probability*a.impact);
   const segs=[["active","fActive"],["open","rs_open"],["mitigating","rs_mitigating"],["closed","rs_closed"],["all","fAll"]];
-  return `<div class="grid g2"><div class="card"><h2>${esc(t("riskMatrix"))}</h2><div class="sub">${esc(t("riskMatrixSub"))}</div>${mx}</div>
+  const zc=z=>active.filter(r=>zone(r.probability*r.impact)===z).length,rf=S.riskFilter.status;
+  const strip=snStrip([{ico:"shield",val:num(active.length),lbl:t("fActive"),act:"rstatus",v:"active",on:rf==="active"},
+   {ico:"flame",val:num(zc("critical")),lbl:t("z_critical"),tone:zc("critical")?"red":"grey"},
+   {ico:"warn",val:num(zc("high")),lbl:t("z_high"),tone:zc("high")?"amber":"grey"},
+   {ico:"play",val:num(all.filter(r=>r.status==="mitigating").length),lbl:t("rs_mitigating"),act:"rstatus",v:"mitigating",on:rf==="mitigating"},
+   {ico:"archive",val:num(all.filter(r=>r.status==="closed").length),lbl:t("rs_closed"),act:"rstatus",v:"closed",tone:"good",on:rf==="closed"}]);
+  return strip+`<div class="grid g2"><div class="card"><h2>${esc(t("riskMatrix"))}</h2><div class="sub">${esc(t("riskMatrixSub"))}</div>${mx}</div>
     <div class="card"><h2>${esc(t("byCategory"))}</h2><div class="sub">${esc(t("byCategorySub"))}</div>${catHtml}</div></div>
     <div class="card mt"><div class="card-head"><div><h2>${esc(t("riskRegister"))}</h2><div class="sub">${num(list.length)} ${esc(t("records"))}</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">${S.riskFilter.cell?`<button class="btn sm" data-act="cell" data-v="">✕ ${esc(t("clearCell"))}</button>`:""}<div class="seg-ctl">${segs.map(([v,l])=>`<button class="${S.riskFilter.status===v?"on":""}" data-act="rstatus" data-v="${v}">${esc(t(l))}</button>`).join("")}</div></div></div>
@@ -1490,7 +1532,10 @@ function vTimeline(){
     ${ms.map(m=>{const p=projById(m.projectId),d=parseD(m.due),dd=days(TODAY,d),ic=stIco[m.st]||stIco.notStarted;return `<tr class="${canP(m.projectId)?"clickable":""}" ${canP(m.projectId)?`data-act="edit-ms" data-id="${esc(m.id)}"`:""}>
       <td class="num" style="white-space:nowrap">${fdate(m.due)}</td><td class="pname">${esc(rtitle(m))}</td><td><div>${esc(p?pname(p):"—")}</div><div class="psub">${esc(p?p.code:"")}</div></td>
       <td><span class="chip"><span class="ico ${ic[0]}">${ic[1]}</span>${esc(t("ms_"+m.st))}</span></td><td class="r num psub">${m.st==="done"?"—":dd<0?esc(t("daysOver",{n:num(-dd)})):dd===0?esc(t("dueToday")):esc(t("daysLeft",{n:num(dd)}))}</td></tr>`}).join("")}</tbody></table></div>`:`<div class="empty">${esc(t("none"))}</div>`}</div>`;
-  return gantt+table;
+  const yr=TODAY.getFullYear(),ids=new Set(ps.map(p=>p.id)),msL=S.milestones.filter(x=>ids.has(x.projectId)&&parseD(x.due)&&x.status!=="done");
+  const msDue=msL.filter(x=>parseD(x.due)>=TODAY&&days(TODAY,parseD(x.due))<=30).length,msLate=msL.filter(x=>parseD(x.due)<TODAY).length,endY=ps.filter(p=>parseD(p.end).getFullYear()===yr).length,started=ps.filter(p=>parseD(p.start)<=TODAY).length;
+  const strip=snStrip([{ico:"projects",val:num(ps.length),lbl:t("snScheduled")},{ico:"play",val:num(started),lbl:t("snStarted")},{ico:"flag",val:num(endY),lbl:t("snEndYear",{y:yr})},{ico:"calendar",val:num(msDue),lbl:t("snMsDue"),tone:msDue?"amber":"grey"},{ico:"clockAlert",val:num(msLate),lbl:t("snMsLate"),tone:msLate?"red":"good"}]);
+  return strip+gantt+table;
 }
 
 /* ---------- data ---------- */
@@ -2007,7 +2052,7 @@ function vUpdates(){
   resolveNames([...ps.flatMap(p=>{const pl=planOf(p.id)||{};return [pl.lastUpdate&&pl.lastUpdate.by,pl.submitted&&pl.submitted.by]}),...S.updates.map(u=>u.by)].filter(Boolean));
   const st=ps.map(p=>({p,s:updState(p)}));const cnt=k=>st.filter(x=>x.s===k).length;
   const per=curCycle().label;
-  const head=(isAdmin()?`<div class="card mb cyc"><div><b>${esc(t("cycTitle"))}</b><div class="psub">${esc(t("cycSub"))}</div></div><select class="field" id="cycleSel" style="width:auto">${RP_TYPES.map(k=>`<option value="${k}" ${k===cycleType()?"selected":""}>${esc(t("rpt_"+k))}</option>`).join("")}</select></div>`:"")+`<div class="upd-kpis">${["submitted","edited","none"].map(k=>`<div class="card"><div class="kpi-label">${updChip(k)}</div><div class="kpi-value num">${num(cnt(k))}<span class="cur"> / ${num(ps.length)}</span></div><div class="sub">${esc(t("updPeriod",{p:per}))}</div></div>`).join("")}</div>`;
+  const head=(isAdmin()?`<div class="card mb cyc"><div><b>${esc(t("cycTitle"))}</b><div class="psub">${esc(t("cycSub"))}</div></div><select class="field" id="cycleSel" style="width:auto">${RP_TYPES.map(k=>`<option value="${k}" ${k===cycleType()?"selected":""}>${esc(t("rpt_"+k))}</option>`).join("")}</select></div>`:"")+snStrip([["submitted","check","good","submitted"],["edited","pencil","amber","pending"],["none","clockAlert","red","pending"]].map(([k,ico,tone,v])=>({ico,val:`${num(cnt(k))}<small> / ${num(ps.length)}</small>`,lbl:t("upd_"+k)+" · "+per,act:S.role==="pm"?"":"updf",v,tone:cnt(k)?tone:"grey"})));
   if(S.role==="pm")return head+updCharts(ps)+st.map(({p,s})=>pmUpdCard(p,s)).join("")+updFeed(ps);
   const f=S.updFilter||"all",off=S.updOfficer||"";
   
@@ -2323,7 +2368,13 @@ function apItem(u,showProj){const p=projById(u.projectId);const can=u.status==="
     ${u.status!=="pending"&&u.reviewedBy&&!u.auto?`<div class="psub">${esc(t(u.status==="returned"?"apReturnedBy":"apApprovedBy",{n:whoName(u.reviewedBy)}))} · ${esc(fdate(u.reviewedAt))}${u.reviewNote?` — “${esc(u.reviewNote)}”`:""}</div>`:""}
     ${can?`<div class="ap-act"><button class="btn sm primary" data-act="ap-ok" data-id="${esc(u.id)}">✓ ${esc(t("apApprove"))}</button><button class="btn sm" data-act="ap-ret" data-id="${esc(u.id)}">↩ ${esc(t("apReturn"))}</button></div>`:""}</div>`}
 function bellCount(){return bellCountUpd()+(["pmo","lead"].includes(S.role)?crPendingMine().length+clPendingMine().length:S.role==="pm"?crReturnedMine().length+clReturnedMine().length:0)}
-function vApprovals(){return crApCard()+clApCard()+vApprovalsUpd()}
+function vApprovals(){const sc=apScope(),c=k=>sc.filter(u=>(u.status||"approved")===k).length,f=S.apFilter||(S.role==="pm"?"returned":"pending");
+  const strip=snStrip([{ico:"inbox",val:num(c("pending")),lbl:t("ap_pending"),act:"apf",v:"pending",tone:c("pending")?"amber":"grey",on:f==="pending"},
+   {ico:"undo",val:num(c("returned")),lbl:t("ap_returned"),act:"apf",v:"returned",tone:c("returned")?"red":"grey",on:f==="returned"},
+   {ico:"check",val:num(c("approved")),lbl:t("ap_approved"),act:"apf",v:"approved",tone:"good",on:f==="approved"},
+   {ico:"file",val:num(crPendingMine().length),lbl:t("snCrAwait"),tone:crPendingMine().length?"amber":"grey"},
+   {ico:"archive",val:num(clPendingMine().length),lbl:t("snClAwait"),tone:clPendingMine().length?"amber":"grey"}]);
+  return strip+crApCard()+clApCard()+vApprovalsUpd()}
 function vApprovalsUpd(){
   const sc=apScope();const f=S.apFilter||(S.role==="pm"?"returned":"pending");
   resolveNames([...sc.map(u=>u.by),...sc.map(u=>u.reviewedBy)].filter(Boolean));
@@ -2476,7 +2527,7 @@ async function crUploadMany(files,k){const c=S.crDraft;if(!c||!crCanEdit(c)||!fi
     try{let r;try{r=await assetsNS.upload(file,{type})}catch(e){if(e&&e.code==="store_unavailable"){await new Promise(z=>setTimeout(z,1200));r=await assetsNS.upload(file,{type})}else throw e}
       add.push({assetId:r.id,name:file.name,type:r.contentType||type,size:r.sizeBytes||file.size,at:nowIso(),by:ME()});ok++}
     catch(e){const q=e&&e.code;toast(q==="unsupported_type"?t("evBadType",{f:file.name}):q==="too_large"?t("evTooBig",{f:file.name}):t("saveFailed",{m:(e&&e.message)||q||"error"}),true)}}
-  if(add.length){c.attachments={...(c.attachments||{})};c.attachments[k]=[...crAtt(c,k),...add];if(k==="charter")delete c.charter;crHist(c,"attach");try{await crSaveDoc(c)}catch(e){}}
+  if(add.length){const cur=S.crDraft&&S.crDraft.id===c.id?S.crDraft:c;/* a live update may have refreshed the draft while uploading */cur.attachments={...(cur.attachments||{})};cur.attachments[k]=[...crAtt(cur,k),...add];if(k==="charter")delete cur.charter;crHist(cur,"attach");try{await crSaveDoc(cur)}catch(e){}}
   S.crUp=false;if(ok)toast(t("uploaded",{n:num(ok)}));render()}
 async function crUpload(file){const c=S.crDraft;if(!c||!crCanEdit(c)||!file)return;if(!assetsNS){toast(t("evNoUpload"));return}
   const ext=(file.name.split(".").pop()||"").toLowerCase(),type=EV_TYPES[ext];if(!type){toast(t("evBadType",{f:file.name}),true);return}
@@ -2654,7 +2705,8 @@ function vChanges(){
   const rows=L.map(c=>{const p=projById(c.projectId);const lv=c.f&&c.f.level;return `<tr class="clickable" data-act="cr-open" data-id="${esc(c.id)}"><td class="num" dir="ltr">${esc(c.code||"—")}</td><td><span class="pchip num">${esc(p?p.code:"")}</span> ${esc(p?pname(p):"")}</td><td>${esc(crPair(CRL.types[lv]||[],c.f&&c.f.type)||"—")}</td><td>${esc(c.f&&c.f.requester||whoName(c.createdBy))}</td><td class="num">${esc(fdate(String(c.submittedAt||c.createdAt||"").slice(0,10)))}</td><td>${crChip(c.status)}</td></tr>`}).join("");
   const intro=`<div class="card"><div class="cr-intro"><div><h2>${esc(t("crTitle"))}</h2><div class="psub">${esc(t("crIntro"))}</div></div>${seg}</div>
     ${L.length?`<div class="table-wrap"><table class="mt"><thead><tr><th>${esc(t("crCode"))}</th><th>${esc(t("crProject"))}</th><th>${esc(t("crType"))}</th><th>${esc(t("crRequester"))}</th><th>${esc(t("crDate"))}</th><th>${esc(t("crStatus"))}</th></tr></thead><tbody>${rows}</tbody></table></div>`:`<div class="empty"><h3>${esc(t(sc.length?"crNoneF":"crNone"))}</h3>${!sc.length&&fProjects().some(p=>canP(p.id))?`<div class="acts"><button class="btn primary" data-act="cr-new">＋ ${esc(t("crNew"))}</button></div>`:""}</div>`}</div>`;
-  return charts+intro}
+  const strip=snStrip([["draft","file","grey"],["review","inbox","amber"],["npc","send",""],["returned","undo","red"],["closed","archive","good"]].map(([k,ico,tone])=>({ico,val:num(cnt(k)),lbl:t("crg_"+k),act:"crf",v:k,tone:cnt(k)?tone:"grey",on:f===k})));
+  return strip+charts+intro}
 /* ---- approvals card ---- */
 function crApCard(){const pend=crPendingMine(),ret=crReturnedMine(),npcL=isAdmin()?crScope().filter(c=>c.status==="npc"):[];const L=[...pend,...ret];if(!L.length&&!npcL.length)return "";
   const npcHtml=npcL.length?`<div class="cr-h" style="margin-top:${L.length?16:0}px"><h2>${esc(t("crNpcAwait"))}</h2><span class="psub">${esc(t("crNpcAwaitSub"))}</span></div>${npcL.map(c=>{const p=projById(c.projectId);const pv=crApplyPreview(c);return `<div class="ap-item"><div class="ap-h"><span class="pchip num">${esc(p?p.code:"")}</span><b class="num" dir="ltr">${esc(c.code||"")}</b><span>${esc(crPair(CRL.types[c.f&&c.f.level]||[],c.f&&c.f.type))}</span>${crChip(c.status)}<span class="ap-act" style="margin-inline-start:auto"><span class="psub">${esc(t("crNpcQ"))}</span><button class="btn sm primary" data-act="cr-npc-yes" data-id="${esc(c.id)}">✓ ${esc(t("crY"))}</button><button class="btn sm" data-act="cr-npc-no" data-id="${esc(c.id)}">✕ ${esc(t("crN"))}</button><button class="btn sm" data-act="cr-open" data-id="${esc(c.id)}">${esc(t("crReview"))}</button></span></div><div class="psub">${pv.length?esc(t("crWillApply"))+" "+pv.map(x=>esc(x.l)).join(" · "):esc(crApplyKeys(c)===undefined?t("crApManual"):t("crNoApply"))}</div></div>`}).join("")}`:"";
@@ -2737,7 +2789,7 @@ function vKpis(){
   const segs=[["completed","var(--done)"],["onTrack","var(--good)"],["atRisk","var(--warning)"],["delayed","var(--critical)"],["noLinks","var(--neutral)"]].map(([s,col])=>({v:cnt(s),c:col,l:s==="noLinks"?t("kpiNoLinks"):t("st_"+s)}));
   const allOuts=[...new Set(S.projects.map(p=>parseInt(String(p.portfolio||"").trim(),10)).filter(n=>n>0))].sort();const outRows=allOuts.filter(n=>!S.kpiOut||String(n)===String(S.kpiOut)).map(n=>{let ps=S.projects.filter(p=>String(p.portfolio||"").trim().startsWith(n+"."));if(S.role==="lead")ps=ps.filter(p=>leadMatch(p,S.leadName));if(!ps.length)return null;
     const g=grpStats(ps);const ks=C.filter(x=>String(x.k.outcome)===String(n));return {n,g,ks}}).filter(Boolean);
-  const outBars=`<div class="kpi-ob">${outRows.map(r=>`<div class="kpi-obr"><div class="kpi-obl"><b>${esc(kpiOutName(r.n))}</b><span class="psub">${esc(t("kpiOutSub",{p:num(r.g.n),k:num(r.ks.length)}))}</span></div>${progBar({prog:r.g.prog,planned:r.g.planned})}${mixBar(r.g)}</div>`).join("")||`<div class="psub">—</div>`}</div>`;
+  const outBars=`<div class="kpi-ob">${outRows.map(r=>`<div class="kpi-obr"><div class="kpi-obl"><span class="kpi-obt"><span class="os-ico" style="--oc:${OC[r.n]||"var(--brand)"}">${sIco(PIL_ICON[r.n]||"target")}</span><b>${esc(kpiOutName(r.n))}</b></span><span class="psub">${esc(t("kpiOutSub",{p:num(r.g.n),k:num(r.ks.length)}))}</span></div>${progBar({prog:r.g.prog,planned:r.g.planned})}${mixBar(r.g)}</div>`).join("")||`<div class="psub">—</div>`}</div>`;
   const charts=`<div class="grid g3 mb"><div class="card chart-card"><h2>${esc(t("kpiOutProg"))}</h2><div class="psub" style="margin:-4px 0 10px">${esc(t("kpiOutProgSub"))}</div>${outBars}</div><div class="card chart-card"><h2>${esc(t("kpiByStatus"))}</h2><div class="dn">${donutSvg(segs,num(C.length),t("kpiKpis"),150)}${lgdHtml(segs)}</div></div></div>`;
   const groups=[...new Set(C.map(x=>x.k.outcome))].sort().map(n=>{const rows=C.filter(x=>x.k.outcome===n);
     return `<div class="card mb"><div class="cr-h"><h2>${esc(kpiOutName(n))}</h2><span class="psub">${esc(t("kpiNKpis",{n:num(rows.length)}))}</span></div><div class="table-wrap"><table class="kpi-t"><thead><tr><th>${esc(t("kpiCode"))}</th><th>${esc(t("kpiName"))}</th><th class="r">${esc(t("kpiBaseline"))}</th><th class="r">${esc(t("kpiTarget"))}</th><th class="r">${esc(t("kpiCurrent"))}</th><th style="min-width:170px">${esc(t("kpiDelivery"))}</th><th>${esc(t("status"))}</th><th>${esc(t("kpiProjects"))}</th></tr></thead><tbody>
@@ -2747,7 +2799,13 @@ function vKpis(){
       <td class="r">${kpiVal(d.baseline,u)}${d.baseYear?`<div class="psub">${esc(d.baseYear)}</div>`:""}</td><td class="r">${kpiVal(tg,u)}${tg!=null&&tg!==""?`<div class="psub">${esc(d.targetYear||"2030")}</div>`:""}</td><td class="r">${kpiVal(d.current,u)}${d.curYear?`<div class="psub">${esc(d.curYear)}</div>`:""}</td>
       <td>${c.n?progBar({prog:c.prog,planned:c.planned}):'<span class="psub">—</span>'}</td><td>${kpiStChip(c.st)}</td><td style="white-space:nowrap"><span class="num">${num(S.role==="lead"?c.mine:c.n)}</span>${S.role==="lead"&&c.mine!==c.n?`<span class="psub"> / ${num(c.n)}</span>`:""} ${imp}</td></tr>
       ${open?`<tr class="kpi-det"><td colspan="8">${kpiDetail(k,c,d)}</td></tr>`:""}`}).join("")}</tbody></table></div></div>`}).join("");
-  return head+kpis+charts+(groups||`<div class="card"><div class="empty"><h3>${esc(t("kpiNone"))}</h3></div></div>`)}
+  const kAtt=cnt("atRisk")+cnt("delayed"),kOk=cnt("onTrack")+cnt("completed");
+  const kTop=snHero(avgP,avgPl,t("kpiTitle_"+cat),`<span>${sIco("target","s-ico sm")}${esc(t("snKpiOk",{n:num(kOk),m:num(C.length)}))}</span>`)+snTiles([
+   {ico:"target",val:num(C.length),lbl:t("kpiCount")},
+   {ico:"check",val:num(kOk),lbl:t("st_onTrack"),tone:"good"},
+   {ico:"warn",val:num(kAtt),lbl:t("kpiAttention"),tone:kAtt?"warn":"good"},
+   {ico:"file",val:`${num(withBase)}<small>/${num(C.length)}</small>`,lbl:t("kpiBaselines"),tone:withBase<C.length?"amber":"good"}]);
+  return kTop+head+charts+(groups||`<div class="card"><div class="empty"><h3>${esc(t("kpiNone"))}</h3></div></div>`)}
 function kpiDetail(k,c,d){const cat=k.cat;
   const meta=cat==="ministry"?`<div class="psub" style="margin-bottom:8px">${esc(k.objective||"")}${k.init&&k.init.length?" · "+esc(k.init.join(" · ")):""}</div>`:"";
   const rows=c.L.slice().sort((a,b)=>b.w-a.w||String(a.p.code).localeCompare(String(b.p.code),undefined,{numeric:true})).map(x=>{const m=metrics(x.p);const mine=S.role==="lead"&&leadMatch(x.p,S.leadName);
@@ -2920,6 +2978,16 @@ function budgetInit(ps,limit){const m=new Map();for(const p of ps){const k=Strin
       <div class="bi-v num">${esc(money(x.b))}</div><div class="bi-s num">${pct(x.b/tot*100)}</div></div>`};
   const leg=[...new Set(R.map(x=>x.n).filter(Boolean))].sort().map(n=>`<span><i style="background:${OC[n]}"></i>${esc(L2(STRAT.outcomes[n-1].ar,STRAT.outcomes[n-1].en))}</span>`).join("");
   return `<div class="bi"><div class="bi-head"><span class="psub">${esc(t("biTotal"))}</span><b class="num">${esc(money(tot))}</b><span class="psub">· ${esc(t("biCount",{n:num(m.size)}))}</span></div>${R.map(row).join("")}${rest?row(rest):""}<div class="bi-leg">${leg}</div></div>`}
+function execSnap(ps,g){
+  const kp=(KPIS&&["pmo","executive"].includes(S.role))?(()=>{const L=(KPIS.strategic||[]).map(k=>kpiCalc(k)).filter(c=>c.n);return {ok:L.filter(c=>c.st==="onTrack"||c.st==="completed").length,n:L.length}})():null;
+  const ids=new Set(ps.map(p=>p.id));
+  const crN=(S.changes||[]).filter(c=>ids.has(c.projectId)&&["lead","pmo","npc"].includes(c.status)).length,clN=(S.closures||[]).filter(c=>ids.has(c.projectId)&&c.status==="pending").length;
+  const scope=S.filters.lead?leadLabel(S.filters.lead):S.role==="lead"?S.leadName:t("exAllPortfolio");
+  return snHero(g.prog,g.planned,scope+" · "+fdate(isoToday(),{day:"numeric",month:"long",year:"numeric"}),snHealthChips(g))+snTiles([
+   {ico:"projects",val:num(g.n),lbl:t("snProjects"),href:"#projects"},
+   {ico:"budget",val:moneyKpi(g.budget),lbl:t("snBudget")},
+   kp?{ico:"target",val:`${num(kp.ok)}<small>/${num(kp.n)}</small>`,lbl:t("snKpis"),href:"#kpis"}:{ico:"done",val:num((g.closed||0)+(g.completed||0)),lbl:t("exClosedTile"),tone:"good"},
+   {ico:"gavel",val:num(crN+clN),lbl:t("snDecisions"),href:tabAllowed("approvals")?"#approvals":"",tone:crN+clN?"amber":""}])}
 function execHero(ps,g){const isE=S.role==="executive";const n=g.n||1;
   const kp=(KPIS&&["pmo","executive"].includes(S.role))?(()=>{const L=(KPIS.strategic||[]).map(k=>kpiCalc(k)).filter(c=>c.n);return {ok:L.filter(c=>c.st==="onTrack"||c.st==="completed").length,n:L.length}})():null;
   const ids=new Set(ps.map(p=>p.id));
@@ -2938,7 +3006,7 @@ function execHero(ps,g){const isE=S.role==="executive";const n=g.n||1;
     ${tile(t("exDecisions"),num(crN+clN),esc(t("exDecisionsSub",{c:num(crN),l:num(clN)})))}
    </div></div></section>`}
 function outcomeStrip(ps){return `<div class="os-grid">${[1,2,3,4,5,6].map(n=>{const L=ps.filter(p=>outNo(p)===n);if(!L.length)return "";const g=grpStats(L);const o=STRAT.outcomes[n-1];
-  return `<div class="os-card clickable" style="--oc:${OC[n]}" data-act="os-filter" data-v="${n}"><div class="os-h"><span class="arch-n">${n}</span><span class="os-t">${esc(L2(o.ar,o.en))}</span></div>
+  return `<div class="os-card clickable" style="--oc:${OC[n]}" data-act="os-filter" data-v="${n}"><div class="os-h"><span class="os-ico">${sIco(PIL_ICON[n])}</span><span class="os-t">${esc(L2(o.ar,o.en))}</span></div>
    <div class="os-m"><b class="num">${pct(g.prog)}</b><span class="psub">${esc(t("planned"))} ${pct(g.planned)}</span>${varChip(g.prog-g.planned)}</div>${progBar({prog:g.prog,planned:g.planned})}${mixBar(g)}
    <div class="os-f psub"><span>${esc(t("hmNProj",{n:num(g.n)}))}</span><span class="num">${esc(money(g.budget))}</span></div></div>`}).join("")}</div>`}
 function leadPerf(ps){const keys=[...LEAD_ORDER.filter(k=>ps.some(p=>p.sponsor===k)),...(ps.some(p=>!p.sponsor)?["__none"]:[])];const isE=S.role==="executive";
@@ -2974,7 +3042,23 @@ const SI={
  community:'<circle cx="12" cy="6.5" r="2.4"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/><path d="M8 20v-3.5a4 4 0 0 1 8 0V20M2 20v-2a3 3 0 0 1 4.5-2.6M22 20v-2a3 3 0 0 0-4.5-2.6"/>',
  living:'<path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M12 12.2v5.6M13.8 13.3c-.4-.7-3.4-.9-3.4.6 0 1.6 3.6.8 3.6 2.4 0 1.4-3.2 1.3-3.8.4"/>',
  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/>',
- arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>'};
+ arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+ pencil:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>',
+ inbox:'<path d="M3.5 13.5 6 5h12l2.5 8.5V19H3.5z"/><path d="M3.5 13.5H8l1.5 2.5h5l1.5-2.5h4.5"/>',
+ undo:'<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
+ send:'<path d="M21 3 3 10.5l7 3 3 7z"/><path d="m21 3-11 10.5"/>',
+ file:'<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h5"/>',
+ shield:'<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="M12 8.5v4.5M12 16h.01"/>',
+ flame:'<path d="M12 21c-3.6 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.3 3.8-8.8 2.2 1.4 3 3.4 3 5 1-1 1.6-2.3 1.7-3.6 2.4 1.8 4.5 4.4 4.5 7.4 0 3.6-2.9 6.2-6.5 6.2z"/>',
+ trend:'<path d="M3 6l6.5 6.5 4-4L21 16"/><path d="M15 16h6v-6"/>',
+ pie:'<path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/>',
+ flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+ list:'<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+ clip:'<path d="m20 11.5-8.2 8.2a5 5 0 0 1-7.1-7.1l8.2-8.2a3.3 3.3 0 0 1 4.7 4.7l-8.2 8.2a1.7 1.7 0 0 1-2.4-2.4l7.6-7.6"/>',
+ play:'<circle cx="12" cy="12" r="8.5"/><path d="M10.2 8.6v6.8l5.4-3.4z"/>',
+ archive:'<rect x="3" y="4" width="18" height="4.5" rx="1"/><path d="M5 8.5V20h14V8.5M10 12.5h4"/>',
+ gavel:'<path d="m14.5 3.5 6 6M12 6l6 6M13.5 4.5l-6 6 3 3 6-6"/><path d="M9 12 3.5 17.5l3 3L12 15"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>'};
 const PIL_ICON={1:"family",2:"women",3:"care",4:"community",5:"living",6:"gear"};
 const sIco=(k,cls)=>`<svg class="${cls||"s-ico"}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${SI[k]||""}</svg>`;
 function snapRing(a,p,size){const r=size/2-9,c=2*Math.PI*r,C=size/2,ang=clamp(p,0,100)/100*2*Math.PI-Math.PI/2;
@@ -2982,6 +3066,19 @@ function snapRing(a,p,size){const r=size/2-9,c=2*Math.PI*r,C=size/2,ang=clamp(p,
   return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" class="sn-ring" aria-hidden="true"><circle cx="${C}" cy="${C}" r="${r}" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="14"/><circle cx="${C}" cy="${C}" r="${r}" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-dasharray="${c*clamp(a,0,100)/100} ${c}" transform="rotate(-90 ${C} ${C})"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#E9C56B" stroke-width="3" stroke-linecap="round"/></svg>`}
 function miniRing(a,p,col){const size=64,r=26,c=2*Math.PI*r,C=32,ang=clamp(p,0,100)/100*2*Math.PI-Math.PI/2;const x1=C+(r-4)*Math.cos(ang),y1=C+(r-4)*Math.sin(ang),x2=C+(r+5.5)*Math.cos(ang),y2=C+(r+5.5)*Math.sin(ang);
   return `<svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="${col}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c*clamp(a,0,100)/100} ${c}" transform="rotate(-90 32 32)"/><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/></svg>`}
+function snVerdict(v){return v>=-5?"onTrack":v>=-15?"atRisk":"delayed"}
+function snHero(prog,planned,eyebrow,extra){const v=prog-planned,vs=snVerdict(v);
+  return `<section class="sn-hero"><div class="sn-hero-in">
+    <div class="sn-ringbox">${snapRing(prog,planned,176)}<div class="sn-ringtxt"><b class="num">${pct(prog)}</b><span>${esc(t("snDelivered"))}</span></div></div>
+    <div class="sn-verdict"><div class="sn-eyebrow">${esc(eyebrow)}</div>
+      <div class="sn-big"><span class="sn-vico c-${vs}">${sIco(vs==="onTrack"?"check":vs==="atRisk"?"warn":"stop")}</span>${esc(vs==="onTrack"?t("snOnPlan"):t("snBehind",{n:num(Math.abs(v),0)}))}</div>
+      <div class="sn-legend"><span><i class="sn-dot w"></i>${esc(t("snActual"))} ${pct(prog)}</span><span><i class="sn-dot y"></i>${esc(t("snPlanned"))} ${pct(planned)}</span>${extra||""}</div></div></div></section>`}
+function snHealthChips(g){return `<span class="sn-hchips">${[["onTrack","check",(g.onTrack||0)+(g.completed||0)+(g.closed||0)],["atRisk","warn",g.atRisk||0],["delayed","stop",g.delayed||0]].map(([k,ico,n])=>`<button class="sn-hc c-${k}" data-act="filter-status" data-v="${k}" data-tip="${esc(t("st_"+k))}">${sIco(ico,"s-ico sm")}<b class="num">${num(n)}</b></button>`).join("")}</span>`}
+function snTile(x){const inner=`<span class="sn-tico">${sIco(x.ico)}</span><span class="sn-tval num">${x.val}</span><span class="sn-tlbl">${esc(x.lbl)}</span>`;const cls=`sn-tile${x.tone?" "+x.tone:""}`;
+  return x.href?`<a class="${cls}" href="${x.href}">${inner}</a>`:x.act?`<button class="${cls}" data-act="${x.act}" data-v="${esc(x.v||"")}">${inner}</button>`:`<div class="${cls} static">${inner}</div>`}
+function snTiles(items){return `<div class="sn-tiles" style="--n:${items.length}">${items.map(snTile).join("")}</div>`}
+function snStrip(items){return `<div class="sn-strip" style="--n:${items.length}">${items.map(x=>{const inner=`<span class="sn-sico">${sIco(x.ico)}</span><span class="sn-stxt"><b class="num">${x.val}</b><span>${esc(x.lbl)}</span></span>`;const cls=`sn-s${x.tone?" "+x.tone:""}${x.on?" on":""}`;
+  return x.href?`<a class="${cls}" href="${x.href}">${inner}</a>`:x.act?`<button class="${cls}" data-act="${x.act}" data-v="${esc(x.v||"")}">${inner}</button>`:`<div class="${cls} static">${inner}</div>`}).join("")}</div>`}
 function vSnap(){
   const saved=S.filters;S.filters={q:"",portfolio:"",init:"",dept:"",status:"",lead:""};const ps=fProjects();S.filters=saved;
   const g=grpStats(ps),v=g.prog-g.planned,vs=v>=-5?"onTrack":v>=-15?"atRisk":"delayed";
@@ -3010,7 +3107,7 @@ function vSnap(){
   return hero+tiles+`<div class="sn-row">${health}${att}</div>`+pil+`<div class="sn-foot psub">${esc(t("snFoot"))}</div>`;
 }
 function vExec(){
-  const {ps,g,by,rows,attn,kd}=execData();const isE=S.role==="executive";S._hero=execHero(ps,g);
+  const {ps,g,by,rows,attn,kd}=execData();const isE=S.role==="executive";S._hero=execSnap(ps,g);
   const card=(title,sub,body,cls)=>`<div class="card ${cls||""}"><div class="cr-h"><h2>${esc(title)}</h2>${sub?`<span class="psub">${esc(sub)}</span>`:""}</div>${body}</div>`;
   const st=["closed","completed","onTrack","atRisk","delayed","onHold"].map(k=>({v:g[k]||0,c:ST_C[k],l:t("st_"+k)}));
   const att=attn.length?`<div class="list">${attn.slice(0,8).map(({p,m,s})=>`<div class="li clickable" style="grid-template-columns:auto 1fr auto" data-act="open-project" data-id="${esc(p.id)}"><span class="pchip num">${esc(p.code)}</span><div style="min-width:0"><div class="t">${esc(pname(p))}</div><div class="s">${esc(leadLabel(p.sponsor||"__none"))} · ${esc(p.manager||"—")}</div></div><div style="text-align:end">${statusChip(s)}<div class="psub num" style="margin-top:4px">${pct(m.prog)} / ${pct(m.planned)} · ${varChip(m.variance)}</div></div></div>`).join("")}</div>`:`<div class="empty">${esc(t("none"))}</div>`;

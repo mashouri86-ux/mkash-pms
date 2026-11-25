@@ -225,7 +225,7 @@ with sync_playwright() as p:
     crs = {d["id"]: d["data"] for d in api(owner, "/api/docs/changes")["docs"]}
     check("Change request submitted with an NDS3 code, waiting for the sector lead", cid in crs and crs[cid]["status"] == "lead" and bool(code), f"{code} {crs.get(cid,{}).get('status')}")
     att = (crs.get(cid) or {}).get("attachments") or {}
-    check("Change request carries the updated charter (PDF) and the filled template (Excel)", len(att.get("charter", [])) == 1 and len(att.get("template", [])) == 1, json.dumps(att)[:120])
+    check("Change request carries the updated charter (PDF) and the filled template (Excel)", len(att.get("charter", [])) == 1 and len(att.get("template", [])) == 1, json.dumps({k:[x.get("name") for x in v] for k,v in att.items()}))
     wait_for(lead, f"(S.changes||[]).some(c=>c.id==='{cid}'&&c.status==='lead')")
     lead.evaluate(f"crOpen('{cid}')"); lead.wait_for_timeout(500)
     lead.click('[data-act="cr-ok"]'); lead.wait_for_timeout(1000)
