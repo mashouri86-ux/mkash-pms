@@ -8,6 +8,13 @@ pkill -f "dotnet.*MKAsh.Api" 2>/dev/null || true
 pkill -f "MKAsh.Api" 2>/dev/null || true
 pkill -f "node.*vite" 2>/dev/null || true
 
+# Codespaces: make sure a released .NET 10 SDK is installed (a cached Codespace image can carry a preview build)
+if [ -n "$CODESPACES" ] && ! dotnet --list-sdks 2>/dev/null | grep -qE '^10\.0\.[0-9]+ '; then
+  echo "Installing the .NET 10 SDK (one time, about a minute)…"
+  curl -sSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh \
+    && sudo bash /tmp/dotnet-install.sh --channel 10.0 --install-dir /usr/share/dotnet > /tmp/dotnet-install.log 2>&1
+fi
+
 # Codespaces: keep the data in a SQLite file (no separate database server needed)
 # (kept under /workspaces so it survives the Codespace stopping, restarting or being rebuilt)
 if [ -n "$CODESPACES" ]; then
