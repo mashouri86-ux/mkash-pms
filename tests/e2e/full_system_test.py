@@ -139,6 +139,12 @@ with sync_playwright() as p:
     ex.evaluate("location.hash='#exec'"); ex.wait_for_timeout(800)
     check("Executive Leadership page shows no overdue activities", "overdue" not in ex.inner_text("#view").lower())
     shot(ex, "20-executive-leadership")
+    ex.evaluate("location.hash='#snap'"); ex.wait_for_timeout(800)
+    snap = ex.evaluate("""(()=>{const n=[...document.querySelectorAll('.sn-h .sn-hn')].map(x=>+x.textContent.replace(/[^0-9]/g,''));return {hero:!!document.querySelector('.sn-hero'),tiles:document.querySelectorAll('.sn-tile').length,health:n.reduce((a,b)=>a+b,0),total:fProjects().length,pillars:document.querySelectorAll('.sn-p').length}})()""")
+    check("Executive Snapshot: hero, 4 tiles, health adds up to all projects, pillar cards", snap["hero"] and snap["tiles"] == 4 and snap["health"] == snap["total"] and snap["pillars"] > 0, str(snap))
+    shot(ex, "21-executive-snapshot")
+    pmn = pm.evaluate("[...document.querySelectorAll('#tabs a[data-view=snap]')].filter(a=>getComputedStyle(a).display!=='none').length")
+    check("Project managers don't get the Snapshot tab", pmn == 0)
 
     # ---------- 4a. progress update → approval ----------
     act = pm.evaluate(f"(()=>{{const a=planOf('{pid}').acts.find(a=>a.st!=='done');return a&&a.id}})()")
